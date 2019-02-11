@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageId>NvdaTestingDriver</PackageId>
+		<Version>0.1.0</Version>
+		<Authors>Juanjo Montiel</Authors>
+		<Company>Juanjo Montiel</Company>
+		<Description>Driver for connect NVDA and intercept speech</Description>
+		<Copyright>2018-2019</Copyright>
+		<PackageLicenseUrl>8</PackageLicenseUrl>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<DocumentationFile>NvdaTestingDriver.xml</DocumentationFile>
+	</PropertyGroup>
+	<PropertyGroup>
+		<CodeAnalysisRuleSet>..\ca.ruleset</CodeAnalysisRuleSet>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<AdditionalFiles Include="stylecop.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</AdditionalFiles>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="nvda.zip">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </EmbeddedResource>
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.3">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Win32.Registry" Version="4.5.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+		<PackageReference Include="NGettext" Version="0.6.3" />
+		<PackageReference Include="StyleCop.Analyzers" Version="1.1.1-rc.94">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
+	</ItemGroup>
+</Project>

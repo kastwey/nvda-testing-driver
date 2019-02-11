@@ -1,0 +1,37 @@
+﻿@{
+	ViewData["Title"] = "Contact";
+}
+<h2>@ViewData["Title"]</h2>
+<h3><a href="#" data-toggle="collapse" data-target="#contactPhone" aria-expanded="false">Contact by phone</a></h3>
+<div id="contactPhone" class="collapse">
+	<p>Call us at +34666666666.</p>
+</div>
+<h3><a href="#" data-toggle="collapse" data-target="#contactEmail" aria-expanded="false">Contact by e-mail</a></h3>
+<div id="contactEmail" class="collapse">
+	<p>Write us an e-mail to <a href="mailto:info@@demo.com">info@demo.com</a></p>
+</div>
+<h3><a href="#" data-toggle="collapse" data-target="#contactAddress" aria-expanded="false">Postal address</a></h3>
+<div id="contactAddress" class="collapse">
+	<address>
+		One Microsoft Way<br />
+		Redmond, WA 98052-6399<br />
+		<abbr title="Phone">P:</abbr>
+		425.555.0100
+	</address>
+</div>
+<h3><a href="#" data-toggle="collapse" data-target="#contactForm" aria-expanded="false">Fill the contact form</a></h3>
+<div id="contactForm">
+<form>
+	<div class="form-group">
+		<label for="name" class="control-label">Name:</label>
+		<input type="text" id="name" class="form-control" />
+	</div>
+	<div class="form-group">
+		<label for="email" class="control-label">E-mail:</label>
+		<input type="email" id="email" class="form-control" />
+	</div>
+	<div class="form-group">
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</div>
+</form>
+	</div>

@@ -1,0 +1,3606 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NvdaTestingDriver</name>
+    </assembly>
+    <members>
+        <member name="T:NvdaTestingDriver.Commands.INvdaCommand">
+            <summary>
+            Interface which include all properties used by NvdaDriver command functions.
+            </summary>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.INvdaCommand.DesktopCombinationSet">
+            <summary>
+            Gets the desktop combination set.
+            </summary>
+            <value>
+            The desktop combination set.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.INvdaCommand.LaptopCombinationSet">
+            <summary>
+            Gets the laptop combination set.
+            </summary>
+            <value>
+            The laptop combination set.
+            </value>
+        </member>
+        <member name="T:NvdaTestingDriver.Commands.NvdaCommand">
+            <summary>
+            Store NVDA command information.
+            </summary>
+            <seealso cref="T:NvdaTestingDriver.Commands.INvdaCommand" />
+        </member>
+        <member name="M:NvdaTestingDriver.Commands.NvdaCommand.#ctor(NvdaTestingDriver.KeyCombination,NvdaTestingDriver.KeyCombination)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.Commands.NvdaCommand"/> class.
+            </summary>
+            <param name="desktopCombination">The desktop combination.</param>
+            <param name="laptopCombination">The laptop combination.</param>
+        </member>
+        <member name="M:NvdaTestingDriver.Commands.NvdaCommand.#ctor(System.Collections.Generic.List{NvdaTestingDriver.KeyCombination},System.Collections.Generic.List{NvdaTestingDriver.KeyCombination})">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.Commands.NvdaCommand"/> class.
+            </summary>
+            <param name="desktopCombinationSet">The desktop combination set.</param>
+            <param name="laptopCombinationSet">The laptop combination set.</param>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommand.DesktopCombinationSet">
+            <summary>
+            Gets the desktop combination set.
+            </summary>
+            <value>
+            The desktop combination set.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommand.LaptopCombinationSet">
+            <summary>
+            Gets the laptop combination set.
+            </summary>
+            <value>
+            The laptop combination set.
+            </value>
+        </member>
+        <member name="T:NvdaTestingDriver.Commands.NvdaCommands.BasicCommands">
+            <summary>
+            Class to group basic NVDA commands.
+            </summary>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BasicCommands.QuitNvda">
+            <summary>
+            Gets the command to exits NVDA.
+            </summary>
+            <value>
+            The quit nvda command.
+            </value>
+        </member>
+        <member name="T:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands">
+            <summary>
+            Group all browse mode commands</summary>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.ToggleBrowseAndFocusMode">
+            <summary>
+            Gets the command to toggle between focus mode and browse mode.
+            </summary>
+            <value>
+            The toggle browse and focus mode command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.ExitFocusMode">
+            <summary>
+            Gets the command to switch back to browse mode if focus mode was previously switched to automatically.
+            </summary>
+            <value>
+            The exit focus mode command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.RefreshBrowseModeDocument">
+            <summary>
+            Gets the command to reload the current document content (useful if certain content seems to be missing from the document. Not available in Microsoft Word and Outlook.).
+            </summary>
+            <value>
+            The refresh browse mode document command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.Find">
+            <summary>
+            Gets the command to pop up a dialog in which you can type some text to find in the current document.
+            </summary>
+            <value>
+            The find command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.FindNext">
+            <summary>
+            Gets the command to find the next occurrence of the text in the document that you previously searched for.
+            </summary>
+            <value>
+            The find next command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.FindPrevious">
+            <summary>
+            Gets the command to find the previous occurrence of the text in the document you previously searched for.
+            </summary>
+            <value>
+            The find previous.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.OpenLongDescription">
+            <summary>
+            Gets the command to open a new window containing a long description for the element you are on if it has one.
+            </summary>
+            <value>
+            The open long description command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextHeading">
+            <summary>
+            Gets a command to go to the next heading.
+            </summary>
+            <value>
+            The command to go to the next heading.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextHeading1">
+            <summary>
+            Gets a command to go to the next heading level 1.
+            </summary>
+            <value>
+            The next heading1 command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextHeading2">
+            <summary>
+            Gets the command to go to the next heading level 2.
+            </summary>
+            <value>
+            The next heading2 command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextHeading3">
+            <summary>
+            Gets the command to go to the next heading level 3.
+            </summary>
+            <value>
+            The next heading3 command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextHeading4">
+            <summary>
+            Gets hte command to go to the next heading level 4.
+            </summary>
+            <value>
+            The next heading4 command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextHeading5">
+            <summary>
+            Gets the command to Go to the next heading level 5.
+            </summary>
+            <value>
+            The next heading5 command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextHeading6">
+            <summary>
+            Gets the command to go to the next heading level 6.
+            </summary>
+            <value>
+            The next heading6 command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousHeading">
+            <summary>
+            Gets the command to go to the previous heading.
+            </summary>
+            <value>
+            The previous heading command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousHeading1">
+            <summary>
+            Gets the command to go to the previous heading level 1.
+            </summary>
+            <value>
+            The previous heading1 command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousHeading2">
+            <summary>
+            Gets the command to go to the previous heading level 2.
+            </summary>
+            <value>
+            The previous heading2 command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousHeading3">
+            <summary>
+            Gets the command to go to the previous heading level 3.
+            </summary>
+            <value>
+            The previous heading3 command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousHeading4">
+            <summary>
+            Gets the command to go to the previous heading level 4.
+            </summary>
+            <value>
+            The previous heading4 command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousHeading5">
+            <summary>
+            Gets the command to go to the previous heading level 5.
+            </summary>
+            <value>
+            The previous heading5 command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousHeading6">
+            <summary>
+            Gets the command to go to the previous heading level 6.
+            </summary>
+            <value>
+            The previous heading6 command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextList">
+            <summary>
+            Gets the command to go to the next list.
+            </summary>
+            <value>
+            The next list command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousList">
+            <summary>
+            Gets the command to go to the previous list.
+            </summary>
+            <value>
+            The previous list command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextListItem">
+            <summary>
+            Gets the command to o to the next list item.
+            </summary>
+            <value>
+            The next list item command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousListItem">
+            <summary>
+            Gets the command to go to the previous list item.
+            </summary>
+            <value>
+            The previous list item command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextTable">
+            <summary>
+            Gets the command to go to the next table.
+            </summary>
+            <value>
+            The next table command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousTable">
+            <summary>
+            Gets the command to go to the previous table.
+            </summary>
+            <value>
+            The previous table command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextLink">
+            <summary>
+            Gets the command to go to the next link.
+            </summary>
+            <value>
+            The next link command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousLink">
+            <summary>
+            Gets the command to go to the previous link.
+            </summary>
+            <value>
+            The previous link value.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextNonLinkedText">
+            <summary>
+            Gets the command to go to the next non linked text.
+            </summary>
+            <value>
+            The next non linked text command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousNonLinkedText">
+            <summary>
+            Gets the command to go to the previous non linked text.
+            </summary>
+            <value>
+            The previous non linked text command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextFormField">
+            <summary>
+            Gets the command to go to the next form field.
+            </summary>
+            <value>
+            The next form field command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousFormField">
+            <summary>
+            Gets the command to go to the previous form field.
+            </summary>
+            <value>
+            The previous form field command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextUnvisitedLink">
+            <summary>
+            Gets the command to go to the next unvisited link.
+            </summary>
+            <value>
+            The next unvisited link command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousUnvisitedLink">
+            <summary>
+            Gets the command to go to the previous unvisited link.
+            </summary>
+            <value>
+            The previous unvisited link.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextVisitedLink">
+            <summary>
+            Gets the command to go to the next visited link.
+            </summary>
+            <value>
+            The next visited link command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousVisitedLink">
+            <summary>
+            Gets the command to go to the previous visited link.
+            </summary>
+            <value>
+            The previous visited link command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextEditField">
+            <summary>
+            Gets the command to go to the next edit field.
+            </summary>
+            <value>
+            The next edit field command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousEditField">
+            <summary>
+            Gets the command to go to the previous edit field.
+            </summary>
+            <value>
+            The previous edit field command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextButton">
+            <summary>
+            Gets the command to go to the next button.
+            </summary>
+            <value>
+            The next button command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousButton">
+            <summary>
+            Gets the command to go to the previous button.
+            </summary>
+            <value>
+            The previous button command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextCheckbox">
+            <summary>
+            Gets the command to go to the next checkbox.
+            </summary>
+            <value>
+            The next checkbox command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousCheckbox">
+            <summary>
+            Gets the command to go to the previous checkbox.
+            </summary>
+            <value>
+            The previous checkbox command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextComboBox">
+            <summary>
+            Gets the command to go to the next combo box.
+            </summary>
+            <value>
+            The next ComboBox command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousComboBox">
+            <summary>
+            Gets the command to go to the previous combo box.
+            </summary>
+            <value>
+            The previous ComboBox command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextRadioButton">
+            <summary>
+            Gets the command to go to the next radio button.
+            </summary>
+            <value>
+            The next RadioButton command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousRadioButton">
+            <summary>
+            Gets the command to go to the previous radio button.
+            </summary>
+            <value>
+            The previous RadioButton command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextBlockQuote">
+            <summary>
+            Gets the command to  go to the next block quote.
+            </summary>
+            <value>
+            The next block quote command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousBlockQuote">
+            <summary>
+            Gets the command to go to the previous block quote.
+            </summary>
+            <value>
+            The previous block quote command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextSeparator">
+            <summary>
+            Gets the command to go to the next separator.
+            </summary>
+            <value>
+            The next separator command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousSeparator">
+            <summary>
+            Gets the command to go to the previous separator.
+            </summary>
+            <value>
+            The previous separator command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextFrame">
+            <summary>
+            Gets the command to go to the next frame.
+            </summary>
+            <value>
+            The next frame command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousFrame">
+            <summary>
+            Gets the command to go to the previous frame.
+            </summary>
+            <value>
+            The previous frame command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextGraphic">
+            <summary>
+            Gets the command to go to the next graphic.
+            </summary>
+            <value>
+            The next graphic command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousGraphic">
+            <summary>
+            Gets the command to go to the previous graphic.
+            </summary>
+            <value>
+            The previous graphic command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextLandmark">
+            <summary>
+            Gets the command to go to the next landmark.
+            </summary>
+            <value>
+            The next landmark command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousLandmark">
+            <summary>
+            Gets the command to go to the previous landmark.
+            </summary>
+            <value>
+            The previous landmark command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextEmbeddedObject">
+            <summary>
+            Gets the command to go to the next embedded object (audio and video player, application, dialog, etc.).
+            </summary>
+            <value>
+            The next embedded object command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousEmbeddedObject">
+            <summary>
+            Gets the command to go to the previous embedded object (audio and video player, application, dialog, etc.).
+            </summary>
+            <value>
+            The previous embedded object command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextAnnotation">
+            <summary>
+            Gets the command to go to the next annotation.
+            </summary>
+            <value>
+            The next annotation command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousAnnotation">
+            <summary>
+            Gets the command to go to the previous annotation.
+            </summary>
+            <value>
+            The previous annotation command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.NextSpellingError">
+            <summary>
+            Gets the command to go to the next spelling error.
+            </summary>
+            <value>
+            The next spelling error command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.BrowseModeCommands.PreviousSpellingError">
+            <summary>
+            Gets the command to go to the previous spelling error.
+            </summary>
+            <value>
+            The previous spelling error command.
+            </value>
+        </member>
+        <member name="T:NvdaTestingDriver.Commands.NvdaCommands.EmbeddedObjectsCommands">
+            <summary>
+            Class to group all NVDA  embedded object commands.
+            </summary>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.EmbeddedObjectsCommands.MoveToContainingBrowseModeDocument">
+            <summary>
+            Gets the command to moves the focus out of the current embedded object and into the document that contains it.
+            </summary>
+            <value>
+            The move to containing browse mode document command.
+            </value>
+        </member>
+        <member name="T:NvdaTestingDriver.Commands.NvdaCommands.NavigatingSystemCaretCommands">
+            <summary>Group all commands for navigating with system caret</summary>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.NavigatingSystemCaretCommands.SayAll">
+            <summary>
+            Gets the command to starts reading from the current position of the system caret, moving it along as it goes.
+            </summary>
+            <value>
+            The say all command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.NavigatingSystemCaretCommands.ReadCurrentLine">
+            <summary>
+            Gets the command to reads the line where the system caret is currently situated. Pressing twice spells the line. Pressing three times spells the line using character descriptions.
+            </summary>
+            <value>
+            The read current line command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.NavigatingSystemCaretCommands.ReadCurrentTextSelection">
+            <summary>
+            Gets the command to reads any currently selected text.
+            </summary>
+            <value>
+            The read current text selection command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.NavigatingSystemCaretCommands.MoveToNextColumn">
+            <summary>
+            Gets the command to moves the system caret to the next column (staying in the same row).
+            </summary>
+            <value>
+            The move to next column command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.NavigatingSystemCaretCommands.MoveToPreviousColumn">
+            <summary>
+            Gets the command to moves the system caret to the previous column (staying in the same row).
+            </summary>
+            <value>
+            The move to previous column command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.NavigatingSystemCaretCommands.MoveToNextRow">
+            <summary>
+            Gets the command to moves the system caret to the next row (staying in the same column).
+            </summary>
+            <value>
+            The move to next row command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.NavigatingSystemCaretCommands.MoveToPreviousRow">
+            <summary>
+            Gets the command to moves the system caret to the previous row (staying in the same column).
+            </summary>
+            <value>
+            The move to previous row command.
+            </value>
+        </member>
+        <member name="T:NvdaTestingDriver.Commands.NvdaCommands.NavigatingSystemFocusCommands">
+            <summary>
+            Group all NVDA commands under navigating with system focus category
+            </summary>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.NavigatingSystemFocusCommands.ReportCurrentFocus">
+            <summary>
+            Gets the command to announces the current object or control that has the System focus.
+            </summary>
+            <value>
+            The report current focus command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.NavigatingSystemFocusCommands.ReportTitle">
+            <summary>
+            Gets the command to reports the title of the currently active window.
+            </summary>
+            <value>
+            The report title command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.NavigatingSystemFocusCommands.ReadActiveWindow">
+            <summary>
+            Gets the command to reads all the controls in the currently active window (useful for dialogs).
+            </summary>
+            <value>
+            The read active window command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.NavigatingSystemFocusCommands.ReportStatusBar">
+            <summary>
+            Gets the command to reports the Status Bar if NVDA finds one. It also moves the navigator object to this location.
+            </summary>
+            <value>
+            The report status bar command.
+            </value>
+        </member>
+        <member name="T:NvdaTestingDriver.Commands.NvdaCommands.ObjectNavigationCommands">
+            <summary>
+            Group all NVDA commands under object navigation category
+            </summary>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ObjectNavigationCommands.ReportCurrentObject">
+            <summary>
+            Gets the command to reports the current navigator object.
+            </summary>
+            <value>
+            The report current object command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ObjectNavigationCommands.MoveToContainingObject">
+            <summary>
+            Gets the command to moves to the object containing the current navigator object.
+            </summary>
+            <value>
+            The move to containing object command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ObjectNavigationCommands.MoveToPreviousObject">
+            <summary>
+            Gets the command to moves to the object before the current navigator object.
+            </summary>
+            <value>
+            The move to previous object command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ObjectNavigationCommands.MoveToNextObject">
+            <summary>
+            Gets the command to moves to the object after the current navigator object.
+            </summary>
+            <value>
+            The move to next object command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ObjectNavigationCommands.MoveToFirstContainedObject">
+            <summary>
+            Gets the command to moves to the first object contained by the current navigator object.
+            </summary>
+            <value>
+            The move to first contained object command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ObjectNavigationCommands.MoveToFocusObject">
+            <summary>
+            Gets the command to moves to the object that currently has the system focus, and also places the review cursor at the position of the System caret, if it is showing.
+            </summary>
+            <value>
+            The move to focus object command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ObjectNavigationCommands.ActivateCurrentNavigatorObject">
+            <summary>
+            Gets the command to activates the current navigator object (similar to clicking with the mouse or pressing space when it has the system focus).
+            </summary>
+            <value>
+            The activate current navigator object command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ObjectNavigationCommands.MoveSystemFocusToCurrentReviewPosition">
+            <summary>
+            Gets the command to moves the System focus to the current navigator object.
+            </summary>
+            <value>
+            The move system focus to current review position command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ObjectNavigationCommands.MoveCaretToCurrentReviewPosition">
+            <summary>
+            Gets the command to moves the caret to the current navigator object.
+            </summary>
+            <value>
+            The move caret to current review position command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ObjectNavigationCommands.ReportReviewCursorLocation">
+            <summary>
+            Gets the command to reports information about the location of the text or object at the review cursor. For example, this might include the percentage through the document, the distance from the edge of the page or the exact screen position.
+            </summary>
+            <value>
+            The report review cursor location command.
+            </value>
+        </member>
+        <member name="T:NvdaTestingDriver.Commands.NvdaCommands.ReportingSystemInformationCommands">
+            <summary>
+            Class to group all commands about Reporting System Information category.
+            </summary>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ReportingSystemInformationCommands.ReportTime">
+            <summary>
+            Gets the command to report the system time.
+            </summary>
+            <value>
+            The report time command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ReportingSystemInformationCommands.ReportDate">
+            <summary>
+            Gets the command to report the system date
+            </summary>
+            <value>
+            The report date command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ReportingSystemInformationCommands.ReportClipboardText">
+            <summary>
+            Gets the command to reports the Text in the clipboard if there is any.
+            </summary>
+            <value>
+            The report clipboard text command.
+            </value>
+        </member>
+        <member name="T:NvdaTestingDriver.Commands.NvdaCommands.ReviewingTextCommands">
+            <summary>
+            Class which group all reviewing text commands
+            </summary>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ReviewingTextCommands.MoveToTopLineInReview">
+            <summary>
+            Gets the command to moves the review cursor to the top line of the text.
+            </summary>
+            <value>
+            The move to top line in review command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ReviewingTextCommands.MoveToPreviousLineInReview">
+            <summary>
+            Gets the command to moves the review cursor to the previous line of text.
+            </summary>
+            <value>
+            The move to previous line in review command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ReviewingTextCommands.ReportCurrentLineInReview">
+            <summary>
+            Gets the command to announces the current line of text where the review cursor is positioned.
+            </summary>
+            <value>
+            The report current line in review command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ReviewingTextCommands.MoveToNextLineInReview">
+            <summary>
+            Gets the command to move the review cursor to the next line of text.
+            </summary>
+            <value>
+            The move to next line in review command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ReviewingTextCommands.MoveToBottomLineInReview">
+            <summary>
+            Gets the command to moves the review cursor to the bottom line of text.
+            </summary>
+            <value>
+            The move to bottom line in review command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ReviewingTextCommands.MoveToPreviousWordInReview">
+            <summary>
+            Gets the command to moves the review cursor to the previous word in the text.
+            </summary>
+            <value>
+            The move to previous word in review command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ReviewingTextCommands.ReportCurrentWordInReview">
+            <summary>
+            Gets the command to announces the current word in the text where the review cursor is positioned.
+            </summary>
+            <value>
+            The report current word in review command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ReviewingTextCommands.MoveToNextWordInReview">
+            <summary>
+            Gets the command to move the review cursor to the next word in the text.
+            </summary>
+            <value>
+            The move to next word in review command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ReviewingTextCommands.MoveToStartOfLineInReview">
+            <summary>
+            Gets the command to moves the review cursor to the start of the current line in the text.
+            </summary>
+            <value>
+            The move to start of line in review command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ReviewingTextCommands.MoveToPreviousCharacterInReview">
+            <summary>
+            Gets the command to moves the review cursor to the previous character on the current line in the text.
+            </summary>
+            <value>
+            The move to previous character in review command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ReviewingTextCommands.ReportCurrentCharacterInReview">
+            <summary>
+            Gets the command to announces the current character on the line of text where the review cursor is positioned.
+            </summary>
+            <value>
+            The report current character in review command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ReviewingTextCommands.MoveToNextCharacterInReview">
+            <summary>
+            Gets the command to move the review cursor to the next character on the current line of text.
+            </summary>
+            <value>
+            The move to next character in review command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ReviewingTextCommands.MoveToEndOfLineInReview">
+            <summary>
+            Gets the command to moves the review cursor to the end of the current line of text.
+            </summary>
+            <value>
+            The move to end of line in review command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ReviewingTextCommands.SayAllInReview">
+            <summary>
+            Gets the command to reads from the current position of the review cursor, moving it as it goes.
+            </summary>
+            <value>
+            The say all in review command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ReviewingTextCommands.SelectThenCopyFromReviewCursor">
+            <summary>
+            Gets the command to starts the select then copy process from the current position of the review cursor.
+            The actual action is not performed until you tell NVDA where the end of the text range is
+            </summary>
+            <value>
+            The select then copy from review cursor command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ReviewingTextCommands.SelectThenCopyToReviewCursor">
+            <summary>
+            Gets the command to on the first press, text is selected from the position previously set start marker up to
+            and including the review cursor's current position.
+            After pressing this key a second time, the text will be copied to the Windows clipboard
+            </summary>
+            <value>
+            The select then copy to review cursor command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ReviewingTextCommands.ReportTextFormating">
+            <summary>
+            Gets the command to reports the formatting of the text where the review cursor is currently situated.
+            </summary>
+            <value>
+            The report text formating command.
+            </value>
+        </member>
+        <member name="T:NvdaTestingDriver.Commands.NvdaCommands.ReviewModesCommands">
+            <summary>
+            Class to group all review modes NVDA commands.
+            </summary>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ReviewModesCommands.SwitchToNextReviewMode">
+            <summary>
+            Gets the command to switches to the next available review mode.
+            </summary>
+            <value>
+            The switch to next review mode command.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommands.ReviewModesCommands.SwitchToPreviousReviewMode">
+            <summary>
+            Gets the command to switches to the previous available review mode.
+            </summary>
+            <value>
+            The switch to previous review mode command.
+            </value>
+        </member>
+        <member name="T:NvdaTestingDriver.Exceptions.AlreadyConnectedException">
+            <summary>
+            Represents the error that occurs when trying to connect the NVDA driver while previously connected.
+            </summary>
+            <seealso cref="T:NvdaTestingDriver.Exceptions.NvdaException" />
+        </member>
+        <member name="M:NvdaTestingDriver.Exceptions.AlreadyConnectedException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.Exceptions.AlreadyConnectedException"/> class.
+            </summary>
+        </member>
+        <member name="M:NvdaTestingDriver.Exceptions.AlreadyConnectedException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.Exceptions.AlreadyConnectedException"/> class.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:NvdaTestingDriver.Exceptions.AlreadyConnectedException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.Exceptions.AlreadyConnectedException"/> class.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</param>
+        </member>
+        <member name="M:NvdaTestingDriver.Exceptions.AlreadyConnectedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.Exceptions.AlreadyConnectedException"/> class.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"></see> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"></see> that contains contextual information about the source or destination.</param>
+        </member>
+        <member name="T:NvdaTestingDriver.Exceptions.InvalidCommandException">
+            <summary>
+            Represents an error due to an NVDA command which lacks information to be used.
+            </summary>
+            <seealso cref="T:NvdaTestingDriver.Exceptions.NvdaException" />
+        </member>
+        <member name="M:NvdaTestingDriver.Exceptions.InvalidCommandException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.Exceptions.InvalidCommandException"/> class.
+            </summary>
+        </member>
+        <member name="M:NvdaTestingDriver.Exceptions.InvalidCommandException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.Exceptions.InvalidCommandException"/> class.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:NvdaTestingDriver.Exceptions.InvalidCommandException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.Exceptions.InvalidCommandException"/> class.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</param>
+        </member>
+        <member name="M:NvdaTestingDriver.Exceptions.InvalidCommandException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.Exceptions.InvalidCommandException"/> class.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"></see> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"></see> that contains contextual information about the source or destination.</param>
+        </member>
+        <member name="T:NvdaTestingDriver.Exceptions.NotConnectedException">
+            <summary>
+            represents the error that occurs when trying to execute an NVDA command without having previously connected the driver, or if the driver was disconnected for any reason.
+            </summary>
+            <seealso cref="T:NvdaTestingDriver.Exceptions.NvdaException" />
+        </member>
+        <member name="M:NvdaTestingDriver.Exceptions.NotConnectedException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.Exceptions.NotConnectedException"/> class.
+            </summary>
+        </member>
+        <member name="M:NvdaTestingDriver.Exceptions.NotConnectedException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.Exceptions.NotConnectedException"/> class.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:NvdaTestingDriver.Exceptions.NotConnectedException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.Exceptions.NotConnectedException"/> class.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</param>
+        </member>
+        <member name="M:NvdaTestingDriver.Exceptions.NotConnectedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.Exceptions.NotConnectedException" /> class.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"></see> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"></see> that contains contextual information about the source or destination.</param>
+        </member>
+        <member name="T:NvdaTestingDriver.Exceptions.NvdaException">
+            <summary>
+            Represents errors that occur during NVDATestingDriver execution.
+            </summary>
+            <seealso cref="T:System.Exception" />
+        </member>
+        <member name="M:NvdaTestingDriver.Exceptions.NvdaException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.Exceptions.NvdaException"/> class.
+            </summary>
+        </member>
+        <member name="M:NvdaTestingDriver.Exceptions.NvdaException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.Exceptions.NvdaException"/> class.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:NvdaTestingDriver.Exceptions.NvdaException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.Exceptions.NvdaException"/> class.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</param>
+        </member>
+        <member name="M:NvdaTestingDriver.Exceptions.NvdaException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.Exceptions.NvdaException"/> class.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"></see> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"></see> that contains contextual information about the source or destination.</param>
+        </member>
+        <member name="T:NvdaTestingDriver.Exceptions.TimeoutException">
+            <summary>
+            represents the error produced when the maximum waiting time defined for the execution of an operation is exceeded.
+            </summary>
+            <seealso cref="T:NvdaTestingDriver.Exceptions.NvdaException" />
+        </member>
+        <member name="M:NvdaTestingDriver.Exceptions.TimeoutException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.Exceptions.TimeoutException"/> class.
+            </summary>
+        </member>
+        <member name="M:NvdaTestingDriver.Exceptions.TimeoutException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.Exceptions.TimeoutException"/> class.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:NvdaTestingDriver.Exceptions.TimeoutException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.Exceptions.TimeoutException"/> class.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</param>
+        </member>
+        <member name="M:NvdaTestingDriver.Exceptions.TimeoutException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.Exceptions.TimeoutException"/> class.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"></see> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"></see> that contains contextual information about the source or destination.</param>
+        </member>
+        <member name="T:NvdaTestingDriver.Extensions.BooleanExtensions">
+            <summary>
+             Boolean extension methods
+            </summary>
+        </member>
+        <member name="M:NvdaTestingDriver.Extensions.BooleanExtensions.ToFirstCapitalizedString(System.Boolean)">
+            <summary>
+            returns the boolean representation as capitalized string.
+            </summary>
+            <param name="value">if set to <c>true</c> [value].</param>
+            <returns>The text parameter with first character capitalized</returns>
+        </member>
+        <member name="T:NvdaTestingDriver.Extensions.StringExtensions">
+            <summary>
+            Class which contains extensions for strings
+            </summary>
+        </member>
+        <member name="M:NvdaTestingDriver.Extensions.StringExtensions.Contains(System.String,System.String,System.StringComparison)">
+            <summary>
+            Returns a value indicating whether a specified substring occurs within this string.
+            </summary>
+            <param name="text">The text to seek.</param>
+            <param name="value">The value to search.</param>
+            <param name="comparison">The comparison to apply to this method.</param>
+            <returns>
+              true if the value parameter occurs within this string, or if value is the empty string (""); otherwise, false.
+            </returns>
+        </member>
+        <member name="T:NvdaTestingDriver.Key">
+            <summary>
+            Class to store the information of a key, ready to be passed to NVDA Remote.
+            </summary>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.A">
+            <summary>
+            Gets key Aa.
+            </summary>
+            <value>
+            the A key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.B">
+            <summary>
+            Gets the b key.
+            </summary>
+            <value>
+            The B key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.C">
+            <summary>
+            Gets the c key.
+            </summary>
+            <value>
+            The C key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.D">
+            <summary>
+            Gets the d key.
+            </summary>
+            <value>
+            The d key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.E">
+            <summary>
+            Gets the e key.
+            </summary>
+            <value>
+            The e key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.F">
+            <summary>
+            Gets the f key.
+            </summary>
+            <value>
+            The f key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.G">
+            <summary>
+            Gets the g key.
+            </summary>
+            <value>
+            The g key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.H">
+            <summary>
+            Gets the h key.
+            </summary>
+            <value>
+            The h key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.I">
+            <summary>
+            Gets the i key.
+            </summary>
+            <value>
+            The i key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.J">
+            <summary>
+            Gets the j key.
+            </summary>
+            <value>
+            The j key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.K">
+            <summary>
+            Gets the k key.
+            </summary>
+            <value>
+            The k key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.L">
+            <summary>
+            Gets the l key.
+            </summary>
+            <value>
+            The l key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.M">
+            <summary>
+            Gets the m key.
+            </summary>
+            <value>
+            The m key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.N">
+            <summary>
+            Gets the n key.
+            </summary>
+            <value>
+            The n key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.Ñ">
+            <summary>
+            Gets the ñ key.
+            </summary>
+            <value>
+            The ñ key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.O">
+            <summary>
+            Gets the o key.
+            </summary>
+            <value>
+            The o key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.P">
+            <summary>
+            Gets the p key.
+            </summary>
+            <value>
+            The p key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.Q">
+            <summary>
+            Gets the q key.
+            </summary>
+            <value>
+            The q  key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.R">
+            <summary>
+            Gets the r key.
+            </summary>
+            <value>
+            The r  key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.S">
+            <summary>
+            Gets the s key.
+            </summary>
+            <value>
+            The s key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.T">
+            <summary>
+            Gets the t key.
+            </summary>
+            <value>
+            The t key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.U">
+            <summary>
+            Gets the u key.
+            </summary>
+            <value>
+            The u key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.V">
+            <summary>
+            Gets the v key.
+            </summary>
+            <value>
+            The v key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.W">
+            <summary>
+            Gets the w key.
+            </summary>
+            <value>
+            The w key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.X">
+            <summary>
+            Gets the x key.
+            </summary>
+            <value>
+            The x key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.Y">
+            <summary>
+            Gets the y key.
+            </summary>
+            <value>
+            The y key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.Z">
+            <summary>
+            Gets the z key.
+            </summary>
+            <value>
+            The z key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.D1">
+            <summary>
+            Gets the d1 key.
+            </summary>
+            <value>
+            The d1 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.D2">
+            <summary>
+            Gets the d2 key.
+            </summary>
+            <value>
+            The d2 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.D3">
+            <summary>
+            Gets the d3 key.
+            </summary>
+            <value>
+            The d3 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.D4">
+            <summary>
+            Gets the d4 key.
+            </summary>
+            <value>
+            The d4 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.D5">
+            <summary>
+            Gets the d5 key.
+            </summary>
+            <value>
+            The d5 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.D6">
+            <summary>
+            Gets the d6 key.
+            </summary>
+            <value>
+            The d6 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.D7">
+            <summary>
+            Gets the d7 key.
+            </summary>
+            <value>
+            The d7 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.D8">
+            <summary>
+            Gets the d8 key.
+            </summary>
+            <value>
+            The d8 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.D9">
+            <summary>
+            Gets the d9 key.
+            </summary>
+            <value>
+            The d9 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.D0">
+            <summary>
+            Gets the d0 key.
+            </summary>
+            <value>
+            The d0 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.Escape">
+            <summary>
+            Gets the escape key.
+            </summary>
+            <value>
+            The escape key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.Tab">
+            <summary>
+            Gets the tab key.
+            </summary>
+            <value>
+            The tab key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.F1">
+            <summary>
+            Gets the f1 key.
+            </summary>
+            <value>
+            The f1 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.F2">
+            <summary>
+            Gets the f2 key.
+            </summary>
+            <value>
+            The f2 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.F3">
+            <summary>
+            Gets the f3 key.
+            </summary>
+            <value>
+            The f3 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.F4">
+            <summary>
+            Gets the f4 key.
+            </summary>
+            <value>
+            The f4 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.F5">
+            <summary>
+            Gets the f5 key.
+            </summary>
+            <value>
+            The f5 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.F6">
+            <summary>
+            Gets the f6 key.
+            </summary>
+            <value>
+            The f6 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.F7">
+            <summary>
+            Gets the f7 key.
+            </summary>
+            <value>
+            The f7 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.F8">
+            <summary>
+            Gets the f8 key.
+            </summary>
+            <value>
+            The f8 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.F9">
+            <summary>
+            Gets the f9 key.
+            </summary>
+            <value>
+            The f9 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.F10">
+            <summary>
+            Gets the F10 key.
+            </summary>
+            <value>
+            The F10 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.F12">
+            <summary>
+            Gets the F12 key.
+            </summary>
+            <value>
+            The F12 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.PrintScreen">
+            <summary>
+            Gets the print screen key.
+            </summary>
+            <value>
+            The print screen key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.ScrollLock">
+            <summary>
+            Gets the scroll lock key.
+            </summary>
+            <value>
+            The scroll lock key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.Pause">
+            <summary>
+            Gets the pause key.
+            </summary>
+            <value>
+            The pause key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.ExtendedNvda">
+            <summary>
+            Gets the extended nvda key key.
+            </summary>
+            <value>
+            The extended nvda key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.Nvda">
+            <summary>
+            Gets the nvda key.
+            </summary>
+            <value>
+            The nvda key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.Home">
+            <summary>
+            Gets the home key.
+            </summary>
+            <value>
+            The home key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.PageUp">
+            <summary>
+            Gets the page up key.
+            </summary>
+            <value>
+            The page up key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.Delete">
+            <summary>
+            Gets the delete key.
+            </summary>
+            <value>
+            The delete key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.End">
+            <summary>
+            Gets the end key.
+            </summary>
+            <value>
+            The end key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.PageDown">
+            <summary>
+            Gets the page down key.
+            </summary>
+            <value>
+            The page down key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.UpArrow">
+            <summary>
+            Gets the up arrow key.
+            </summary>
+            <value>
+            Up arrow key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.DownArrow">
+            <summary>
+            Gets the down arrow key.
+            </summary>
+            <value>
+            Down arrow key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.LeftArrow">
+            <summary>
+            Gets the left arrow key.
+            </summary>
+            <value>
+            The left arrow key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.RightArrow">
+            <summary>
+            Gets the right arrow key.
+            </summary>
+            <value>
+            The right arrow key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.NumPad1">
+            <summary>
+            Gets the number pad1 key.
+            </summary>
+            <value>
+            The number pad1 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.NumPad2">
+            <summary>
+            Gets the number pad2 key.
+            </summary>
+            <value>
+            The number pad2 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.NumPad3">
+            <summary>
+            Gets the number pad3 key.
+            </summary>
+            <value>
+            The number pad3 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.NumPad4">
+            <summary>
+            Gets the number pad4 key.
+            </summary>
+            <value>
+            The number pad4 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.NumPad5">
+            <summary>
+            Gets the number pad5 key.
+            </summary>
+            <value>
+            The number pad5 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.NumPad6">
+            <summary>
+            Gets the number pad6 key.
+            </summary>
+            <value>
+            The number pad6 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.NumPad7">
+            <summary>
+            Gets the number pad7 key.
+            </summary>
+            <value>
+            The number pad7 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.NumPad8">
+            <summary>
+            Gets the number pad8 key.
+            </summary>
+            <value>
+            The number pad8 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.NumPad9">
+            <summary>
+            Gets the number pad9 key.
+            </summary>
+            <value>
+            The number pad9 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.NumPad0">
+            <summary>
+            Gets the number pad0 key.
+            </summary>
+            <value>
+            The number pad0 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.Oem1">
+            <summary>
+            Gets the oem1 key ([ in english, ` in spanish).
+            </summary>
+            <value>
+            The oem1 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.Oem2">
+            <summary>
+            Gets the oem2 (\ in english, ç in spanish).
+            </summary>
+            <value>
+            The oem2 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.Oem4">
+            <summary>
+            Gets the oem4 key (hiphen in english, apostrof in spanish...).
+            </summary>
+            <value>
+            The oem4 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.Oem5">
+            <summary>
+            Gets the oem5 key (` in english, º in spanish).
+            </summary>
+            <value>
+            The oem5 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.Oem6">
+            <summary>
+            Gets the oem6 key (= in english, ¡ in spanish).
+            </summary>
+            <value>
+            The oem6 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.Oem7">
+            <summary>
+            Gets the oem7 key (' in english, ´ in spanish).
+            </summary>
+            <value>
+            The oem7 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.OEM102">
+            <summary>
+            Gets the oem 102 (\ in english, \"menor que\" in spanish).
+            </summary>
+            <value>
+            The oe M102 key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.OEMComa">
+            <summary>
+            Gets the oem coma key.
+            </summary>
+            <value>
+            The oem coma key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.OemPeriod">
+            <summary>
+            Gets the oem period key.
+            </summary>
+            <value>
+            The oem period key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.OEMMinus">
+            <summary>
+            Gets the oem minus key.
+            </summary>
+            <value>
+            The oem minus key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.OemPlus">
+            <summary>
+            Gets the oem plus key (] in english, + in spanish).
+            </summary>
+            <value>
+            The oem plus key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.Backspace">
+            <summary>
+            Gets the backspace key.
+            </summary>
+            <value>
+            The backspace key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.NumPadDelete">
+            <summary>
+            Gets the number pad delete key.
+            </summary>
+            <value>
+            The number pad delete key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.NumPadEnter">
+            <summary>
+            Gets the number pad enter key.
+            </summary>
+            <value>
+            The number pad enter key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.Enter">
+            <summary>
+            Gets the enter key.
+            </summary>
+            <value>
+            The enter key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.NumPadPlus">
+            <summary>
+            Gets the number pad plus key.
+            </summary>
+            <value>
+            The number pad plus key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.NumPadMinus">
+            <summary>
+            Gets the number pad minus key.
+            </summary>
+            <value>
+            The number pad minus key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.NumPadMultiply">
+            <summary>
+            Gets the number pad multiply key.
+            </summary>
+            <value>
+            The number pad multiply key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.NumPadDivide">
+            <summary>
+            Gets the number pad divide key.
+            </summary>
+            <value>
+            The number pad divide key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.Shift">
+            <summary>
+            Gets the shift key.
+            </summary>
+            <value>
+            The shift key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.Control">
+            <summary>
+            Gets the left control key.
+            </summary>
+            <value>
+            The control key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.WindowsKey">
+            <summary>
+            Gets the windows key key.
+            </summary>
+            <value>
+            The windows key key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.LeftAlt">
+            <summary>
+            Gets the left alt key.
+            </summary>
+            <value>
+            The left alt key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.Space">
+            <summary>
+            Gets the space key.
+            </summary>
+            <value>
+            The space key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.RightAlt">
+            <summary>
+            Gets the right alt key.
+            </summary>
+            <value>
+            The right alt key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.Application">
+            <summary>
+            Gets the application key.
+            </summary>
+            <value>
+            The application key.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.ScanCode">
+            <summary>
+            Gets the scan code.
+            </summary>
+            <value>
+            The scan code.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.KeyCode">
+            <summary>
+            Gets the key code.
+            </summary>
+            <value>
+            The key code.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Key.Extended">
+            <summary>
+            Gets a value indicating whether this key is extended or not <see cref="T:NvdaTestingDriver.Key"/> is extended.
+            </summary>
+            <value>
+              <c>true</c> if extended; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:NvdaTestingDriver.KeyCombination">
+            <summary>
+            Stores a key combination to be used in NVDA command class.
+            </summary>
+        </member>
+        <member name="M:NvdaTestingDriver.KeyCombination.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.KeyCombination"/> class.
+            </summary>
+        </member>
+        <member name="M:NvdaTestingDriver.KeyCombination.#ctor(System.Collections.Generic.IEnumerable{NvdaTestingDriver.Key})">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.KeyCombination"/> class.
+            </summary>
+            <param name="keys">The keys.</param>
+        </member>
+        <member name="M:NvdaTestingDriver.KeyCombination.Add(NvdaTestingDriver.Key)">
+            <summary>
+            Adds the specified key.
+            </summary>
+            <param name="key">The key.</param>
+        </member>
+        <member name="M:NvdaTestingDriver.KeyCombination.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            An enumerator that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:NvdaTestingDriver.KeyCombination.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.IEnumerator"></see> object that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="T:NvdaTestingDriver.NvdaDriver">
+            <summary>
+            The main class of the package, which includes all the functionality needed to handle NVDA,
+            send commands and get the textual response of it.
+            </summary>
+            <seealso cref="T:System.IDisposable" />
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.#ctor(NvdaTestingDriver.Settings.NvdaDriverOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.NvdaDriver"/> class.
+            </summary>
+            <param name="options">The options.</param>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.NvdaDriver"/> class.
+            </summary>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.#ctor(System.Action{NvdaTestingDriver.Settings.NvdaDriverOptions})">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.NvdaDriver"/> class.
+            </summary>
+            <param name="nvdaDriverOptions">The nvda driver options object, which you can modify in your own method.</param>
+        </member>
+        <member name="E:NvdaTestingDriver.NvdaDriver.OnDataReceibed">
+            <summary>
+            Occurs when new data is received.
+            </summary>
+        </member>
+        <member name="E:NvdaTestingDriver.NvdaDriver.OnSpeakReceived">
+            <summary>
+            Occurs when new speak text is received.
+            </summary>
+        </member>
+        <member name="E:NvdaTestingDriver.NvdaDriver.OnSpeakCancelled">
+            <summary>
+            Occurs when the current speak has been cancelled.
+            </summary>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.ConnectAsync">
+            <summary>
+            Connects the driver asynchronously against a portable NVDA instance that will start automatically, configured with the options provided in the driver constructor.
+            </summary>
+            <returns>The task associated to this operation.</returns>
+            <exception cref="T:NvdaTestingDriver.Exceptions.AlreadyConnectedException">Throws if the method has been called before, and the driver is already connected</exception>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.DisconnectAsync">
+            <summary>
+            Disconnects the driver asynchronously, shutting down the NVDA instance.
+            </summary>
+            <returns>The task associated to this operation.</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.GetNextSpokenMessageAsync(System.Func{System.Threading.Tasks.Task})">
+            <summary>
+            Gets the next spoken message by NVDA asynchronously.
+            </summary>
+            <param name="actionToExecute">The action to execute, which should cause NVDA to return
+            some message, which will be returned by this method.</param>
+            <returns>The task that once completed, will contain The NVDA spoken text immediately following the execution of the action.</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.GetNextSpokenMessageAsync(System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Func{System.Threading.Tasks.Task})">
+            <summary>
+            Gets the next spoken message by NVDA asynchronous.
+            </summary>
+            <param name="timeout">The maximum time the method will wait for an NVDA message before raising an exception.</param>
+            <param name="timeToWaitNewMessages">
+            There are occasions when NVDA transmits messages separately, in different packets.
+            This parameter sets the maximum time that NVDA will concatenate new messages received within the return of this method, starting from the arrival of the first message.</param>
+            <param name="actionToExecute">The action to execute, which should cause NVDA to return
+            some message, which will be returned by this method.</param>
+            <returns>The task that once completed, will contain The NVDA spoken text immediately following the execution of the action.</returns>
+            <exception cref="T:NvdaTestingDriver.Exceptions.TimeoutException">Timeout exceeded when trying to get the next message transmitted by NVDA.</exception>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeySequenceAsync(NvdaTestingDriver.Key[])">
+            <summary>
+            Sends a key sequence to NVDA asynchronously.
+            </summary>
+            <param name="keys">The keys.</param>
+            <returns>The task associated to this operation</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeySequenceAndGetSpokenText(NvdaTestingDriver.Key[])">
+            <summary>
+            Sends a key sequence to NVDA and get spoken text.
+            </summary>
+            <param name="keys">The keys.</param>
+            <returns>Te text spoken by NVDA after sending the key sequence</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeyCombinationsAsync(NvdaTestingDriver.KeyCombination[])">
+            <summary>
+            Sends one o more key combinations to NVDA
+            </summary>
+            <param name="combinations">The combinations</param>
+            <returns>The task associated to this operation</returns>
+            <exception cref="T:System.ArgumentNullException">combinations</exception>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeyCombinationsAndGetSpokenTextAsync(NvdaTestingDriver.KeyCombination[])">
+            <summary>
+            Sends key combinations to NVDA and get spoken text asynchronously.
+            </summary>
+            <param name="combinations">The combinations.</param>
+            <returns>The text spoken by NVDA after sending the key combinations</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeysAsync(NvdaTestingDriver.Key[])">
+            <summary>
+            Sends a keystroke sequence  to NVDA asynchronously.
+            </summary>
+            <param name="keys">The keys.</param>
+            <returns>The task associated to this operation</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeysAndGetSpokenTextAsync(NvdaTestingDriver.Key[])">
+            <summary>
+            Sends the keys to NVDA (as combination) and get spoken text asynchronously.
+            </summary>
+            <param name="keys">The keys.</param>
+            <returns>The text spoken by NVDA after sending the key combination</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendCommandAsync(NvdaTestingDriver.Commands.INvdaCommand)">
+            <summary>
+            Send a command to NVDA without waiting for a response asynchronously.
+            </summary>
+            <param name="command">The command.</param>
+            <returns>The task associated to this operation</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendCommandAndGetSpokenTextAsync(NvdaTestingDriver.Commands.INvdaCommand)">
+            <summary>
+            Sends a command to NVDA and waits for a response that will be returned by the method asynchronously.
+            </summary>
+            <param name="command">The command.</param>
+            <returns>
+            The text sopen by NVDA after sending the command
+            </returns>
+            <exception cref="T:System.ArgumentNullException">command</exception>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.StopReadingAsync">
+            <summary>
+            Cancels the current speak asynchronously.
+            </summary>
+            <returns>The task associated to this operation</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.KillPreviousNVDA">
+            <summary>
+            Kills all previous nvda processes.
+            </summary>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.CheckWindowsOS">
+            <summary>
+            Checks whether the current OS is windows.
+            </summary>
+            <exception cref="T:System.NotSupportedException">This library is only compatible with Windows OS, because the screen reader used for testing is only compatible with it.</exception>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.GetNvdaExecutableFilePath">
+            <summary>
+            Gets the nvda executable file path from windows registry. If registry value does not exists,
+            it will extract the nvda.zip file into a temporary folder..
+            </summary>
+            <returns>The NVDA executable file path</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.CheckNvdaIntegrity(System.String)">
+            <summary>
+            Checks the nvda SR integrity, restoring the missing files from temporary directory.
+            </summary>
+            <param name="nvdaExecutableFilePath">The nvda executable file path.</param>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.ExtractNvdaZipFileInTmpDir">
+            <summary>
+            Extracts the nvda zip file into a temporary dir.
+            </summary>
+            <returns>The path to the NVDA executable program</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.GetNvdaVersion">
+            <summary>
+            Gets the nvda version to name the temporary NVDA folder, depending on the current assembly version.
+            </summary>
+            <returns>The nvda version regarding the assembly version</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.CheckConnectivity">
+            <summary>
+            Checks the NVDA driver connectivity.
+            </summary>
+            <exception cref="T:NvdaTestingDriver.Exceptions.NotConnectedException">The driver is not yet connected. Use ConnectAsync to do that.</exception>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.ConnectSocketAsync(System.String,System.Int32,System.Nullable{System.TimeSpan})">
+            <summary>
+            Connects the socket to NVDA remote server asynchronously.
+            </summary>
+            <param name="host">The host.</param>
+            <param name="port">The port.</param>
+            <param name="timeout">The timeout.</param>
+            <returns>The task associated to this operation.</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.WriteMessageAsync(System.String)">
+            <summary>
+            Writes a message to nvda remote sockets asynchronously.
+            </summary>
+            <param name="message">The message.</param>
+            <returns>The task associated to this operation.</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.BeginReadMessages">
+            <summary>
+            Starts the thread that will read incoming messages from the socket connected to NVDA Remote, allowing it to execute events dependent on the arrival of new messages.
+            </summary>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.ParseMessage(System.String)">
+            <summary>
+            Parses the message received from NVDA remote server.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.ParseSpeak(Newtonsoft.Json.Linq.JToken)">
+            <summary>
+            Parses the speak messages and raises the OnSpeakReceived and OnSpeakCancelled events.
+            </summary>
+            <param name="messages">The messages.</param>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.SanitizeNvdaSpokenMessage(System.String)">
+            <summary>
+            Sanitizes the nvda spoken message to remove unnecesary characters.
+            </summary>
+            <param name="message">The message.</param>
+            <returns>The sanitized message</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.ToJsonKey(NvdaTestingDriver.Key,System.Boolean)">
+            <summary>
+            Convert a <see cref="T:NvdaTestingDriver.Key"/> into Json string to be written in the socket.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="down">if set to <c>true</c> [down].</param>
+            <returns>Returns the json representation of the key</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.GetKeyCombinationSet(NvdaTestingDriver.Commands.INvdaCommand)">
+            <summary>
+            Gets the key combination set from a command, checking the command is well constructed.
+            </summary>
+            <param name="command">The command.</param>
+            <returns>the right combination set depending on current keyboard layout</returns>
+            <exception cref="T:System.ArgumentNullException">command</exception>
+            <exception cref="T:NvdaTestingDriver.Exceptions.InvalidCommandException">
+            The command has not  the current keyboard layout combination set
+            or
+            There are no keys defined in the  key combination set
+            </exception>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeyCombinationSetAndGetSpokenTextInternal(System.Collections.Generic.List{NvdaTestingDriver.KeyCombination})">
+            <summary>
+            Sends a set of key combinations and get spoken text  by NVDA.
+            </summary>
+            <param name="combinationSet">The combination set.</param>
+            <returns>The task that will contain the spoken message</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeyCombinationsAndGetSpokenTextInternalAsync(NvdaTestingDriver.KeyCombination[])">
+            <summary>
+            Sends the key combinations and get spoken text asynchronously (internal use).
+            </summary>
+            <param name="combinations">The combinations.</param>
+            <returns>The text spoken by NVDA after sending the key combinations</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeyCombinationSet(System.Collections.Generic.List{NvdaTestingDriver.KeyCombination})">
+            <summary>
+            Sends a set of key combinations to NVDA.
+            </summary>
+            <param name="combinationSet">The combination set.</param>
+            <returns>The task associated to this operation</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendCombinationsInternalAsync(NvdaTestingDriver.KeyCombination[])">
+            <summary>
+            Sends the key combinations asynchronousl (internal use).
+            </summary>
+            <param name="combinations">The combinations.</param>
+            <returns>The task associated to this operation</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeysInternalAsync(NvdaTestingDriver.Key[])">
+            <summary>
+            Sends the keys to NVDA asynchronously (internal use).
+            </summary>
+            <param name="keys">The keys.</param>
+            <returns>The task associated to this operation</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeysAndGetSpokenTextInternalAsync(NvdaTestingDriver.Key[])">
+            <summary>
+            Sends the keys to NVDA and gets the spoken text asynchronously.
+            </summary>
+            <param name="keys">The keys.</param>
+            <returns>The text spoken by NVDA after sending keys</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.ShutdownNvda">
+            <summary>
+            Shutdowns the nvda instance, by sending a Nvda+Q keystroke.
+            </summary>
+            <returns>The task associated to this operation</returns>
+        </member>
+        <member name="T:NvdaTestingDriver.NvdaTestHelper">
+            <summary>
+            Class that includes functions to help with the creation of tests with NvdaTestingDriver.
+            </summary>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaTestHelper.TextContains(System.String,System.String)">
+            <summary>
+            Checks whether the string <paramref name="text" /> contains the string <paramref name="expectedText" />.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="expectedText">The expected text.</param>
+            <returns>true if <paramref name="text"/> contains <paramref name="expectedText"/>, false, otherwise</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaTestHelper.NormalizeText(System.String)">
+            <summary>
+            Normalizes the text, removing spaces, tabs, line breaks and as long as
+            the NvdaRemote addon changes iphens by spaces sometimes, it also replaces iphens by spaces.
+            </summary>
+            <param name="text">The text to normalize.</param>
+            <returns>The normalized text</returns>
+        </member>
+        <member name="T:NvdaTestingDriver.Settings.BrowseModesSettings">
+            <summary>
+            Sets the browse mode settings
+            </summary>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.BrowseModesSettings.UseScreenLayout">
+            <summary>
+            Gets or sets the value which allows you to specify whether content in browse mode should place content such as links and other fields on their own line,
+            or if it should keep them in the flow of text as it is visually shown.
+            If the option is enabled then things will stay as they are visually shown, but if it is disabled
+            then fields will be placed on their own line.
+            </summary>
+            <value>
+              <c>true</c> if [use screen layout]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.BrowseModesSettings.AutoSayAllOnPageLoad">
+            <summary>
+            This checkbox toggles the automatic reading of a page after it loads in browse mode. This option is enabled by default.
+            </summary>
+            <value>
+              <c>true</c> if [automatic say all on page load]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.BrowseModesSettings.AutoPassThroughOnFocusChange">
+            <summary>
+            This option allows focus mode to be invoked if focus changes. For example, when on a
+            web page, if you press tab and you land on a form, if this option is checked, focus mode will automatically be invoked.
+            </summary>
+            <value>
+              <c>true</c> if [automatic pass through on focus change]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.BrowseModesSettings.AutoPassThroughOnCaretMove">
+            <summary>
+            This option, when checked, allows NVDA to enter and leave focus mode when using arrow keys. For example, if arrowing down a web page and you land on an
+            edit box, NVDA will automatically bring you into focus mode.
+            If you arrow out of the edit box, NVDA will put you back in browse mode.
+            </summary>
+            <value>
+              <c>true</c> if [automatic pass through on caret move]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.BrowseModesSettings.TrapNonCommandGestures">
+            <summary>
+            Enabled by default, this option allows you to choose if gestures (such as key presses)
+            that do not result in an NVDA command and are not considered to be a command key
+            in general, should be trapped from going through to the document you are currently focused on.
+            As an example, if enabled, if the letter j was pressed, it would be trapped from reaching the document,
+            even though it is not a quick navigation command nor is it likely to be a command in the application itself.
+            </summary>
+            <value>
+              <c>true</c> if [trap non command gestures]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.BrowseModesSettings.MaxLineLength">
+            <summary>
+            This field sets the maximum length of a line in browse mode (in characters).
+            </summary>
+            <value>
+            The maximum length of the line.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.BrowseModesSettings.LinesPerPage">
+            <summary>
+            This field sets the amount of lines you will move by when pressing page up or page down while in browse mode.
+            </summary>
+            <value>
+            The maximum length of the line.
+            </value>
+        </member>
+        <member name="T:NvdaTestingDriver.Settings.DocumentFormattingSettings">
+            <summary>
+            Sets the document formating settings
+            </summary>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.IncludeLayoutTables">
+            <summary>
+            This option affects how NVDA handles tables used purely for layout purposes.
+            When on, NVDA will treat these as normal tables, reporting them based on Document Formatting Settings and locating them with quick navigation commands.
+            When off, they will not be reported nor found with quick navigation.
+            However, the content of the tables will still be included as normal text.
+            This option is turned off by default.
+            </summary>
+            <value>
+              <c>true</c> if [include layout tables; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.DetectFormatAfterCursor">
+            <summary>
+            If enabled, this setting tells NVDA to try and detect all the formatting changes
+            on a line as it reports it, even if doing this may slow down NVDA's performance.
+            By default, NVDA will detect the formatting at the position of the System caret / Review Cursor,
+            and in some instances may detect formatting on the rest of the line,
+            only if it is not going to cause a performance decrease.
+            Enable this option while proof reading documents in applications such as WordPad, where formatting is important.
+            </summary>
+            <value>
+              <c>true</c> if  NVDA should detect format after cursor; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportFontName">
+            <summary>
+            Gets or sets a value indicating whether each time you arrow onto text with a different font, the name of the font should be announced.
+            </summary>
+            <value>
+              <c>true</c> if you want NVDA to announce the name of the font when it changes; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportFontSize">
+            <summary>
+            Gets or sets a value indicating whether each time you arrow onto text with a different font size, the size of the font should be announced.
+            </summary>
+            <value>
+              <c>true</c> if you want NVDA to announce the size of the font when it changes; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportFontAttributes">
+            <summary>
+            Gets or sets a value indicating whether each time you arrow onto text with a different font attributes, the new attributes of the font should be announced.
+            </summary>
+            <value>
+              <c>true</c> if you want NVDA to announce the attributes of the font when them changes; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportEmphasis">
+            <summary>
+            Gets or sets a value indicating whether each time you arrow onto text with a different font emphasis, the new emphasis of the font should be announced.
+            </summary>
+            <value>
+              <c>true</c> if you want NVDA to announce the emphasis of the font when it changes; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportStyle">
+            <summary>
+            Gets or sets a value indicating whether each time you arrow onto text with a different font style, the new style of the font should be announced.
+            </summary>
+            <value>
+              <c>true</c> if you want NVDA to announce the style of the font when it changes; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportColor">
+            <summary>
+            Gets or sets a value indicating whether each time you arrow onto text with a different font color, the new color of the font should be announced.
+            </summary>
+            <value>
+              <c>true</c> if you want NVDA to announce the color of the font when it changes; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportComments">
+            <summary>
+            Gets or sets a value indicating whether NVDA should read the comments in a document.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should announce document comments; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportRevisions">
+            <summary>
+            Gets or sets a value indicating whether NVDA should announce the editor revisions into a document.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should announce editor revisions; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportSpellingErrors">
+            <summary>
+            Gets or sets a value indicating whether NVDA should announce spelling errors.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should announce spelling errors; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportAlignment">
+            <summary>
+            Gets or sets a value indicating whether NVDA should announce line aligment.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should announce line aligment; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportPage">
+            <summary>
+            Gets or sets a value indicating whether NVDA should announce page numbers.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should announce page numbers; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportLineNumber">
+            <summary>
+            Gets or sets a value indicating whether NVDA should announce line numbers.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should announce line numbers; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportLineIndentation">
+            <summary>
+            Gets or sets a value indicating whether NVDA should announce line indentation by voice (text, in this case).
+            </summary>
+            <value>
+              <c>true</c> if NVDA should announce by voice (text in this case) line indentation; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportParagraphIndentation">
+            <summary>
+            Gets or sets a value indicating whether NVDA should announce paragraph indentation.
+            </summary>
+            <value>
+              <c>true</c> if  NVDA should announce paragraph indentation; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportLineSpacing">
+            <summary>
+            Gets or sets a value indicating whether  NVDA should announce line spacing.
+            </summary>
+            <value>
+              <c>true</c> if  NVDA should announce line spacing; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportTables">
+            <summary>
+            Gets or sets a value indicating whether  NVDA should announce tables.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should announce tables; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportTableHeaders">
+            <summary>
+            Gets or sets a value indicating whether NVDA should announce table headers.
+            </summary>
+            <value>
+              <c>true</c> if  NVDA should announce table headers; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportTableCellCoords">
+            <summary>
+            Gets or sets a value indicating whether NVDA should announce table cell coordinates.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should announce table cell coordinatess; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportBorderStyle">
+            <summary>
+            Gets or sets a value indicating whether NVDA should announce cell borders style.
+            </summary>
+            <value>
+              <c>true</c> if NDA should announce cell borders style; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportBorderColor">
+            <summary>
+            Gets or sets a value indicating whether NVDA should announce cell borders color.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should announce cell borders color; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportLinks">
+            <summary>
+            Gets or sets a value indicating whether NVDA should report document links.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should announce document links; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportHeadings">
+            <summary>
+            Gets or sets a value indicating whether NVDA should announce document headings.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should announce document headings; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportLists">
+            <summary>
+            Gets or sets a value indicating whether NVDA should announce document lists.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should announce document lists; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportBlockQuotes">
+            <summary>
+            Gets or sets a value indicating whether NVDA should announce document block quotes.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should announce document block quotes; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportLandmarks">
+            <summary>
+            Gets or sets a value indicating whether NVDA should announce document landmarks.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should announce document landmarks; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportFrames">
+            <summary>
+            Gets or sets a value indicating whether NVDA should announce document frames.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should announce document frames; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.DocumentFormattingSettings.ReportClickable">
+            <summary>
+            Gets or sets a value indicating whether NVDA should announce document clickable elements.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should announce document clickable elements; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:NvdaTestingDriver.Settings.GeneralSettings">
+            <summary>
+            Class to store NVDA general settings
+            </summary>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.GeneralSettings.Language">
+            <summary>
+            Gets or sets the language.
+            </summary>
+            <value>
+            The language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.GeneralSettings.PlayStartAndExitSounds">
+            <summary>
+            Gets or sets a value indicating whether nvda should play start and exit sounds.
+            </summary>
+            <value>
+              <c>true</c> if [play start and exit sounds]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:NvdaTestingDriver.Settings.InputCompositionSettings">
+            <summary>
+            Sets the input composition settings.
+            these settings allow you to control how NVDA reports the input of Asian characters,
+            such as with IME or Text Service input methods.
+            </summary>
+            <remarks>Note that due to the fact that input methods vary greatly by available features and by how they convey information,
+            it will most likely be necessary to configure these options differently for each input method
+            to get the most efficient typing experience.</remarks>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.InputCompositionSettings.AutoReportAllCandidates">
+            <summary>
+            This option, which is on by default, allows you to choose whether or not
+            all visible candidates should be reported automatically when a candidate list appears or its page is changed.
+            Having this option on for pictographic input methods such as Chinese New ChangJie or Boshiami is useful,
+            as you can automatically hear all symbols and their numbers and you can choose one right away.
+            However, for phonetic input methods such as Chinese New Phonetic, it may be more useful to turn this option off,
+            as all the symbols will sound the same and you will have to use the arrow keys
+            to navigate the list items individually to gain more information from the character descriptions for each candidate.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should automatic report all candidates; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.InputCompositionSettings.AnnounceSelectedCandidate">
+            <summary>
+            This option, which is on by default, allows you to choose whether NVDA should announce the
+            selected candidate when a candidate list appears or when the selection is changed.
+            For input methods where the selection can be changed with the arrow keys
+            (such as Chinese New Phonetic) this is necessary, but for some input methods
+            it may be more efficient typing with this option turned off.
+            Note that even with this option off, the review cursor will still be placed on the selected candidate
+            allowing you to use object navigation / review to manually read this or other candidates.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should announce selected candidate; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.InputCompositionSettings.AlwaysIncludeShortCharacterDescriptionInCandidateName">
+            <summary>
+            This option, which is on by default, allows you to choose whether or not NVDA should provide
+            a short description for each character in a candidate, either when it's selected or when it's
+            automatically read when the candidate list appears.
+            Note that for locales such as Chinese, the announcement of extra
+            character descriptions for the selected candidate is not affected by this option.
+            This option may be useful for Korean and Japanese input methods.
+            </summary>
+            <value>
+              <c>true</c> if  NVDA always should include short character description in candidate name; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.InputCompositionSettings.ReportReadingStringChanges">
+            <summary>
+            Some input methods such as Chinese New Phonetic and New ChangJie have a reading string
+            (sometimes known as a precomposition string). You can choose whether or not NVDA
+            should announce new characters being typed into this reading string with this option.
+            This option is on by default. Note: some older input methods such as Chinese ChangJie
+            may not use the reading string to hold precomposition characters, but instead use the composition string directly.
+            Please see the <seealso cref="P:NvdaTestingDriver.Settings.InputCompositionSettings.ReportCompositionStringChanges"/> for configuring reporting of the composition string.
+            </summary>
+            <value>
+              <c>true</c> if  NVDA should report reading string changes; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.InputCompositionSettings.ReportCompositionStringChanges">
+            <summary>
+            After reading or precomposition data has been combined into a valid pictographic symbol,
+            most input methods place this symbol into a composition string for temporary storage
+            along with other combined symbols before they are finally inserted into the document.
+            This option allows you to choose whether or not NVDA should report new symbols as they appear
+            in the composition string. This option is on by default.
+            </summary>
+            <value>
+              <c>true</c> if  NVDA should report composition string changes; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:NvdaTestingDriver.Settings.KeyboardSettings">
+            <summary>
+            Sets the keyboard settings
+            </summary>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.KeyboardSettings.KeyboardLayout">
+            <summary>
+            lets you choose what type of keyboard layout NVDA should use. Currently the two that come with NVDA are Desktop and Laptop.
+            </summary>
+            <value>
+            The keyboard layout.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.KeyboardSettings.UseCapsLockAsNVDAModifierKey">
+            <summary>
+            Gets or sets a value indicating whether capslock can be used as an NVDA modifier key.
+            </summary>
+            <value>
+              <c>true</c> if capslock can be used as an NVDA modifier key; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.KeyboardSettings.SpeakTypedCharacters">
+            <summary>
+            Gets or sets a value indicating whether  NVDA will announce all characters you type on the keyboard.
+            </summary>
+            <value>
+              <c>true</c> if  NVDA should speak typed characters; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.KeyboardSettings.SpeakTypedWords">
+            <summary>
+            Gets or sets a value indicating whether NVDA will announce all words you type on the keyboard.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should speak typed words; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.KeyboardSettings.SpeechInterruptForEnter">
+            <summary>
+            Gets or sets a value indicating whether speech will be interrupted each time the Enter key is pressed. This is on by default.
+            </summary>
+            <value>
+              <c>true</c> if NVDA interrupt speech for enter; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:NvdaTestingDriver.Settings.NvdaDriverOptions">
+            <summary>
+            Class to store all NVDA options which affect to NVDA behavior during testing
+            </summary>
+        </member>
+        <member name="M:NvdaTestingDriver.Settings.NvdaDriverOptions.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.Settings.NvdaDriverOptions"/> class.
+            </summary>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaDriverOptions.GeneralSettings">
+            <summary>
+            Gets or sets the general settings.
+            </summary>
+            <value>
+            The general settings.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaDriverOptions.SpeechSettings">
+            <summary>
+            Gets or sets the speech settings.
+            </summary>
+            <value>
+            The speech settings.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaDriverOptions.DocumentFormattingSettings">
+            <summary>
+            Gets or sets the document formatting settings.
+            </summary>
+            <value>
+            The document formatting settings.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaDriverOptions.InputCompositionSettings">
+            <summary>
+            Gets or sets the input composition settings.
+            </summary>
+            <value>
+            The input composition settings.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaDriverOptions.KeyboardSettings">
+            <summary>
+            Gets or sets the keyboard settings.
+            </summary>
+            <value>
+            The keyboard settings.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaDriverOptions.PresentationSettings">
+            <summary>
+            Gets or sets the presentation settings.
+            </summary>
+            <value>
+            The presentation settings.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaDriverOptions.ReviewCursorSettings">
+            <summary>
+            Gets or sets the review cursor settings.
+            </summary>
+            <value>
+            The review cursor settings.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaDriverOptions.BrowseModeSettings">
+            <summary>
+            Gets or sets the browse mode settings.
+            </summary>
+            <value>
+            The browse mode settings.
+            </value>
+        </member>
+        <member name="T:NvdaTestingDriver.Settings.NvdaDriverOptionsWriter">
+            <summary>
+            Class to write NvdaOptions into nvda.ini file
+            </summary>
+        </member>
+        <member name="M:NvdaTestingDriver.Settings.NvdaDriverOptionsWriter.#ctor(NvdaTestingDriver.Settings.NvdaDriverOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.Settings.NvdaDriverOptionsWriter"/> class.
+            </summary>
+            <param name="nvdaDriverOptions">The nvda driver options.</param>
+        </member>
+        <member name="M:NvdaTestingDriver.Settings.NvdaDriverOptionsWriter.WriteOptionsToIniFile(System.String)">
+            <summary>
+            Writes the options to ini file.
+            </summary>
+            <param name="iniFilePath">The ini file path.</param>
+        </member>
+        <member name="M:NvdaTestingDriver.Settings.NvdaDriverOptionsWriter.GetSymbolLevel">
+            <summary>
+            Gets the punctuation level string to store it into ini value.
+            </summary>
+            <returns>The int representing the symbol level</returns>
+        </member>
+        <member name="T:NvdaTestingDriver.Settings.NvdaLanguage">
+            <summary>
+            Struct to store the NVDA language.
+            </summary>
+        </member>
+        <member name="M:NvdaTestingDriver.Settings.NvdaLanguage.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.Settings.NvdaLanguage"/> struct.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Arabic">
+            <summary>
+            Gets the arabic language.
+            </summary>
+            <value>
+            The arabic language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Vietnamese">
+            <summary>
+            Gets the vietnamese language.
+            </summary>
+            <value>
+            The vietnamese language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Urdu">
+            <summary>
+            Gets the urdu language.
+            </summary>
+            <value>
+            The urdu language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Ukrainian">
+            <summary>
+            Gets the ukrainian language.
+            </summary>
+            <value>
+            The ukrainian language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Turkish">
+            <summary>
+            Gets the turkish language.
+            </summary>
+            <value>
+            The turkish language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Tamil">
+            <summary>
+            Gets the tamil language.
+            </summary>
+            <value>
+            The tamil language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Thai">
+            <summary>
+            Gets the thai language.
+            </summary>
+            <value>
+            The thai language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Swedish">
+            <summary>
+            Gets the swedish language.
+            </summary>
+            <value>
+            The swedish language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Somali">
+            <summary>
+            Gets the somali language.
+            </summary>
+            <value>
+            The somali language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.SerbianLatin">
+            <summary>
+            Gets the serbian latin language.
+            </summary>
+            <value>
+            The serbian latin language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Spanish">
+            <summary>
+            Gets the spanish languae.
+            </summary>
+            <value>
+            The spanish language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Punjabi">
+            <summary>
+            Gets the punjabi language.
+            </summary>
+            <value>
+            The punjabi language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Polish">
+            <summary>
+            Gets the polish language.
+            </summary>
+            <value>
+            The polish language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.NorwegianBokmalNorway">
+            <summary>
+            Gets the norwegian bokmal norway language.
+            </summary>
+            <value>
+            The norwegian bokmal norway language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Dutch">
+            <summary>
+            Gets the dutch language.
+            </summary>
+            <value>
+            The dutch language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Mongolian">
+            <summary>
+            Gets the mongolian language.
+            </summary>
+            <value>
+            The mongolian language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Macedonian">
+            <summary>
+            Gets the macedonian language.
+            </summary>
+            <value>
+            The macedonian language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Lithuanian">
+            <summary>
+            Gets the lithuanian language.
+            </summary>
+            <value>
+            The lithuanian language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.CentralKurdish">
+            <summary>
+            Gets the central kurdish language.
+            </summary>
+            <value>
+            The central kurdish language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Kyrgyz">
+            <summary>
+            Gets the kyrgyz language.
+            </summary>
+            <value>
+            The kyrgyz language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Kannada">
+            <summary>
+            Gets the kannada language.
+            </summary>
+            <value>
+            The kannada language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Japanese">
+            <summary>
+            Gets the japanese language.
+            </summary>
+            <value>
+            The japanese language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Italian">
+            <summary>
+            Gets the italian language.
+            </summary>
+            <value>
+            The italian language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Icelandic">
+            <summary>
+            Gets the icelandic language.
+            </summary>
+            <value>
+            The icelandic language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Irish">
+            <summary>
+            Gets the irish language.
+            </summary>
+            <value>
+            The irish language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.English">
+            <summary>
+            Gets the english language.
+            </summary>
+            <value>
+            The english language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Indonesian">
+            <summary>
+            Gets the indonesian language.
+            </summary>
+            <value>
+            The indonesian language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Hungarian">
+            <summary>
+            Gets the hungarian language.
+            </summary>
+            <value>
+            The hungarian language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Hindi">
+            <summary>
+            Gets the hindi language.
+            </summary>
+            <value>
+            The hindi language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Hebrew">
+            <summary>
+            Gets the hebrew language.
+            </summary>
+            <value>
+            The hebrew language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Greek">
+            <summary>
+            Gets the greek language.
+            </summary>
+            <value>
+            The greek language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Georgiano">
+            <summary>
+            Gets the georgiano language.
+            </summary>
+            <value>
+            The georgiano language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Galician">
+            <summary>
+            Gets the galician language.
+            </summary>
+            <value>
+            The galician language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Finnish">
+            <summary>
+            Gets the finnish language.
+            </summary>
+            <value>
+            The finnish language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Slovenian">
+            <summary>
+            Gets the slovenian language.
+            </summary>
+            <value>
+            The slovenian language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Croatian">
+            <summary>
+            Gets the croatian language.
+            </summary>
+            <value>
+            The croatian language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Korean">
+            <summary>
+            Gets the korean language.
+            </summary>
+            <value>
+            The korean language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.ChineseTraditionalHongKong">
+            <summary>
+            Gets the chinese traditional hong kong language.
+            </summary>
+            <value>
+            The chinese traditional hong kong language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.ChineseTraditionalTaiwan">
+            <summary>
+            Gets the chinese traditional taiwan language.
+            </summary>
+            <value>
+            The chinese traditional taiwan language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.ChineseSimplifiedChina">
+            <summary>
+            Gets the chinese simplified china language.
+            </summary>
+            <value>
+            The chinese simplified china language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Czech">
+            <summary>
+            Gets the czech language.
+            </summary>
+            <value>
+            The czech language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Catalan">
+            <summary>
+            Gets the catalan language.
+            </summary>
+            <value>
+            The catalan language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Bulgarian">
+            <summary>
+            Gets the bulgarian language.
+            </summary>
+            <value>
+            The bulgarian language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Aragonese">
+            <summary>
+            Gets the aragonese language.
+            </summary>
+            <value>
+            The aragonese language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.German">
+            <summary>
+            Gets the german language.
+            </summary>
+            <value>
+            The german language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Albanian">
+            <summary>
+            Gets the albanian language.
+            </summary>
+            <value>
+            The albanian language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.AfrikaansSouthAfrica">
+            <summary>
+            Gets the afrikaans south africa language.
+            </summary>
+            <value>
+            The afrikaans south africa language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Value">
+            <summary>
+            Gets or sets the value.
+            </summary>
+            <value>
+            The value, which contains the Nvda language identifier.
+            </value>
+        </member>
+        <member name="M:NvdaTestingDriver.Settings.NvdaLanguage.op_Equality(NvdaTestingDriver.Settings.NvdaLanguage,NvdaTestingDriver.Settings.NvdaLanguage)">
+            <summary>
+            Implements the operator ==.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>
+            The result of the operator.
+            </returns>
+        </member>
+        <member name="M:NvdaTestingDriver.Settings.NvdaLanguage.op_Inequality(NvdaTestingDriver.Settings.NvdaLanguage,NvdaTestingDriver.Settings.NvdaLanguage)">
+            <summary>
+            Implements the operator !=.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>
+            The result of the operator.
+            </returns>
+        </member>
+        <member name="M:NvdaTestingDriver.Settings.NvdaLanguage.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" />, is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object" /> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:NvdaTestingDriver.Settings.NvdaLanguage.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
+            </returns>
+        </member>
+        <member name="M:NvdaTestingDriver.Settings.NvdaLanguage.Equals(NvdaTestingDriver.Settings.NvdaLanguage)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            true if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, false.
+            </returns>
+        </member>
+        <member name="T:NvdaTestingDriver.Settings.PresentationSettings">
+            <summary>
+            Sets the presentation settings.
+            </summary>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.PresentationSettings.ReportDynamicContentChanges">
+            <summary>
+            Toggles the announcement of new content in particular objects such as terminals and the history control in chat programs.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should report dynamic content changes; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.PresentationSettings.ReportTooltips">
+            <summary>
+            Gets or sets a value indicating whether NVDA should report tool tips as they appear.
+            Many Windows and controls show a small message (or tool tip) when you move the mouse
+            pointer over them, or sometimes when you move the focus to them.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should report tooltips; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.PresentationSettings.ReportHelpBalloons">
+            <summary>
+            Gets or sets a value indicating whether NVDA should report help balloons as they appear.
+            Help Balloons are like tool tips, but are usually larger in size, and are associated with system
+            events such as a network cable being unplugged, or perhaps to alert you about Windows security issues.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should report help balloons; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.PresentationSettings.ReportKeyboardShortcuts">
+            <summary>
+            Gets or sets a value indicating whether NVDA should include the shortcut key that is
+            associated with a certain object or control when it is reported.
+            For example the File menu on a menu bar may have a shortcut key of alt+f.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should report keyboard shortcuts; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.PresentationSettings.ReportObjectPositionInformation">
+            <summary>
+            Gets or sets a value indicating whether you wish to have an object's position
+            (e.g. 1 of 4) reported when moving to the object with the focus or object navigation.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should report object position information; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.PresentationSettings.GuessObjectPositionInformationWhenUnavailable">
+            <summary>
+            Gets or sets a value indicating whether  NVDA should announce guess object position information when
+            it is otherwise unavailable for a particular control.
+            When true, NVDA will report position information for more controls such as menus and toolbars, however this information may be slightly inaccurate.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should report guess object position information when unavailable; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.PresentationSettings.ReportObjectDescriptions">
+            <summary>
+            Gets or sets a value indicating whether NVDA should announce the object description along with objects.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should report object descriptions; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.PresentationSettings.ProgressBarUpdates">
+            <summary>
+            Gets or sets the progress bar updates settings.
+            </summary>
+            <value>
+            The progress bar updates settings.
+            </value>
+        </member>
+        <member name="T:NvdaTestingDriver.Settings.ProgressBarUpdateSettings">
+            <summary>
+            Sets the progress bar update settings
+            </summary>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.ProgressBarUpdateSettings.ProgressBarOutputMode">
+            <summary>
+            Gets or sets the progress bar output mode.
+            </summary>
+            <value>
+            The progress bar output mode.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.ProgressBarUpdateSettings.ReportBackgroundProgressBars">
+            <summary>
+            Gets or sets a value indicating whether NVDA should report progress bars outside current window.
+            </summary>
+            <value>
+              <c>true</c> if  NVDA should report background progress bars; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:NvdaTestingDriver.Settings.ReviewCursorSettings">
+            <summary>
+            Sets the review cursor settings
+            </summary>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.ReviewCursorSettings.FollowFocus">
+            <summary>
+            Gets or sets a value indicating whether The review cursor should always be placed in the same object as the current system focus whenever the focus changes.
+            </summary>
+            <value>
+              <c>true</c> if review cursor should follow always focus; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.ReviewCursorSettings.FollowCaret">
+            <summary>
+            Gets or sets a value indicating whether the review cursor should automatically be moved to the position of the System caret each time it moves.
+            </summary>
+            <value>
+              <c>true</c> if  review cursor should follow caret; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.ReviewCursorSettings.FollowMouse">
+            <summary>
+            Gets or sets a value indicating whether the review cursor will follow the mouse as it moves.
+            </summary>
+            <value>
+              <c>true</c> if the review cursor should follow mouse; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.ReviewCursorSettings.SimpleReviewMode">
+            <summary>
+            Gets or sets a value indicating whether NVDA should filter the hierarchy of
+            objects that can be navigated to exclude objects that aren't of interest to the user;
+            e.g. invisible objects and objects used only for layout purposes.
+            </summary>
+            <value>
+              <c>true</c> if  you want to active the simple review mode]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:NvdaTestingDriver.Settings.KeyboardLayout">
+            <summary>
+            The keyboard layout applied to NVDA
+            </summary>
+        </member>
+        <member name="F:NvdaTestingDriver.Settings.KeyboardLayout.Desktop">
+            <summary>
+            The desktop scheme
+            </summary>
+        </member>
+        <member name="F:NvdaTestingDriver.Settings.KeyboardLayout.Laptop">
+            <summary>
+            The laptop scheme
+            </summary>
+        </member>
+        <member name="T:NvdaTestingDriver.Settings.ProgressBarOutputMode">
+            <summary>
+            The NVDA progress bar output mode
+            </summary>
+        </member>
+        <member name="F:NvdaTestingDriver.Settings.ProgressBarOutputMode.Beep">
+            <summary>
+            Only anounce progress with beeps
+            </summary>
+        </member>
+        <member name="F:NvdaTestingDriver.Settings.ProgressBarOutputMode.Speak">
+            <summary>
+            Speaks the progress percentaje
+            </summary>
+        </member>
+        <member name="T:NvdaTestingDriver.Settings.PunctuationLevel">
+            <summary>
+            The NVDA punctuation level
+            </summary>
+        </member>
+        <member name="F:NvdaTestingDriver.Settings.PunctuationLevel.None">
+            <summary>
+             No punctuation
+            </summary>
+        </member>
+        <member name="F:NvdaTestingDriver.Settings.PunctuationLevel.Some">
+            <summary>
+             Some punctuation
+            </summary>
+        </member>
+        <member name="F:NvdaTestingDriver.Settings.PunctuationLevel.Most">
+            <summary>
+            Most punctuation
+            </summary>
+        </member>
+        <member name="F:NvdaTestingDriver.Settings.PunctuationLevel.All">
+            <summary>
+             All punctuation
+            </summary>
+        </member>
+        <member name="T:NvdaTestingDriver.Settings.SpeechSettings">
+            <summary>
+            Sets the speech settings
+            </summary>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.SpeechSettings.SayCapForCapitals">
+            <summary>
+            Gets or sets a value indicating whether NVDA should say the word &quot;cap&quot;
+            before any capital letter when spoken as an individual character such as when spelling.
+            </summary>
+            <value>
+              <c>true</c> if you want to instruct NVDA to say cap for capitals characters before pronounce them; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.SpeechSettings.IncludeUnicodeDescriptions">
+            <summary>
+            Gets or sets a value indicating whether NVDA should include unicode descriptions (useful for emojis).
+            </summary>
+            <value>
+              <c>true</c> if you want to include unicode emojis  descriptions; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.SpeechSettings.PunctuationLevel">
+            <summary>
+            Gets or sets the punctuation level.
+            </summary>
+            <value>
+            The punctuation level.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.SpeechSettings.UseSpellingFunctionality">
+            <summary>
+            Gets or sets a value indicating whether  use spelling functionality iss active
+            Some words consist of only one character, but the pronunciation is different depending on whether the character is being spoken as an individual character
+            (such as when spelling) or a word.For example,
+            in English, "a" is both a letter and a word and is pronounced differently
+            in each case. This option allows the synthesizer to differentiate between these
+            two cases if the synthesizer supports this.
+            Most synthesizers do support it.
+            This option should generally be enabled. However, some Microsoft Speech API synthesizers do not
+            implement this correctly and behave strangely when it is enabled.
+            If you are having problems with the pronunciation of individual characters, try disabling this option.
+            </summary>
+            <value>
+              <c>true</c> if [use spelling functionality]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.SpeechSettings.AutoLanguageSwitching">
+            <summary>
+            Gets or sets a value indicating whether NVDA should switch speech synthesizer languages
+            automatically if the text being read specifies its language.
+            This option is enabled by default. Currently only the eSpeak NG synthesizer supports automatic language switching.
+            </summary>
+            <value>
+              <c>true</c> if  you want to enable automatic language switching; otherwise, <c>false</c>.
+            </value>
+            <remarks>Currently this settings will have no effect on returned text, but will be implemented in the future.</remarks>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.SpeechSettings.AutoDialectSwitching">
+            <summary>
+            Gets or sets a value indicating whether or not dialect changes should be made,
+            rather than just actual language changes. For example, if reading in an English U.S.voice
+            but a document specifies that some text is in English U.K., then the synthesizer will switch accents if this
+            option is enabled. This option is disabled by default.
+            </summary>
+            <value>
+              <c>true</c> if you want to enable the automatic dialect switching; otherwise, <c>false</c>.
+            </value>
+            <remarks>Currently this settings will have no effect on returned text, but will be implemented in the future.</remarks>
+        </member>
+    </members>
+</doc>

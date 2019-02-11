@@ -1,0 +1,43 @@
+﻿@using AccessibleDemo.Models
+@using System.Text
+@model AccessibleDemo.Models.TreeViewViewModel
+@{
+	ViewData["Title"] = "Tree View Example";
+}
+
+<h2>WCAG 2.1</h2>
+<p><a id="lnkWcag" href="https://www.w3.org/TR/WCAG21/">Go to WCAG 2.1 page</a></p>
+<div class="treeview">
+	<ul class="tree" aria-label="All WCAG 2.1 elements">
+		@foreach (var item in Model.Items)
+		{
+			@Html.Raw(RenderItem(item))
+		}
+	</ul>
+</div>
+@section  scripts
+{
+	<script src="~/js/TreeView.js"></script>
+}
+
+@functions
+{
+string RenderItem(TreeViewItemViewModel item)
+{
+	StringBuilder str = new StringBuilder();
+	str.AppendLine($"<li data-value=\"{item.Value}\"><a " +
+		(item.Value == Model.SelectedItem ? "tabindex=\"0\" aria-selected=\"true\" " : "") +
+		$"href=\"#\">{item.Text}</a>");
+	if (item.Children != null && item.Children.Any())
+	{
+		str.AppendLine("<ul class=\"children\">");
+		foreach (var subItem in item.Children)
+		{
+			str.Append(RenderItem(subItem));
+		}
+		str.AppendLine("</ul>");
+	}
+	str.AppendLine("</li>");
+	return str.ToString();
+}
+}

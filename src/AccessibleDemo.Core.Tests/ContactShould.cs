@@ -1,10 +1,10 @@
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NvdaTestingDriver.Commands.NvdaCommands;
 using NvdaTestingDriver.MSTest;
 using NvdaTestingDriver.Selenium.Extensions;
+using System.Threading.Tasks;
 
-namespace AccessibleDemo.Tests
+namespace AccessibleDemo.Core.Tests
 {
 	[TestClass]
 	public class ContactShould

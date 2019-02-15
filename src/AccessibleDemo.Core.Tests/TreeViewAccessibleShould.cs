@@ -1,11 +1,11 @@
-﻿using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NvdaTestingDriver;
 using NvdaTestingDriver.MSTest;
 using NvdaTestingDriver.Selenium.Extensions;
 using OpenQA.Selenium;
+using System.Threading.Tasks;
 
-namespace AccessibleDemo.Tests
+namespace AccessibleDemo.Core.Tests
 {
 
 	[TestClass]

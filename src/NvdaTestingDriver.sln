@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NvdaTestingDriver", "NvdaTe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NvdaTestingDriver.Console", "NvdaTestingDriver.Console\NvdaTestingDriver.Console.csproj", "{2FCFF9BD-7EB3-4830-A6A7-3871068663EA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccessibleDemo.Tests", "AccessibleDemo.Tests\AccessibleDemo.Tests.csproj", "{47C1CBBD-F42D-498C-877A-F6879C522544}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccessibleDemo.Core.Tests", "AccessibleDemo.Core.Tests\AccessibleDemo.Core.Tests.csproj", "{47C1CBBD-F42D-498C-877A-F6879C522544}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccessibleDemo", "AccessibleDemo\AccessibleDemo.csproj", "{AAEA6E96-5C7F-4208-A138-03F49789BFEC}"
 EndProject
@@ -22,7 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ruleset", "Ruleset", "{C0F7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Exsamples", "Exsamples", "{B26CD5B4-DA90-47C2-9EA2-C93A27F93877}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteWebsites.Tests", "RemoteWebsites.Tests\RemoteWebsites.Tests.csproj", "{A5CF396A-C7E6-4763-918E-0BB1AC70F1E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemoteWebsites.Tests", "RemoteWebsites.Tests\RemoteWebsites.Tests.csproj", "{A5CF396A-C7E6-4763-918E-0BB1AC70F1E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

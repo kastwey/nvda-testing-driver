@@ -1,14 +1,14 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NvdaTestingDriver;
 using NvdaTestingDriver.Selenium;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Threading.Tasks;
 
-namespace AccessibleDemo.Tests
+namespace AccessibleDemo.Core.Tests
 {
 	[TestClass]
 	public static class TestHelper

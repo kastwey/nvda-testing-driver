@@ -6,13 +6,15 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>NvdaTestingDriver</PackageId>
 		<Version>0.1.0</Version>
-		<Authors>Juanjo Montiel</Authors>
-		<Company>Juanjo Montiel</Company>
-		<Description>Driver for connect NVDA and intercept speech</Description>
+		<Authors>Juan José Montiel</Authors>
+		<Company>Juan José Montiel</Company>
+		<Description>Create functional accessibility tests using the NVDA screen reader. Control NVDA from .Net, intercept their voice responses, and check that your controls are working properly.</Description>
 		<Copyright>2018-2019</Copyright>
-		<PackageLicenseUrl>8</PackageLicenseUrl>
+		<PackageLicenseUrl>https://www.gnu.org/licenses/gpl-3.0.en.html</PackageLicenseUrl>
 	</PropertyGroup>
-
+<PropertyGroup>
+	<AssemblyVersion>0.1.0.0</AssemblyVersion>
+</PropertyGroup>
 	<PropertyGroup>
 		<DocumentationFile>NvdaTestingDriver.xml</DocumentationFile>
 	</PropertyGroup>

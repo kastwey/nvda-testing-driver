@@ -1,42 +1,45 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.0</Version>
-    <Authors>Juan José Montiel Pérez</Authors>
-    <Company>Juan José Montiel Pérez</Company>
-    <Description>Package with extensions to use NvdaTestingDriver with Selenium WebDriver</Description>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Version>0.1.0-beta</Version>
+		<Authors>Juan José Montiel Pérez</Authors>
+		<Company>Juan José Montiel Pérez</Company>
+		<Description>Package with extensions to use NvdaTestingDriver with Selenium WebDriver. NVDA needs the browser window to be in the foreground, and it also needs any element to take the focus in order to analyze it. This package includes functions to do both.</Description>
+		<Copyright>2018-2019</Copyright>
+		<PackageLicense>https://www.gnu.org/licenses/gpl-3.0.en.html</PackageLicense>
+		<AssemblyVersion>2.1.0.0</AssemblyVersion>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <CodeAnalysisRuleSet></CodeAnalysisRuleSet>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<CodeAnalysisRuleSet></CodeAnalysisRuleSet>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <CodeAnalysisRuleSet>..\ca.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<CodeAnalysisRuleSet>..\ca.ruleset</CodeAnalysisRuleSet>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="stylecop.json" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="stylecop.json" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <AdditionalFiles Include="stylecop.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-  </ItemGroup>
+	<ItemGroup>
+		<AdditionalFiles Include="stylecop.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</AdditionalFiles>
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.3">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.1-rc.94">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.3">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
+		<PackageReference Include="StyleCop.Analyzers" Version="1.1.1-rc.94">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
 
 </Project>

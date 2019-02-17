@@ -28,6 +28,8 @@ using Newtonsoft.Json.Linq;
 using NvdaTestingDriver.Commands;
 using NvdaTestingDriver.Commands.NvdaCommands;
 using NvdaTestingDriver.Exceptions;
+using NvdaTestingDriver.Extensions;
+
 using NvdaTestingDriver.Settings;
 
 namespace NvdaTestingDriver
@@ -477,7 +479,7 @@ namespace NvdaTestingDriver
 			{
 				using (var zipArchive = new ZipArchive(nvdaZipStream))
 				{
-					var entries = zipArchive.Entries.Where(e => !e.FullName.EndsWith("/", StringComparison.InvariantCultureIgnoreCase));
+					var entries = zipArchive.Entries.Where(e => !e.FullName.EndsWith("/", StringComparison.OrdinalIgnoreCase));
 					var entriesCount = entries.Count();
 					var currentFiles = !Directory.Exists(nvdaDirectory) ? new List<string>() : Directory.GetFiles(nvdaDirectory, "*.*", SearchOption.AllDirectories).Select(f => f.Substring(nvdaDirectory.Length + 1).Replace("\\", "/"));
 					var currentFilesCount = currentFiles.Count();
@@ -593,7 +595,7 @@ namespace NvdaTestingDriver
 		/// <returns>The task associated to this operation.</returns>
 		private async Task WriteMessageAsync(string message)
 		{
-			if (!message.EndsWith("\n", StringComparison.InvariantCultureIgnoreCase))
+			if (!message.EndsWith("\n", StringComparison.OrdinalIgnoreCase))
 			{
 				message += "\n";
 			}
@@ -721,8 +723,8 @@ namespace NvdaTestingDriver
 		/// <returns>Returns the json representation of the key</returns>
 		private string ToJsonKey(Key key, bool down)
 		{
-			return $"{{\"scan_code\": {key.ScanCode}, \"extended\": {key.Extended.ToString(CultureInfo.InvariantCulture).ToLower(CultureInfo.InvariantCulture)}, " +
-				$"\"vk_code\": {key.KeyCode}, \"pressed\": {down.ToString(CultureInfo.InvariantCulture).ToLower(CultureInfo.InvariantCulture)}, \"type\": \"key\"}}";
+			return $"{{\"scan_code\": {key.ScanCode}, \"extended\": {key.Extended.ToString(CultureInfo.InvariantCulture).ToLowerInvariant()}, " +
+				$"\"vk_code\": {key.KeyCode}, \"pressed\": {down.ToString(CultureInfo.InvariantCulture).ToLowerInvariant()}, \"type\": \"key\"}}";
 		}
 
 		/// <summary>

@@ -1,11 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.0</Version>
+    <Version>0.1.0-beta</Version>
     <Authors>Juan José Montiel Pérez</Authors>
     <Description>This package contain classes to use MSTest with NvdaTestingDriver package.</Description>
+		<Copyright>2018-2019</Copyright>
+		<PackageLicense>https://www.gnu.org/licenses/gpl-3.0.en.html</PackageLicense>
+		<AssemblyVersion>1.1.0.0</AssemblyVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

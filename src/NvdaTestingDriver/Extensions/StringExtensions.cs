@@ -9,6 +9,7 @@
 // GNU General Public License for more details.
 
 using System;
+using System.Globalization;
 
 namespace NvdaTestingDriver.Extensions
 {
@@ -27,5 +28,15 @@ namespace NvdaTestingDriver.Extensions
 		///   true if the value parameter occurs within this string, or if value is the empty string (""); otherwise, false.
 		/// </returns>
 		public static bool Contains(this string text, string value, StringComparison comparison) => text.IndexOf(value, comparison) >= 0;
+
+		/// <summary>
+		/// Converts a string to lower case using the CultureInfo INvariantCulture. format provider.
+		/// </summary>
+		/// <param name="value">The value to convert.</param>
+		/// <returns>The lowercase string</returns>
+		public static string ToLowerInvariant(this string value)
+		{
+			return value.ToLowerInvariant();
+		}
 	}
 }

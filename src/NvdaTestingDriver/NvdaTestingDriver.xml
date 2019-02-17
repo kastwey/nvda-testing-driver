@@ -1153,6 +1153,13 @@
               true if the value parameter occurs within this string, or if value is the empty string (""); otherwise, false.
             </returns>
         </member>
+        <member name="M:NvdaTestingDriver.Extensions.StringExtensions.ToLowerInvariant(System.String)">
+            <summary>
+            Converts a string to lower case using the CultureInfo INvariantCulture. format provider.
+            </summary>
+            <param name="value">The value to convert.</param>
+            <returns>The lowercase string</returns>
+        </member>
         <member name="T:NvdaTestingDriver.Key">
             <summary>
             Class to store the information of a key, ready to be passed to NVDA Remote.

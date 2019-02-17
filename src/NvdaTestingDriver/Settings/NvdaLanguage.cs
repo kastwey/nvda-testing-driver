@@ -448,7 +448,7 @@ namespace NvdaTestingDriver.Settings
 			}
 
 			var nvdaLanguage = (NvdaLanguage)obj;
-			return nvdaLanguage.Value.Equals(this.Value, StringComparison.InvariantCulture);
+			return nvdaLanguage.Value.Equals(this.Value, StringComparison.CurrentCulture);
 		}
 
 		/// <summary>
@@ -471,7 +471,7 @@ namespace NvdaTestingDriver.Settings
 		/// </returns>
 		public bool Equals(NvdaLanguage other)
 		{
-			return this.Value.Equals(other.Value, StringComparison.InvariantCultureIgnoreCase);
+			return this.Value.Equals(other.Value, StringComparison.CurrentCulture);
 		}
 	}
 }

@@ -5,21 +5,22 @@
 		<RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>NvdaTestingDriver</PackageId>
-		<Version>0.1.0</Version>
+		<Version>0.1.0-beta</Version>
 		<Authors>Juan José Montiel</Authors>
 		<Company>Juan José Montiel</Company>
 		<Description>Create functional accessibility tests using the NVDA screen reader. Control NVDA from .Net, intercept their voice responses, and check that your controls are working properly.</Description>
 		<Copyright>2018-2019</Copyright>
-		<PackageLicenseUrl>https://www.gnu.org/licenses/gpl-3.0.en.html</PackageLicenseUrl>
+		<PackageLicense>https://www.gnu.org/licenses/gpl-3.0.en.html</PackageLicense>
 	</PropertyGroup>
-<PropertyGroup>
-	<AssemblyVersion>0.1.0.0</AssemblyVersion>
-</PropertyGroup>
+	<PropertyGroup>
+		<AssemblyVersion>4.1.6.0</AssemblyVersion>
+	</PropertyGroup>
 	<PropertyGroup>
 		<DocumentationFile>NvdaTestingDriver.xml</DocumentationFile>
 	</PropertyGroup>
 	<PropertyGroup>
 		<CodeAnalysisRuleSet>..\ca.ruleset</CodeAnalysisRuleSet>
+		<FileVersion>0.1.7.0</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -29,14 +30,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="nvda.zip">
+		<EmbeddedResource Include="nvda.zip">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
+		</EmbeddedResource>
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.3">
-		  <PrivateAssets>all</PrivateAssets>
-		  <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.Win32.Registry" Version="4.5.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="12.0.1" />

@@ -40,7 +40,7 @@ namespace NvdaTestingDriver.Settings
 			var progressBarOutputModeOpt = _nvdaDriverOptions.PresentationSettings.ProgressBarUpdates.ProgressBarOutputMode;
 			var progressBarOutputModeStr = (progressBarOutputModeOpt & ProgressBarOutputMode.Beep) == ProgressBarOutputMode.Beep
 				&& (progressBarOutputModeOpt & ProgressBarOutputMode.Speak) == ProgressBarOutputMode.Speak ?
-				"both" : progressBarOutputModeOpt.ToString().ToLower(CultureInfo.InvariantCulture);
+				"both" : progressBarOutputModeOpt.ToString().ToLowerInvariant();
 			string iniFileContent = $@"schemaVersion = 2
 [upgrade]
 [update]

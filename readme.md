@@ -105,6 +105,19 @@ This command will disconnect the remote control to NVDA, and then exit the scree
 
 Since `NvdaTestingDriver` implements the `IDisposable` interface, if we include the instantiation of the class within a `using` block, when we close the block, the `Dispose` method will be executed, and it will call the `DisconnectAsync` method, closing the remote control and exiting NVDA.
 
+## Packages included in this repository
+
+There are three nuget packages (with their corresponding projects) included in this repository:
+- NvdaTestingDriver: the main package, which handles all interaction with NVDA.
+- NvdaTestingDriver.MSTest: Includes methods that help the execution of tests with the MSTests engine.
+- NvdaTestingDriver.Selenium: Includes extensions for IWebDriver (Selenium), such as Focus (to focus on any element), or FocusWindow (to place the focus inside the web document window).
+
+In the example project `AccessibleDemo.Tests`, you will see how these three packages are used together.
+
+## Compatibility
+
+These packages are compatible with NetStandard 2.0. Therefore, you can use them from .Net Framework 4.6.1 or higher, and .NetCore 2.0 or higher. I have tried to make them compatible with .Net Core 1.0 to 2.0, but there are Process functions that were not developed for those versions.
+
 ## Creating our tests
 
 Imagine we want to verify that the Github buttons are accessible.

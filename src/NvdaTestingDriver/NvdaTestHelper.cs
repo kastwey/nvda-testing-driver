@@ -35,7 +35,7 @@ namespace NvdaTestingDriver
 			text = NormalizeText(text);
 			expectedText = NormalizeText(expectedText);
 
-			return text.Contains(expectedText, StringComparison.InvariantCultureIgnoreCase);
+			return text.Contains(expectedText, StringComparison.OrdinalIgnoreCase);
 		}
 
 		/// <summary>

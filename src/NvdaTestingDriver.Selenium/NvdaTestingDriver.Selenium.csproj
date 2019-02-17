@@ -6,10 +6,17 @@
 		<Version>0.1.0-beta</Version>
 		<Authors>Juan José Montiel Pérez</Authors>
 		<Company>Juan José Montiel Pérez</Company>
-		<Description>Package with extensions to use NvdaTestingDriver with Selenium WebDriver. NVDA needs the browser window to be in the foreground, and it also needs any element to take the focus in order to analyze it. This package includes functions to do both.</Description>
+		<Description>This package contains extensions to use NvdaTestingDriver with Selenium WebDriver. NVDA needs the browser window to be in the foreground, and it also needs any element to take the focus in order to analyze it. This package includes functions to do both.</Description>
 		<Copyright>2018-2019</Copyright>
 		<PackageLicense>https://www.gnu.org/licenses/gpl-3.0.en.html</PackageLicense>
-		<AssemblyVersion>2.1.0.0</AssemblyVersion>
+		<AssemblyVersion>0.1.0.0</AssemblyVersion>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<PackageLicenseUrl>https://www.gnu.org/licenses/gpl-3.0.en.html</PackageLicenseUrl>
+		<PackageProjectUrl>https://github.com/kastwey/nvda-testing-driver</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/kastwey/nvda-testing-driver</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>nvda,accessibility,test,testing,functional accessibility tests,selenium,web testing,screen reader,screen reader testing</PackageTags>
+		<NeutralLanguage>en</NeutralLanguage>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -35,6 +42,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="NvdaTestingDriver" Version="0.1.0-beta" />
 		<PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
 		<PackageReference Include="StyleCop.Analyzers" Version="1.1.1-rc.94">
 			<PrivateAssets>all</PrivateAssets>

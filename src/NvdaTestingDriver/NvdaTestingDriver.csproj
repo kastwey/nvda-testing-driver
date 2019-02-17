@@ -8,19 +8,28 @@
 		<Version>0.1.0-beta</Version>
 		<Authors>Juan José Montiel</Authors>
 		<Company>Juan José Montiel</Company>
-		<Description>Create functional accessibility tests using the NVDA screen reader. Control NVDA from .Net, intercept their voice responses, and check that your controls are working properly.</Description>
+		<Description>Create functional accessibility tests using the NVDA screen reader. Control NVDA from .Net, intercept their voice responses and check that your controls are working properly, as if you were using the screen reader directly. You can use this package not only for web accessibility testing, but also for testing desktop applications.</Description>
 		<Copyright>2018-2019</Copyright>
 		<PackageLicense>https://www.gnu.org/licenses/gpl-3.0.en.html</PackageLicense>
 	</PropertyGroup>
 	<PropertyGroup>
-		<AssemblyVersion>4.1.6.0</AssemblyVersion>
+		<AssemblyVersion>0.1.0.0</AssemblyVersion>
 	</PropertyGroup>
 	<PropertyGroup>
 		<DocumentationFile>NvdaTestingDriver.xml</DocumentationFile>
 	</PropertyGroup>
 	<PropertyGroup>
 		<CodeAnalysisRuleSet>..\ca.ruleset</CodeAnalysisRuleSet>
-		<FileVersion>0.1.7.0</FileVersion>
+		<FileVersion>0.1.0.0</FileVersion>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<PackageLicenseUrl>https://www.gnu.org/licenses/gpl-3.0.en.html</PackageLicenseUrl>
+		<PackageProjectUrl>https://github.com/kastwey/nvda-testing-driver</PackageProjectUrl>
+		<RepositoryUrl>https://gitub.com/kastwey/nvda-testing-driver</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>accessibility,accessibility testing,NVDA,screen reader,functional accessibility test,automation test,UIA,MSAA</PackageTags>
+		<PackageReleaseNotes>This is the first beta version. Please don't hesitate to collaborate with improvements, making pull requests and helpping this project continue to grow.
+Thanks to Pablo Núñez (@pablonete), for giving me the idea to start this project.</PackageReleaseNotes>
+		<NeutralLanguage>en</NeutralLanguage>
 	</PropertyGroup>
 
 	<ItemGroup>

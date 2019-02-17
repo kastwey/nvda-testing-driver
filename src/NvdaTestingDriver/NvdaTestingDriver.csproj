@@ -24,10 +24,12 @@
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageLicenseUrl>https://www.gnu.org/licenses/gpl-3.0.en.html</PackageLicenseUrl>
 		<PackageProjectUrl>https://github.com/kastwey/nvda-testing-driver</PackageProjectUrl>
-		<RepositoryUrl>https://gitub.com/kastwey/nvda-testing-driver</RepositoryUrl>
+		<RepositoryUrl>https://github.com/kastwey/nvda-testing-driver</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>accessibility,accessibility testing,NVDA,screen reader,functional accessibility test,automation test,UIA,MSAA</PackageTags>
-		<PackageReleaseNotes>This is the first beta version. Please don't hesitate to collaborate with improvements, making pull requests and helpping this project continue to grow.
+		<PackageReleaseNotes>Fixed a typographical error in the repository URL.
+
+This is a beta version. Please don't hesitate to collaborate with improvements, making pull requests and helpping this project continue to grow.
 Thanks to Pablo Núñez (@pablonete), for giving me the idea to start this project.</PackageReleaseNotes>
 		<NeutralLanguage>en</NeutralLanguage>
 	</PropertyGroup>

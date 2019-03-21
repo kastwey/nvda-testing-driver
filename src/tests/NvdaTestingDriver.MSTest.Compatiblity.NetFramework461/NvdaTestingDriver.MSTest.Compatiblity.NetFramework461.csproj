@@ -55,14 +55,14 @@
     <Reference Include="NGettext, Version=0.6.1.0, Culture=neutral, PublicKeyToken=08d3d1c89dfd2985, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NGettext.0.6.3\lib\net46\NGettext.dll</HintPath>
     </Reference>
-    <Reference Include="NvdaTestingDriver, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NvdaTestingDriver.0.1.0-beta\lib\netstandard2.0\NvdaTestingDriver.dll</HintPath>
+    <Reference Include="NvdaTestingDriver, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NvdaTestingDriver.0.2.0-beta\lib\netstandard2.0\NvdaTestingDriver.dll</HintPath>
     </Reference>
-    <Reference Include="NvdaTestingDriver.MSTest, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NvdaTestingDriver.MSTest.0.1.0-beta\lib\netstandard2.0\NvdaTestingDriver.MSTest.dll</HintPath>
+    <Reference Include="NvdaTestingDriver.MSTest, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NvdaTestingDriver.MSTest.0.2.0-beta\lib\netstandard2.0\NvdaTestingDriver.MSTest.dll</HintPath>
     </Reference>
-    <Reference Include="NvdaTestingDriver.Selenium, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NvdaTestingDriver.Selenium.0.1.0-beta\lib\netstandard2.0\NvdaTestingDriver.Selenium.dll</HintPath>
+    <Reference Include="NvdaTestingDriver.Selenium, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NvdaTestingDriver.Selenium.0.2.0-beta\lib\netstandard2.0\NvdaTestingDriver.Selenium.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

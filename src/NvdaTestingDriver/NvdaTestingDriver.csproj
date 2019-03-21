@@ -5,7 +5,7 @@
 		<RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>NvdaTestingDriver</PackageId>
-		<Version>0.1.0-beta</Version>
+		<Version>0.2.0-beta</Version>
 		<Authors>Juan José Montiel</Authors>
 		<Company>Juan José Montiel</Company>
 		<Description>Create functional accessibility tests using the NVDA screen reader. Control NVDA from .Net, intercept their voice responses and check that your controls are working properly, as if you were using the screen reader directly. You can use this package not only for web accessibility testing, but also for testing desktop applications.</Description>
@@ -13,7 +13,7 @@
 		<PackageLicense>https://www.gnu.org/licenses/gpl-3.0.en.html</PackageLicense>
 	</PropertyGroup>
 	<PropertyGroup>
-		<AssemblyVersion>0.1.0.0</AssemblyVersion>
+		<AssemblyVersion>0.2.0.0</AssemblyVersion>
 	</PropertyGroup>
 	<PropertyGroup>
 		<DocumentationFile>NvdaTestingDriver.xml</DocumentationFile>
@@ -26,11 +26,16 @@
 		<PackageProjectUrl>https://github.com/kastwey/nvda-testing-driver</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/kastwey/nvda-testing-driver</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageTags>accessibility,accessibility testing,NVDA,screen reader,functional accessibility test,automation test,UIA,MSAA</PackageTags>
-		<PackageReleaseNotes>Fixed a typographical error in the repository URL.
+		<PackageTags>accessibility,accessibilityTesting,NVDA,ScreenReader,FunctionalAccessibilityTest,AutomationTest,UIA,MSAA</PackageTags>
+		<PackageReleaseNotes>
+			V 0.1.0:
+			- Updated package to use NVDA 18.4.1. The size of NVDA has been significantly reduced.
+			- Fixed a bug when getting the NVDA zip in the first use
+			- Added french language.
+			- Fixed a typographical error in the repository URL.
 
-This is a beta version. Please don't hesitate to collaborate with improvements, making pull requests and helpping this project continue to grow.
-Thanks to Pablo Núñez (@pablonete), for giving me the idea to start this project.</PackageReleaseNotes>
+			This is a beta version. Please don't hesitate to collaborate with improvements, making pull requests and helpping this project continue to grow.
+			Thanks to Pablo Núñez (@pablonete), for giving me the idea to start this project.</PackageReleaseNotes>
 		<NeutralLanguage>en</NeutralLanguage>
 	</PropertyGroup>
 

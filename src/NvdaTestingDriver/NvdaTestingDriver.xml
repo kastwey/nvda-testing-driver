@@ -2916,364 +2916,12 @@
             </summary>
             <param name="value">The value.</param>
         </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Arabic">
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.AfrikaansSouthAfrica">
             <summary>
-            Gets the arabic language.
+            Gets the afrikaans south africa language.
             </summary>
             <value>
-            The arabic language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Vietnamese">
-            <summary>
-            Gets the vietnamese language.
-            </summary>
-            <value>
-            The vietnamese language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Urdu">
-            <summary>
-            Gets the urdu language.
-            </summary>
-            <value>
-            The urdu language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Ukrainian">
-            <summary>
-            Gets the ukrainian language.
-            </summary>
-            <value>
-            The ukrainian language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Turkish">
-            <summary>
-            Gets the turkish language.
-            </summary>
-            <value>
-            The turkish language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Tamil">
-            <summary>
-            Gets the tamil language.
-            </summary>
-            <value>
-            The tamil language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Thai">
-            <summary>
-            Gets the thai language.
-            </summary>
-            <value>
-            The thai language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Swedish">
-            <summary>
-            Gets the swedish language.
-            </summary>
-            <value>
-            The swedish language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Somali">
-            <summary>
-            Gets the somali language.
-            </summary>
-            <value>
-            The somali language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.SerbianLatin">
-            <summary>
-            Gets the serbian latin language.
-            </summary>
-            <value>
-            The serbian latin language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Spanish">
-            <summary>
-            Gets the spanish languae.
-            </summary>
-            <value>
-            The spanish language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Punjabi">
-            <summary>
-            Gets the punjabi language.
-            </summary>
-            <value>
-            The punjabi language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Polish">
-            <summary>
-            Gets the polish language.
-            </summary>
-            <value>
-            The polish language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.NorwegianBokmalNorway">
-            <summary>
-            Gets the norwegian bokmal norway language.
-            </summary>
-            <value>
-            The norwegian bokmal norway language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Dutch">
-            <summary>
-            Gets the dutch language.
-            </summary>
-            <value>
-            The dutch language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Mongolian">
-            <summary>
-            Gets the mongolian language.
-            </summary>
-            <value>
-            The mongolian language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Macedonian">
-            <summary>
-            Gets the macedonian language.
-            </summary>
-            <value>
-            The macedonian language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Lithuanian">
-            <summary>
-            Gets the lithuanian language.
-            </summary>
-            <value>
-            The lithuanian language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.CentralKurdish">
-            <summary>
-            Gets the central kurdish language.
-            </summary>
-            <value>
-            The central kurdish language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Kyrgyz">
-            <summary>
-            Gets the kyrgyz language.
-            </summary>
-            <value>
-            The kyrgyz language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Kannada">
-            <summary>
-            Gets the kannada language.
-            </summary>
-            <value>
-            The kannada language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Japanese">
-            <summary>
-            Gets the japanese language.
-            </summary>
-            <value>
-            The japanese language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Italian">
-            <summary>
-            Gets the italian language.
-            </summary>
-            <value>
-            The italian language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Icelandic">
-            <summary>
-            Gets the icelandic language.
-            </summary>
-            <value>
-            The icelandic language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Irish">
-            <summary>
-            Gets the irish language.
-            </summary>
-            <value>
-            The irish language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.English">
-            <summary>
-            Gets the english language.
-            </summary>
-            <value>
-            The english language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Indonesian">
-            <summary>
-            Gets the indonesian language.
-            </summary>
-            <value>
-            The indonesian language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Hungarian">
-            <summary>
-            Gets the hungarian language.
-            </summary>
-            <value>
-            The hungarian language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Hindi">
-            <summary>
-            Gets the hindi language.
-            </summary>
-            <value>
-            The hindi language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Hebrew">
-            <summary>
-            Gets the hebrew language.
-            </summary>
-            <value>
-            The hebrew language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Greek">
-            <summary>
-            Gets the greek language.
-            </summary>
-            <value>
-            The greek language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Georgiano">
-            <summary>
-            Gets the georgiano language.
-            </summary>
-            <value>
-            The georgiano language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Galician">
-            <summary>
-            Gets the galician language.
-            </summary>
-            <value>
-            The galician language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Finnish">
-            <summary>
-            Gets the finnish language.
-            </summary>
-            <value>
-            The finnish language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Slovenian">
-            <summary>
-            Gets the slovenian language.
-            </summary>
-            <value>
-            The slovenian language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Croatian">
-            <summary>
-            Gets the croatian language.
-            </summary>
-            <value>
-            The croatian language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Korean">
-            <summary>
-            Gets the korean language.
-            </summary>
-            <value>
-            The korean language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.ChineseTraditionalHongKong">
-            <summary>
-            Gets the chinese traditional hong kong language.
-            </summary>
-            <value>
-            The chinese traditional hong kong language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.ChineseTraditionalTaiwan">
-            <summary>
-            Gets the chinese traditional taiwan language.
-            </summary>
-            <value>
-            The chinese traditional taiwan language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.ChineseSimplifiedChina">
-            <summary>
-            Gets the chinese simplified china language.
-            </summary>
-            <value>
-            The chinese simplified china language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Czech">
-            <summary>
-            Gets the czech language.
-            </summary>
-            <value>
-            The czech language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Catalan">
-            <summary>
-            Gets the catalan language.
-            </summary>
-            <value>
-            The catalan language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Bulgarian">
-            <summary>
-            Gets the bulgarian language.
-            </summary>
-            <value>
-            The bulgarian language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Aragonese">
-            <summary>
-            Gets the aragonese language.
-            </summary>
-            <value>
-            The aragonese language.
-            </value>
-        </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.German">
-            <summary>
-            Gets the german language.
-            </summary>
-            <value>
-            The german language.
+            The afrikaans south africa language.
             </value>
         </member>
         <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Albanian">
@@ -3284,12 +2932,372 @@
             The albanian language.
             </value>
         </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.AfrikaansSouthAfrica">
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Arabic">
             <summary>
-            Gets the afrikaans south africa language.
+            Gets the arabic language.
             </summary>
             <value>
-            The afrikaans south africa language.
+            The arabic language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Aragonese">
+            <summary>
+            Gets the aragonese language.
+            </summary>
+            <value>
+            The aragonese language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Bulgarian">
+            <summary>
+            Gets the bulgarian language.
+            </summary>
+            <value>
+            The bulgarian language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Kannada">
+            <summary>
+            Gets the kannada language.
+            </summary>
+            <value>
+            The kannada language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Catalan">
+            <summary>
+            Gets the catalan language.
+            </summary>
+            <value>
+            The catalan language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.CentralKurdish">
+            <summary>
+            Gets the central kurdish language.
+            </summary>
+            <value>
+            The central kurdish language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Czech">
+            <summary>
+            Gets the czech language.
+            </summary>
+            <value>
+            The czech language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.ChineseSimplifiedChina">
+            <summary>
+            Gets the chinese simplified china language.
+            </summary>
+            <value>
+            The chinese simplified china language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.ChineseTraditionalTaiwan">
+            <summary>
+            Gets the chinese traditional taiwan language.
+            </summary>
+            <value>
+            The chinese traditional taiwan language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.ChineseTraditionalHongKong">
+            <summary>
+            Gets the chinese traditional hong kong language.
+            </summary>
+            <value>
+            The chinese traditional hong kong language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Korean">
+            <summary>
+            Gets the korean language.
+            </summary>
+            <value>
+            The korean language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Croatian">
+            <summary>
+            Gets the croatian language.
+            </summary>
+            <value>
+            The croatian language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Dutch">
+            <summary>
+            Gets the dutch language.
+            </summary>
+            <value>
+            The dutch language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.English">
+            <summary>
+            Gets the english language.
+            </summary>
+            <value>
+            The english language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.French">
+            <summary>
+            Gets the french language.
+            </summary>
+            <value>
+            The croatian language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Finnish">
+            <summary>
+            Gets the finnish language.
+            </summary>
+            <value>
+            The finnish language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Galician">
+            <summary>
+            Gets the galician language.
+            </summary>
+            <value>
+            The galician language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Georgiano">
+            <summary>
+            Gets the georgiano language.
+            </summary>
+            <value>
+            The georgiano language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.German">
+            <summary>
+            Gets the german language.
+            </summary>
+            <value>
+            The german language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Greek">
+            <summary>
+            Gets the greek language.
+            </summary>
+            <value>
+            The greek language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Hebrew">
+            <summary>
+            Gets the hebrew language.
+            </summary>
+            <value>
+            The hebrew language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Hungarian">
+            <summary>
+            Gets the hungarian language.
+            </summary>
+            <value>
+            The hungarian language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Icelandic">
+            <summary>
+            Gets the icelandic language.
+            </summary>
+            <value>
+            The icelandic language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Hindi">
+            <summary>
+            Gets the hindi language.
+            </summary>
+            <value>
+            The hindi language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Indonesian">
+            <summary>
+            Gets the indonesian language.
+            </summary>
+            <value>
+            The indonesian language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Irish">
+            <summary>
+            Gets the irish language.
+            </summary>
+            <value>
+            The irish language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Italian">
+            <summary>
+            Gets the italian language.
+            </summary>
+            <value>
+            The italian language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Japanese">
+            <summary>
+            Gets the japanese language.
+            </summary>
+            <value>
+            The japanese language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Kyrgyz">
+            <summary>
+            Gets the kyrgyz language.
+            </summary>
+            <value>
+            The kyrgyz language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Lithuanian">
+            <summary>
+            Gets the lithuanian language.
+            </summary>
+            <value>
+            The lithuanian language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Macedonian">
+            <summary>
+            Gets the macedonian language.
+            </summary>
+            <value>
+            The macedonian language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Mongolian">
+            <summary>
+            Gets the mongolian language.
+            </summary>
+            <value>
+            The mongolian language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.NorwegianBokmalNorway">
+            <summary>
+            Gets the norwegian bokmal norway language.
+            </summary>
+            <value>
+            The norwegian bokmal norway language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Polish">
+            <summary>
+            Gets the polish language.
+            </summary>
+            <value>
+            The polish language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Punjabi">
+            <summary>
+            Gets the punjabi language.
+            </summary>
+            <value>
+            The punjabi language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.SerbianLatin">
+            <summary>
+            Gets the serbian latin language.
+            </summary>
+            <value>
+            The serbian latin language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Slovenian">
+            <summary>
+            Gets the slovenian language.
+            </summary>
+            <value>
+            The slovenian language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Spanish">
+            <summary>
+            Gets the spanish languae.
+            </summary>
+            <value>
+            The spanish language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Somali">
+            <summary>
+            Gets the somali language.
+            </summary>
+            <value>
+            The somali language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Swedish">
+            <summary>
+            Gets the swedish language.
+            </summary>
+            <value>
+            The swedish language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Ukrainian">
+            <summary>
+            Gets the ukrainian language.
+            </summary>
+            <value>
+            The ukrainian language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Thai">
+            <summary>
+            Gets the thai language.
+            </summary>
+            <value>
+            The thai language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Tamil">
+            <summary>
+            Gets the tamil language.
+            </summary>
+            <value>
+            The tamil language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Turkish">
+            <summary>
+            Gets the turkish language.
+            </summary>
+            <value>
+            The turkish language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Urdu">
+            <summary>
+            Gets the urdu language.
+            </summary>
+            <value>
+            The Urdu language.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Vietnamese">
+            <summary>
+            Gets the vietnamese language.
+            </summary>
+            <value>
+            The vietnamese language.
             </value>
         </member>
         <member name="P:NvdaTestingDriver.Settings.NvdaLanguage.Value">

@@ -234,6 +234,8 @@ namespace NvdaTestingDriver
 			while ((spokenMessage.Length == 0 || (firstMessageTime.HasValue && DateTime.Now - firstMessageTime.Value < timeToWaitNewMessages))
 				&& DateTime.Now - operationStart < timeout)
 			{
+				Debug.WriteLine("Waiting for 100 MS more. Time elapsed: " +
+					(DateTime.Now - operationStart).TotalSeconds + " seconds.");
 				await Task.Delay(100);
 			}
 
@@ -514,7 +516,7 @@ namespace NvdaTestingDriver
 			string nvdaExecutableFilePath = null;
 			string nvdaVersion = GetNvdaVersion();
 
-			using (var nvdaZipStream = File.OpenRead(Path.Combine(Path.GetDirectoryName(this.GetType().Assembly.Location), "nvda.zip")))
+			using (var nvdaZipStream = this.GetType().Assembly.GetManifestResourceStream("NvdaTestingDriver.nvda.zip"))
 			{
 				using (var zipArchive = new ZipArchive(nvdaZipStream))
 				{

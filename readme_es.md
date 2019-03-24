@@ -5,7 +5,7 @@
 NvdaTestingDriver es un paquete que nos permitirá realizar tests funcionales de accesibilidad, utilizando para ello el lector de pantalla NVDA.
 El paquete es capaz de iniciar el lector de pantalla (no necesita instalación, pues ya incluye una versión portable ), y manejarlo como si fuese el propio usuario el que interactúa con él, enviándole órdenes y recibiendo las respuestas textuales. Con dichas respuestas, podremos confeccionar nuestros tests, que fallarán si los textos recibidos no se corresponden con lo que consideramos que el lector debería pronunciar en cada momento.
 
-NvdaTestingDriver, aunque es un paquete NetStandard, solo es compatible con Windows (versiones de Vista en adelante), ya que NVDA es un lector de pantallas desarrollado para este sistema operativo.
+NvdaTestingDriver, aunque es un paquete NetStandard, solo es compatible con Windows (versiones de Windows 7 SP 1 en adelante), ya que NVDA es un lector de pantallas desarrollado para este sistema operativo.
 
 En este repositorio podréis descargar el código fuente, así como un proyecto webt y un proyecto de test, que utilizará la web de ejemplo para ejecutar los tests funcionales.
 

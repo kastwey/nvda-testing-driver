@@ -10,8 +10,9 @@
 		<Company>Juan José Montiel</Company>
 		<Description>Create functional accessibility tests using the NVDA screen reader. Control NVDA from .Net, intercept their voice responses and check that your controls are working properly, as if you were using the screen reader directly. You can use this package not only for web accessibility testing, but also for testing desktop applications.</Description>
 		<Copyright>2018-2019</Copyright>
-		<PackageLicense>https://www.gnu.org/licenses/gpl-3.0.en.html</PackageLicense>
+		<PackageLicenseFile>License.md</PackageLicenseFile>
 	</PropertyGroup>
+
 	<PropertyGroup>
 		<AssemblyVersion>0.2.0.0</AssemblyVersion>
 	</PropertyGroup>
@@ -20,22 +21,23 @@
 	</PropertyGroup>
 	<PropertyGroup>
 		<CodeAnalysisRuleSet>..\ca.ruleset</CodeAnalysisRuleSet>
-		<FileVersion>0.1.0.0</FileVersion>
+		<FileVersion>0.2.0.0</FileVersion>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<PackageLicenseUrl>https://www.gnu.org/licenses/gpl-3.0.en.html</PackageLicenseUrl>
 		<PackageProjectUrl>https://github.com/kastwey/nvda-testing-driver</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/kastwey/nvda-testing-driver</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>accessibility,accessibilityTesting,NVDA,ScreenReader,FunctionalAccessibilityTest,AutomationTest,UIA,MSAA</PackageTags>
 		<PackageReleaseNotes>
-			V 0.1.0:
-			- Updated package to use NVDA 18.4.1. The size of NVDA has been significantly reduced.
-			- Fixed a bug when getting the NVDA zip in the first use
-			- Added french language.
-			- Fixed a typographical error in the repository URL.
+			V 0.2.0:
 
+			- Updated package to use NVDA 18.4.1. The size of NVDA has been significantly reduced.
+			- Fixed a bug when getting the NVDA zip in the first use.
+			- AddedBurmese, french, Danish, Farsi, Nepali, Portuguese (Brazil) and Portuguese (Portugal), Romanian, Russian and  Spain (Colombia) languages in supported NVDA languages.
+			- Fixed a typographical error in the repository URL.
+			- Removed unnecesary package dependency to NGettext
 			This is a beta version. Please don't hesitate to collaborate with improvements, making pull requests and helpping this project continue to grow.
-			Thanks to Pablo Núñez (@pablonete), for giving me the idea to start this project.</PackageReleaseNotes>
+			Thanks to Pablo Núñez (@pablonete), for giving me the idea to start this project.
+		</PackageReleaseNotes>
 		<NeutralLanguage>en</NeutralLanguage>
 	</PropertyGroup>
 
@@ -44,7 +46,9 @@
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</AdditionalFiles>
 	</ItemGroup>
-
+	<ItemGroup>
+		<None Include="License.md" Pack="true" PackagePath=""/>
+	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Include="nvda.zip">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
@@ -57,7 +61,6 @@
 		</PackageReference>
 		<PackageReference Include="Microsoft.Win32.Registry" Version="4.5.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
-		<PackageReference Include="NGettext" Version="0.6.3" />
 		<PackageReference Include="StyleCop.Analyzers" Version="1.1.1-rc.94">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>

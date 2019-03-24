@@ -186,7 +186,7 @@ namespace NvdaTestingDriver
 		/// <summary>
 		/// Gets the next spoken message by NVDA asynchronous.
 		/// </summary>
-		/// <param name="timeout">The maximum time the method will wait for an NVDA message before raising an exception.</param>
+		/// <param name="timeout">The maximum time the method will wait for an NVDA message before raising an exception. By default, timeout is 3 seconds.</param>
 		/// <param name="timeToWaitNewMessages">
 		/// There are occasions when NVDA transmits messages separately, in different packets.
 		/// This parameter sets the maximum time that NVDA will concatenate new messages received within the return of this method, starting from the arrival of the first message.</param>
@@ -198,7 +198,7 @@ namespace NvdaTestingDriver
 		{
 			if (timeout == null)
 			{
-				timeout = TimeSpan.FromSeconds(10);
+				timeout = TimeSpan.FromSeconds(3);
 			}
 
 			if (timeToWaitNewMessages == null)
@@ -234,8 +234,6 @@ namespace NvdaTestingDriver
 			while ((spokenMessage.Length == 0 || (firstMessageTime.HasValue && DateTime.Now - firstMessageTime.Value < timeToWaitNewMessages))
 				&& DateTime.Now - operationStart < timeout)
 			{
-				Debug.WriteLine("Waiting for 100 MS more. Time elapsed: " +
-					(DateTime.Now - operationStart).TotalSeconds + " seconds.");
 				await Task.Delay(100);
 			}
 
@@ -374,9 +372,18 @@ namespace NvdaTestingDriver
 		/// <summary>
 		/// Cancels the current speak asynchronously.
 		/// </summary>
-		/// <returns>The task associated to this operation</returns>
-		public async Task StopReadingAsync()
+		/// <param name="timeout">The timeout for this operation. By default, timeout is 3 seconds.</param>
+		/// <returns>
+		/// The task associated to this operation
+		/// </returns>
+		/// <exception cref="System.TimeoutException">Timeout while waiting for stopping speech.</exception>
+		public async Task StopReadingAsync(TimeSpan? timeout = null)
 		{
+			if (timeout == null)
+			{
+				timeout = TimeSpan.FromMilliseconds(500);
+			}
+
 			bool cancelReceived = false;
 			void ONLocalSpeakCancelled(object sender, EventArgs e)
 			{
@@ -384,10 +391,16 @@ namespace NvdaTestingDriver
 			}
 
 			this.OnSpeakCancelled += ONLocalSpeakCancelled;
-			await SendKeysAsync(Key.Control);
-			while (!cancelReceived)
+			var operationStart = DateTime.Now;
+			while (!cancelReceived && (DateTime.Now - operationStart) < timeout)
 			{
+				await SendKeysAsync(Key.Control);
 				await Task.Delay(100);
+			}
+
+			if ((DateTime.Now - operationStart) > timeout)
+			{
+				throw new Exceptions.TimeoutException("Timeout while waiting for stopping speech.");
 			}
 
 			this.OnSpeakCancelled -= ONLocalSpeakCancelled;

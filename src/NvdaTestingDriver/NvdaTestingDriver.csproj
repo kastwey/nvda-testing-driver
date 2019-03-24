@@ -30,6 +30,9 @@
 		<PackageReleaseNotes>
 			V 0.2.0:
 
+			- Added the license files within each project.
+			- Changed projects to refer to license files instead of a URL.
+			- Fixed a problem with StopReadingAsync, which could go into an infinite loop if the cancellation signal was not received.
 			- Updated package to use NVDA 18.4.1. The size of NVDA has been significantly reduced.
 			- Fixed a bug when getting the NVDA zip in the first use.
 			- AddedBurmese, french, Danish, Farsi, Nepali, Portuguese (Brazil) and Portuguese (Portugal), Romanian, Russian and  Spain (Colombia) languages in supported NVDA languages.

@@ -8,10 +8,9 @@
 		<Company>Juan José Montiel Pérez</Company>
 		<Description>This package contains extensions to use NvdaTestingDriver with Selenium WebDriver. NVDA needs the browser window to be in the foreground, and it also needs any element to take the focus in order to analyze it. This package includes functions to do both.</Description>
 		<Copyright>2018-2019</Copyright>
-		<PackageLicense>https://www.gnu.org/licenses/gpl-3.0.en.html</PackageLicense>
+		<PackageLicenseFile>License.md</PackageLicenseFile>
 		<AssemblyVersion>0.2.0.0</AssemblyVersion>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<PackageLicenseUrl>https://www.gnu.org/licenses/gpl-3.0.en.html</PackageLicenseUrl>
 		<PackageProjectUrl>https://github.com/kastwey/nvda-testing-driver</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/kastwey/nvda-testing-driver</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
@@ -30,7 +29,9 @@
 	<ItemGroup>
 		<None Remove="stylecop.json" />
 	</ItemGroup>
-
+	<ItemGroup>
+		<None Include="License.md" Pack="true" PackagePath=""/>
+	</ItemGroup>
 	<ItemGroup>
 		<AdditionalFiles Include="stylecop.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>

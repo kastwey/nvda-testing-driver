@@ -29,7 +29,15 @@ namespace NvdaTestingDriver.Settings
 		/// <value>
 		/// The afrikaans south africa language.
 		/// </value>
-		public static NvdaLanguage AfrikaansSouthAfrica => new NvdaLanguage("af_ZZ");
+		public static NvdaLanguage Afrikaans => new NvdaLanguage("af");
+
+		/// <summary>
+		/// Gets the afrikaans south africa language.
+		/// </summary>
+		/// <value>
+		/// The afrikaans south africa language.
+		/// </value>
+		public static NvdaLanguage AfrikaansSouthAfrica => new NvdaLanguage("af_ZA");
 
 		/// <summary>
 		/// Gets the albanian language.
@@ -38,6 +46,14 @@ namespace NvdaTestingDriver.Settings
 		/// The albanian language.
 		/// </value>
 		public static NvdaLanguage Albanian => new NvdaLanguage("sq");
+
+		/// <summary>
+		/// Gets the amharic language.
+		/// </summary>
+		/// <value>
+		/// The amharic language.
+		/// </value>
+		public static NvdaLanguage Amharic => new NvdaLanguage("am");
 
 		/// <summary>
 		/// Gets the arabic language.
@@ -62,6 +78,14 @@ namespace NvdaTestingDriver.Settings
 		/// The bulgarian language.
 		/// </value>
 		public static NvdaLanguage Bulgarian => new NvdaLanguage("bg");
+
+		/// <summary>
+		/// Gets the burmese language.
+		/// </summary>
+		/// <value>
+		/// The burmese language.
+		/// </value>
+		public static NvdaLanguage Burmese => new NvdaLanguage("my");
 
 		/// <summary>
 		/// Gets the kannada language.
@@ -120,20 +144,20 @@ namespace NvdaTestingDriver.Settings
 		public static NvdaLanguage ChineseTraditionalHongKong => new NvdaLanguage("zh_HK");
 
 		/// <summary>
-		/// Gets the korean language.
-		/// </summary>
-		/// <value>
-		/// The korean language.
-		/// </value>
-		public static NvdaLanguage Korean => new NvdaLanguage("ko");
-
-		/// <summary>
 		/// Gets the croatian language.
 		/// </summary>
 		/// <value>
 		/// The croatian language.
 		/// </value>
 		public static NvdaLanguage Croatian => new NvdaLanguage("hr");
+
+		/// <summary>
+		/// Gets the danish language.
+		/// </summary>
+		/// <value>
+		/// The danish language.
+		/// </value>
+		public static NvdaLanguage Danish => new NvdaLanguage("da");
 
 		/// <summary>
 		/// Gets the dutch language.
@@ -150,6 +174,14 @@ namespace NvdaTestingDriver.Settings
 		/// The english language.
 		/// </value>
 		public static NvdaLanguage English => new NvdaLanguage("en");
+
+		/// <summary>
+		/// Gets the farsi language.
+		/// </summary>
+		/// <value>
+		/// The farsi language.
+		/// </value>
+		public static NvdaLanguage Farsi => new NvdaLanguage("fa");
 
 		/// <summary>
 		/// Gets the french language.
@@ -181,7 +213,7 @@ namespace NvdaTestingDriver.Settings
 		/// <value>
 		/// The georgiano language.
 		/// </value>
-		public static NvdaLanguage Georgiano => new NvdaLanguage("ka");
+		public static NvdaLanguage Georgian => new NvdaLanguage("ka");
 
 		/// <summary>
 		/// Gets the german language.
@@ -272,6 +304,14 @@ namespace NvdaTestingDriver.Settings
 		public static NvdaLanguage Kyrgyz => new NvdaLanguage("ky");
 
 		/// <summary>
+		/// Gets the korean language.
+		/// </summary>
+		/// <value>
+		/// The korean language.
+		/// </value>
+		public static NvdaLanguage Korean => new NvdaLanguage("ko");
+
+		/// <summary>
 		/// Gets the lithuanian language.
 		/// </summary>
 		/// <value>
@@ -296,6 +336,14 @@ namespace NvdaTestingDriver.Settings
 		public static NvdaLanguage Mongolian => new NvdaLanguage("mn");
 
 		/// <summary>
+		/// Gets the nepali language.
+		/// </summary>
+		/// <value>
+		/// The nepali language.
+		/// </value>
+		public static NvdaLanguage Nepali => new NvdaLanguage("ne");
+
+		/// <summary>
 		/// Gets the norwegian bokmal norway language.
 		/// </summary>
 		/// <value>
@@ -312,12 +360,44 @@ namespace NvdaTestingDriver.Settings
 		public static NvdaLanguage Polish => new NvdaLanguage("pl");
 
 		/// <summary>
+		/// Gets the portuguese brazil language.
+		/// </summary>
+		/// <value>
+		/// The portuguese brazil language.
+		/// </value>
+		public static NvdaLanguage PortugueseBrazil => new NvdaLanguage("pt_BR");
+
+		/// <summary>
+		/// Gets the portuguese portugal language.
+		/// </summary>
+		/// <value>
+		/// The portuguese portugal language.
+		/// </value>
+		public static NvdaLanguage PortuguesePortugal => new NvdaLanguage("pt_PT");
+
+		/// <summary>
 		/// Gets the punjabi language.
 		/// </summary>
 		/// <value>
 		/// The punjabi language.
 		/// </value>
 		public static NvdaLanguage Punjabi => new NvdaLanguage("pa");
+
+		/// <summary>
+		/// Gets the romanian language.
+		/// </summary>
+		/// <value>
+		/// The romanian language.
+		/// </value>
+		public static NvdaLanguage Romanian => new NvdaLanguage("ro");
+
+		/// <summary>
+		/// Gets the russian language.
+		/// </summary>
+		/// <value>
+		/// The russian language.
+		/// </value>
+		public static NvdaLanguage Russian => new NvdaLanguage("ru");
 
 		/// <summary>
 		/// Gets the serbian latin language.
@@ -328,6 +408,14 @@ namespace NvdaTestingDriver.Settings
 		public static NvdaLanguage SerbianLatin => new NvdaLanguage("sr");
 
 		/// <summary>
+		/// Gets the slovak language.
+		/// </summary>
+		/// <value>
+		/// The slovak language.
+		/// </value>
+		public static NvdaLanguage Slovak => new NvdaLanguage("sk");
+
+		/// <summary>
 		/// Gets the slovenian language.
 		/// </summary>
 		/// <value>
@@ -336,12 +424,20 @@ namespace NvdaTestingDriver.Settings
 		public static NvdaLanguage Slovenian => new NvdaLanguage("sl");
 
 		/// <summary>
-		/// Gets the spanish languae.
+		/// Gets the spanish Colombia language.
 		/// </summary>
 		/// <value>
-		/// The spanish language.
+		/// The spanish Colombia language.
 		/// </value>
-		public static NvdaLanguage Spanish => new NvdaLanguage("es");
+		public static NvdaLanguage SpanishColombia => new NvdaLanguage("es_CO");
+
+		/// <summary>
+		/// Gets the spanish spain language.
+		/// </summary>
+		/// <value>
+		/// The spanish spain language.
+		/// </value>
+		public static NvdaLanguage SpanishSpain => new NvdaLanguage("es");
 
 		/// <summary>
 		/// Gets the somali language.

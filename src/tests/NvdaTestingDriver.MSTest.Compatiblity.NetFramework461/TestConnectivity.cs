@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NvdaTestingDriver.Settings;
 
@@ -12,7 +13,7 @@ namespace NvdaTestingDriver.MSTest.Compatiblity.NetFramework461
 		{
 			using (var driver = new NvdaDriver(opt =>
 			{
-				opt.GeneralSettings.Language = NvdaLanguage.German;
+				opt.GeneralSettings.Language = NvdaLanguage.English;
 				}))
 			{
 				driver.ConnectAsync().Wait();

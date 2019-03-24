@@ -383,6 +383,7 @@ namespace NvdaTestingDriver
 			{
 				timeout = TimeSpan.FromMilliseconds(500);
 			}
+
 			bool cancelReceived = false;
 			void ONLocalSpeakCancelled(object sender, EventArgs e)
 			{
@@ -396,6 +397,7 @@ namespace NvdaTestingDriver
 				await SendKeysAsync(Key.Control);
 				await Task.Delay(100);
 			}
+
 			if ((DateTime.Now - operationStart) > timeout)
 			{
 				throw new Exceptions.TimeoutException("Timeout while waiting for stopping speech.");

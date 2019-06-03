@@ -46,6 +46,8 @@ namespace NvdaTestingDriver.Settings
 [update]
 	allowUsageStats = False
 	askedAllowUsageStats = True
+	autoCheck = False
+	startupNotification = False
 [general]
 	showWelcomeDialogAtStartup = False
 	language = {_nvdaDriverOptions.GeneralSettings.Language.Value}

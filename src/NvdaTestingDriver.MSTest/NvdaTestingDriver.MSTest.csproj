@@ -3,12 +3,12 @@
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Version>0.2.0-beta</Version>
+		<Version>0.3.0-beta</Version>
 		<Authors>Juan José Montiel Pérez</Authors>
 		<Description>This package contain classes to use MSTest with NvdaTestingDriver package.</Description>
 		<Copyright>2018-2019</Copyright>
 		<PackageLicenseFile>License.md</PackageLicenseFile>
-		<AssemblyVersion>0.2.0.0</AssemblyVersion>
+		<AssemblyVersion>0.3.0.0</AssemblyVersion>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageProjectUrl>https://github.com/kastwey/nvda-testing-driver/</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/kastwey/nvda-testing-driver/</RepositoryUrl>
@@ -29,7 +29,7 @@
 		<None Remove="stylecop.json" />
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="License.md" Pack="true" PackagePath=""/>
+		<None Include="License.md" Pack="true" PackagePath="" />
 	</ItemGroup>
 	<ItemGroup>
 		<AdditionalFiles Include="stylecop.json">

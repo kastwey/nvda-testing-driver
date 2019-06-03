@@ -5,7 +5,7 @@
 		<RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>NvdaTestingDriver</PackageId>
-		<Version>0.2.0-beta</Version>
+		<Version>0.3.0-beta</Version>
 		<Authors>Juan José Montiel</Authors>
 		<Company>Juan José Montiel</Company>
 		<Description>Create functional accessibility tests using the NVDA screen reader. Control NVDA from .Net, intercept their voice responses and check that your controls are working properly, as if you were using the screen reader directly. You can use this package not only for web accessibility testing, but also for testing desktop applications.</Description>
@@ -14,7 +14,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<AssemblyVersion>0.2.0.0</AssemblyVersion>
+		<AssemblyVersion>0.3.0.0</AssemblyVersion>
 	</PropertyGroup>
 	<PropertyGroup>
 		<DocumentationFile>NvdaTestingDriver.xml</DocumentationFile>
@@ -28,6 +28,11 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>accessibility,accessibilityTesting,NVDA,ScreenReader,FunctionalAccessibilityTest,AutomationTest,UIA,MSAA</PackageTags>
 		<PackageReleaseNotes>
+			V 0.3.0:
+
+			- UPdated NVDA version to 2019.1.1.
+			- Fixed a problem where when there were updates, NVDA showed the dialog to update the version. In this version, this option has been disabled to avoid problems during tests.
+
 			V 0.2.0:
 
 			- Added the license files within each project.
@@ -50,7 +55,7 @@
 		</AdditionalFiles>
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="License.md" Pack="true" PackagePath=""/>
+		<None Include="License.md" Pack="true" PackagePath="" />
 	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Include="nvda.zip">

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.106
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29319.158
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NvdaTestingDriver", "NvdaTestingDriver\NvdaTestingDriver.csproj", "{9809FD14-F622-453D-ACD4-C250E27515AF}"
 EndProject
@@ -25,6 +25,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccessibleDemo.Core.Tests", "samples\AccessibleDemo.Core.Tests\AccessibleDemo.Core.Tests.csproj", "{3F04ED44-AB62-4707-AB03-BB5C936196D6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NvdaTestingDriver.MSTest.Compatiblity.NetFramework461", "tests\NvdaTestingDriver.MSTest.Compatiblity.NetFramework461\NvdaTestingDriver.MSTest.Compatiblity.NetFramework461.csproj", "{EF22CD3D-83C8-4FF4-8338-CB70B0079AA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NvdaTestingDriver.ConsoleTests", "NvdaTestingDriver.ConsoleTests\NvdaTestingDriver.ConsoleTests.csproj", "{A11D2D33-D3EC-44AD-A6D9-F2237D00C442}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,6 +62,10 @@ Global
 		{EF22CD3D-83C8-4FF4-8338-CB70B0079AA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF22CD3D-83C8-4FF4-8338-CB70B0079AA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF22CD3D-83C8-4FF4-8338-CB70B0079AA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A11D2D33-D3EC-44AD-A6D9-F2237D00C442}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A11D2D33-D3EC-44AD-A6D9-F2237D00C442}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A11D2D33-D3EC-44AD-A6D9-F2237D00C442}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A11D2D33-D3EC-44AD-A6D9-F2237D00C442}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +75,7 @@ Global
 		{FE6E41C5-A863-45A4-8E5E-95A88A1352B9} = {B26CD5B4-DA90-47C2-9EA2-C93A27F93877}
 		{3F04ED44-AB62-4707-AB03-BB5C936196D6} = {B26CD5B4-DA90-47C2-9EA2-C93A27F93877}
 		{EF22CD3D-83C8-4FF4-8338-CB70B0079AA8} = {9B827F70-9151-4636-881E-560C0833E414}
+		{A11D2D33-D3EC-44AD-A6D9-F2237D00C442} = {9B827F70-9151-4636-881E-560C0833E414}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9F0507A7-C1DB-41EF-8103-108BECFB6232}

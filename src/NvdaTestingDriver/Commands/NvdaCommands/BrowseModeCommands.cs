@@ -20,7 +20,7 @@ namespace NvdaTestingDriver.Commands.NvdaCommands
 		/// <value>
 		/// The toggle browse and focus mode command.
 		/// </value>
-		public static NvdaCommand ToggleBrowseAndFocusMode => new NvdaCommand(new KeyCombination { Key.Nvda, Key.Space });
+		public static NvdaCommand ToggleBrowseAndFocusMode => new NvdaCommand(new KeyCombination { Key.Nvda, Key.Space }, nameof(ToggleBrowseAndFocusMode));
 
 		/// <summary>
 		/// Gets the command to switch back to browse mode if focus mode was previously switched to automatically.

@@ -3,6 +3,7 @@ using NvdaTestingDriver;
 using NvdaTestingDriver.Selenium;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -72,11 +73,11 @@ namespace AccessibleDemo.Core.Tests
 			{
 				WebDriver = WebDriverWrapper.UpWebDriver(() =>
 				{
-					var op = new ChromeOptions
+					var op = new FirefoxOptions
 					{
 						AcceptInsecureCertificates = true
 					};
-					var webDriver = new ChromeDriver(Environment.CurrentDirectory, op);
+					var webDriver = new FirefoxDriver(Environment.CurrentDirectory, op);
 					webDriver.Manage().Timeouts().AsynchronousJavaScript = TimeSpan.FromMinutes(3);
 					webDriver.Manage().Window.Maximize();
 					return webDriver;

@@ -21,7 +21,7 @@ namespace NvdaTestingDriver.Settings
 		/// <value>
 		/// The progress bar output mode.
 		/// </value>
-		public ProgressBarOutputMode ProgressBarOutputMode { get; set; }
+		public ProgressBarOutputModes ProgressBarOutputMode { get; set; }
 
 		/// <summary>
 		/// Gets or sets a value indicating whether NVDA should report progress bars outside current window.

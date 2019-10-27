@@ -29,10 +29,10 @@ namespace NvdaTestingDriver.Settings
 	}
 
 	/// <summary>
-	/// The NVDA progress bar output mode
+	/// The NVDA progress bar output modes
 	/// </summary>
 	[Flags]
-	public enum ProgressBarOutputMode
+	public enum ProgressBarOutputModes
 	{
 		/// <summary>
 		/// Only anounce progress with beeps

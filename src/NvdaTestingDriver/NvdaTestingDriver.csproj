@@ -5,7 +5,7 @@
 		<RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>NvdaTestingDriver</PackageId>
-		<Version>0.3.0-beta</Version>
+		<Version>0.5.0-beta</Version>		 
 		<Authors>Juan José Montiel</Authors>
 		<Company>Juan José Montiel</Company>
 		<Description>Create functional accessibility tests using the NVDA screen reader. Control NVDA from .Net, intercept their voice responses and check that your controls are working properly, as if you were using the screen reader directly. You can use this package not only for web accessibility testing, but also for testing desktop applications.</Description>
@@ -14,20 +14,27 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<AssemblyVersion>0.3.0.0</AssemblyVersion>
+		<AssemblyVersion>0.5.0.0</AssemblyVersion>
 	</PropertyGroup>
 	<PropertyGroup>
 		<DocumentationFile>NvdaTestingDriver.xml</DocumentationFile>
 	</PropertyGroup>
 	<PropertyGroup>
 		<CodeAnalysisRuleSet>..\ca.ruleset</CodeAnalysisRuleSet>
-		<FileVersion>0.2.0.0</FileVersion>
+		<FileVersion>0.5.0.0</FileVersion>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageProjectUrl>https://github.com/kastwey/nvda-testing-driver</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/kastwey/nvda-testing-driver</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>accessibility,accessibilityTesting,NVDA,ScreenReader,FunctionalAccessibilityTest,AutomationTest,UIA,MSAA</PackageTags>
 		<PackageReleaseNotes>
+			V 0.5.0:
+			- 			Updated NVDA to version 2019.2.1.
+			- 			Added loggin with ILoggerFactory. It will be obtained from the NvdaOptions object, or if it doesn't exist, the package will create it automatically.
+			
+			V 0.4.0:
+			- UPdated NVDA version to 2019.2.
+
 			V 0.3.0:
 
 			- UPdated NVDA version to 2019.1.1.
@@ -63,13 +70,16 @@
 		</EmbeddedResource>
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.3">
+		<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.6">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="2.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.0" />
 		<PackageReference Include="Microsoft.Win32.Registry" Version="4.5.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
-		<PackageReference Include="StyleCop.Analyzers" Version="1.1.1-rc.94">
+		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>

@@ -21,6 +21,6 @@ namespace NvdaTestingDriver.Commands.NvdaCommands
 		/// <value>
 		/// The quit nvda command.
 		/// </value>
-		public static NvdaCommand QuitNvda => new NvdaCommand(new KeyCombination { Key.Nvda, Key.Q });
+		public static NvdaCommand QuitNvda => new NvdaCommand(new KeyCombination { Key.Nvda, Key.Q, }, nameof(QuitNvda));
 	}
 }

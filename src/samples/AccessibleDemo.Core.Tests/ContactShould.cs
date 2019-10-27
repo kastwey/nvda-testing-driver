@@ -1,7 +1,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NvdaTestingDriver;
 using NvdaTestingDriver.Commands.NvdaCommands;
 using NvdaTestingDriver.MSTest;
 using NvdaTestingDriver.Selenium.Extensions;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace AccessibleDemo.Core.Tests
@@ -17,7 +19,8 @@ namespace AccessibleDemo.Core.Tests
 			TestHelper.WebDriverWrapper.SetBrowserWindowForeground();
 			TestHelper.WebDriver.Navigate().GoToUrl("https://localhost:5001/home/contact");
 			TestHelper.WebDriver.FocusOnWindow();
-
+			var res = await TestHelper.NvdaDriver.SendKeyCombinationsAndGetSpokenTextAsync(new KeyCombination(new List<Key> { Key.Control, Key.Home }));
+			System.Diagnostics.Debug.WriteLine("Nvda result: " + res);
 			// Act & asserts
 			string text = await TestHelper.NvdaDriver.SendCommandAndGetSpokenTextAsync(BrowseModeCommands.NextHeading3);
 			NvdaAssert.TextContains(text, "Contact by phone Collapsed link heading  level 3");

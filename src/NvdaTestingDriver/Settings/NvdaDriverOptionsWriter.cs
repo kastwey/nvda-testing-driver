@@ -38,10 +38,11 @@ namespace NvdaTestingDriver.Settings
 		internal void WriteOptionsToIniFile(string iniFilePath)
 		{
 			var progressBarOutputModeOpt = _nvdaDriverOptions.PresentationSettings.ProgressBarUpdates.ProgressBarOutputMode;
-			var progressBarOutputModeStr = (progressBarOutputModeOpt & ProgressBarOutputMode.Beep) == ProgressBarOutputMode.Beep
-				&& (progressBarOutputModeOpt & ProgressBarOutputMode.Speak) == ProgressBarOutputMode.Speak ?
+			var progressBarOutputModeStr = (progressBarOutputModeOpt & ProgressBarOutputModes.Beep) == ProgressBarOutputModes.Beep
+				&& (progressBarOutputModeOpt & ProgressBarOutputModes.Speak) == ProgressBarOutputModes.Speak ?
 				"both" : progressBarOutputModeOpt.ToString().ToLowerInvariant();
 			string iniFileContent = $@"schemaVersion = 2
+[development]
 [upgrade]
 [update]
 	allowUsageStats = False
@@ -56,14 +57,25 @@ namespace NvdaTestingDriver.Settings
 	playStartAndExitSounds = {_nvdaDriverOptions.GeneralSettings.PlayStartAndExitSounds.ToFirstCapitalizedString()}
 	loggingLevel = DEBUG
 [speech]
-	synth = silence
+	synth = oneCore
 	autoLanguageSwitching = {_nvdaDriverOptions.SpeechSettings.AutoLanguageSwitching.ToFirstCapitalizedString()}
 	autoDialectSwitching = {_nvdaDriverOptions.SpeechSettings.AutoDialectSwitching.ToFirstCapitalizedString()}
 	trustVoiceLanguage = False
 	includeCLDR = {_nvdaDriverOptions.SpeechSettings.IncludeUnicodeDescriptions.ToFirstCapitalizedString()}
 	symbolLevel = {GetSymbolLevel()}
+	[[oneCore]]
+		voice = HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech_OneCore\Voices\Tokens\MSTTS_V110_esES_PabloM
+		volume = 100
+		rate = 80
 	[[silence]]
 		sayCapForCapitals = {_nvdaDriverOptions.SpeechSettings.SayCapForCapitals.ToFirstCapitalizedString()}
+	[[espeak]]
+		voice = es
+		variant = max
+		rate = 100
+		pitch = 40
+		inflection = 75
+		volume = 100
 [braille]
 	[[noBraille]]
 		port = """"

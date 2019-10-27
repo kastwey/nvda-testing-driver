@@ -32,5 +32,13 @@ namespace NvdaTestingDriver.Commands
 		/// The laptop combination set.
 		/// </value>
 		List<KeyCombination> LaptopCombinationSet { get; }
+
+		/// <summary>
+		/// Gets the name.
+		/// </summary>
+		/// <value>
+		/// The command name.
+		/// </value>
+		string Name { get; }
 	}
 }

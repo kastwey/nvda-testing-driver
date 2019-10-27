@@ -29,7 +29,7 @@ namespace NvdaTestingDriver.Commands.NvdaCommands
 		/// <value>
 		/// The report title command.
 		/// </value>
-		public static NvdaCommand ReportTitle => new NvdaCommand(new KeyCombination { Key.Nvda, Key.T });
+		public static NvdaCommand ReportTitle => new NvdaCommand(new KeyCombination { Key.Nvda, Key.T }, nameof(ReportTitle));
 
 		/// <summary>
 		/// Gets the command to reads all the controls in the currently active window (useful for dialogs).

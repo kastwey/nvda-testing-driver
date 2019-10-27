@@ -8,6 +8,8 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 
+using Microsoft.Extensions.Logging;
+
 namespace NvdaTestingDriver.Settings
 {
 	/// <summary>
@@ -96,7 +98,7 @@ namespace NvdaTestingDriver.Settings
 				ReportObjectDescriptions = true,
 				ProgressBarUpdates = new ProgressBarUpdateSettings
 				{
-					ProgressBarOutputMode = ProgressBarOutputMode.Beep,
+					ProgressBarOutputMode = ProgressBarOutputModes.Beep,
 					ReportBackgroundProgressBars = false,
 				},
 				ReportDynamicContentChanges = true,
@@ -185,5 +187,21 @@ namespace NvdaTestingDriver.Settings
 		/// The browse mode settings.
 		/// </value>
 		public BrowseModesSettings BrowseModeSettings { get; set; }
+
+		/// <summary>
+		/// Gets or sets the logger factory.
+		/// </summary>
+		/// <value>
+		/// The logger factory.
+		/// </value>
+		public ILoggerFactory LoggerFactory { get; set; }
+
+		/// <summary>
+		/// Gets a value indicating whether logging should be disabled.
+		/// </summary>
+		/// <value>
+		///   <c>true</c> if logging system should be disabled; otherwise, <c>false</c>.
+		/// </value>
+		public bool DisableLogging { get; internal set; }
 	}
 }

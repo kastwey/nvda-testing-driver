@@ -27,7 +27,15 @@ namespace NvdaTestingDriver.Extensions
 		/// <returns>
 		///   true if the value parameter occurs within this string, or if value is the empty string (""); otherwise, false.
 		/// </returns>
-		public static bool Contains(this string text, string value, StringComparison comparison) => text.IndexOf(value, comparison) >= 0;
+		public static bool Contains(this string text, string value, StringComparison comparison)
+		{
+			if (text is null)
+			{
+				throw new ArgumentNullException(nameof(text));
+			}
+
+			return text.IndexOf(value, comparison) >= 0;
+		}
 
 		/// <summary>
 		/// Converts a string to lower case using the CultureInfo INvariantCulture. format provider.
@@ -36,6 +44,11 @@ namespace NvdaTestingDriver.Extensions
 		/// <returns>The lowercase string</returns>
 		public static string ToLowerInvariant(this string value)
 		{
+			if (value is null)
+			{
+				throw new ArgumentNullException(nameof(value));
+			}
+
 			return value.ToLowerInvariant();
 		}
 	}

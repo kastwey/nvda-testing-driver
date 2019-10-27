@@ -23,7 +23,7 @@ namespace AccessibleDemo.Core.Tests
 
 			// act & asert
 			string text = await TestHelper.NvdaDriver.SendKeysAndGetSpokenTextAsync(Key.Tab);
-			NvdaAssert.TextContains(text, "All WCAG 2.1 elements tree view level 1 1. Perceivable collapsed 1 of");
+			NvdaAssert.TextContains(text, "All WCAG 2.1 elements  tree view level 1 1. Perceivable  collapsed  1 of");
 
 			text = await TestHelper.NvdaDriver.SendKeysAndGetSpokenTextAsync(Key.RightArrow);
 			NvdaAssert.TextContains(text, "Expanded");
@@ -41,7 +41,7 @@ namespace AccessibleDemo.Core.Tests
 			NvdaAssert.TextContains(text, "1.4. Distinguishable  4 of 4  level 2");
 
 			text = await TestHelper.NvdaDriver.SendKeysAndGetSpokenTextAsync(Key.DownArrow);
-			NvdaAssert.TextContains(text, "level 1  2. Operable  collapsed  1 of 3");
+			NvdaAssert.TextContains(text, "level 1  2. Operable  collapsed  2 of 4");
 
 			text = await TestHelper.NvdaDriver.SendKeysAndGetSpokenTextAsync(Key.RightArrow);
 			NvdaAssert.TextContains(text, "Expanded");

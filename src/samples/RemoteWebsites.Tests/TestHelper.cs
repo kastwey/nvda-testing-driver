@@ -5,6 +5,7 @@ using NvdaTestingDriver;
 using NvdaTestingDriver.Selenium;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 
 namespace RemoteWebsites.Tests
 {
@@ -44,11 +45,11 @@ namespace RemoteWebsites.Tests
 				// to manage the chrome window, and get to put it in the foreground when necessary.
 				WebDriver = WebDriverWrapper.UpWebDriver(() =>
 				{
-					var op = new ChromeOptions
+					var op = new FirefoxOptions
 					{
 						AcceptInsecureCertificates = false
 					};
-					var webDriver = new ChromeDriver(Environment.CurrentDirectory, op);
+					var webDriver = new FirefoxDriver(Environment.CurrentDirectory, op);
 					webDriver.Manage().Timeouts().AsynchronousJavaScript = TimeSpan.FromMinutes(3);
 					webDriver.Manage().Window.Maximize();
 					return webDriver;

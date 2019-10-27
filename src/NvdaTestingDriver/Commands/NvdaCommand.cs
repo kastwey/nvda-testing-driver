@@ -22,8 +22,19 @@ namespace NvdaTestingDriver.Commands
 		/// Initializes a new instance of the <see cref="NvdaCommand"/> class.
 		/// </summary>
 		/// <param name="desktopCombination">The desktop combination.</param>
+		/// <param name="name">The name.</param>
+		public NvdaCommand(KeyCombination desktopCombination, string name)
+			: this(desktopCombination, null, name)
+		{
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="NvdaCommand" /> class.
+		/// </summary>
+		/// <param name="desktopCombination">The desktop combination.</param>
 		/// <param name="laptopCombination">The laptop combination.</param>
-		public NvdaCommand(KeyCombination desktopCombination, KeyCombination laptopCombination = null)
+		/// <param name="name">The name.</param>
+		public NvdaCommand(KeyCombination desktopCombination, KeyCombination laptopCombination = null, string name = null)
 		{
 			DesktopCombinationSet.Add(desktopCombination);
 			if (laptopCombination != null)
@@ -34,6 +45,8 @@ namespace NvdaTestingDriver.Commands
 			{
 				LaptopCombinationSet.Add(desktopCombination);
 			}
+
+			Name = name;
 		}
 
 		/// <summary>
@@ -69,5 +82,13 @@ namespace NvdaTestingDriver.Commands
 		/// The laptop combination set.
 		/// </value>
 		public List<KeyCombination> LaptopCombinationSet { get; private set; } = new List<KeyCombination>();
+
+		/// <summary>
+		/// Gets or sets the command name.
+		/// </summary>
+		/// <value>
+		/// The name.
+		/// </value>
+		public string Name { get; set; }
 	}
 }

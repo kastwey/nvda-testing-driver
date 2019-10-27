@@ -25,18 +25,34 @@
             The laptop combination set.
             </value>
         </member>
+        <member name="P:NvdaTestingDriver.Commands.INvdaCommand.Name">
+            <summary>
+            Gets the name.
+            </summary>
+            <value>
+            The command name.
+            </value>
+        </member>
         <member name="T:NvdaTestingDriver.Commands.NvdaCommand">
             <summary>
             Store NVDA command information.
             </summary>
             <seealso cref="T:NvdaTestingDriver.Commands.INvdaCommand" />
         </member>
-        <member name="M:NvdaTestingDriver.Commands.NvdaCommand.#ctor(NvdaTestingDriver.KeyCombination,NvdaTestingDriver.KeyCombination)">
+        <member name="M:NvdaTestingDriver.Commands.NvdaCommand.#ctor(NvdaTestingDriver.KeyCombination,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:NvdaTestingDriver.Commands.NvdaCommand"/> class.
             </summary>
             <param name="desktopCombination">The desktop combination.</param>
+            <param name="name">The name.</param>
+        </member>
+        <member name="M:NvdaTestingDriver.Commands.NvdaCommand.#ctor(NvdaTestingDriver.KeyCombination,NvdaTestingDriver.KeyCombination,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.Commands.NvdaCommand" /> class.
+            </summary>
+            <param name="desktopCombination">The desktop combination.</param>
             <param name="laptopCombination">The laptop combination.</param>
+            <param name="name">The name.</param>
         </member>
         <member name="M:NvdaTestingDriver.Commands.NvdaCommand.#ctor(System.Collections.Generic.List{NvdaTestingDriver.KeyCombination},System.Collections.Generic.List{NvdaTestingDriver.KeyCombination})">
             <summary>
@@ -59,6 +75,14 @@
             </summary>
             <value>
             The laptop combination set.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Commands.NvdaCommand.Name">
+            <summary>
+            Gets or sets the command name.
+            </summary>
+            <value>
+            The name.
             </value>
         </member>
         <member name="T:NvdaTestingDriver.Commands.NvdaCommands.BasicCommands">
@@ -1137,6 +1161,37 @@
             <param name="value">if set to <c>true</c> [value].</param>
             <returns>The text parameter with first character capitalized</returns>
         </member>
+        <member name="T:NvdaTestingDriver.Extensions.KeyCombinationExtensions">
+            <summary>
+            Extension methods  for KeyCombination class.
+            </summary>
+        </member>
+        <member name="M:NvdaTestingDriver.Extensions.KeyCombinationExtensions.GetDescription(NvdaTestingDriver.KeyCombination)">
+            <summary>
+            Gets the description.
+            </summary>
+            <param name="combination">The combination.</param>
+            <returns>The key combination description</returns>
+        </member>
+        <member name="T:NvdaTestingDriver.Extensions.NvdaCommandExtensions">
+            <summary>
+            Extension methods for INvdaCommand interface.
+            </summary>
+        </member>
+        <member name="M:NvdaTestingDriver.Extensions.NvdaCommandExtensions.GetDescription(NvdaTestingDriver.Commands.INvdaCommand)">
+            <summary>
+            Gets the command description.
+            </summary>
+            <param name="command">The command.</param>
+            <returns>The command description, bassed on its name, or if does not exists, in its combination set</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.Extensions.NvdaCommandExtensions.GetCombinationDesc(System.Collections.Generic.List{NvdaTestingDriver.KeyCombination})">
+            <summary>
+            Gets the combination description.
+            </summary>
+            <param name="combinations">The combinations.</param>
+            <returns>The combination description, bassed on its key names.</returns>
+        </member>
         <member name="T:NvdaTestingDriver.Extensions.StringExtensions">
             <summary>
             Class which contains extensions for strings
@@ -1159,6 +1214,18 @@
             </summary>
             <param name="value">The value to convert.</param>
             <returns>The lowercase string</returns>
+        </member>
+        <member name="T:NvdaTestingDriver.Interfaces.ITrackingDisposable">
+            <summary>
+            Track all added task to finish them before disposing the object
+            </summary>
+            <seealso cref="T:System.IDisposable" />
+        </member>
+        <member name="M:NvdaTestingDriver.Interfaces.ITrackingDisposable.FinishDisposeAsync">
+            <summary>
+            Finishes the dispose asynchronous.
+            </summary>
+            <returns>T</returns>
         </member>
         <member name="T:NvdaTestingDriver.Key">
             <summary>
@@ -1989,6 +2056,14 @@
               <c>true</c> if extended; otherwise, <c>false</c>.
             </value>
         </member>
+        <member name="P:NvdaTestingDriver.Key.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
         <member name="T:NvdaTestingDriver.KeyCombination">
             <summary>
             Stores a key combination to be used in NVDA command class.
@@ -2107,12 +2182,14 @@
             <param name="keys">The keys.</param>
             <returns>The task associated to this operation</returns>
         </member>
-        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeySequenceAndGetSpokenText(NvdaTestingDriver.Key[])">
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeySequenceAndGetSpokenTextAsync(NvdaTestingDriver.Key[])">
             <summary>
-            Sends a key sequence to NVDA and get spoken text.
+            Sends a key sequence to NVDA and get spoken text asynchronous.
             </summary>
             <param name="keys">The keys.</param>
-            <returns>Te text spoken by NVDA after sending the key sequence</returns>
+            <returns>
+            Te text spoken by NVDA after sending the key sequence
+            </returns>
         </member>
         <member name="M:NvdaTestingDriver.NvdaDriver.SendKeyCombinationsAsync(NvdaTestingDriver.KeyCombination[])">
             <summary>
@@ -2172,19 +2249,21 @@
         </member>
         <member name="M:NvdaTestingDriver.NvdaDriver.Dispose">
             <summary>
-            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-            </summary>
-        </member>
-        <member name="M:NvdaTestingDriver.NvdaDriver.Dispose(System.Boolean)">
-            <summary>
             Releases unmanaged and - optionally - managed resources.
             </summary>
-            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         </member>
         <member name="M:NvdaTestingDriver.NvdaDriver.KillPreviousNVDA">
             <summary>
             Kills all previous nvda processes.
             </summary>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.InitializeLogging(NvdaTestingDriver.Settings.NvdaDriverOptions)">
+            <summary>
+            Initializes the logging system.
+            If options.LoggerFactory is already present, we create the ILogger object directly.
+            If the options.LoggerFactory object has not been adjusted, we create an ILoggerFactory object, adding the Debug and Console providers.
+            </summary>
+            <param name="options">The NVDA options.</param>
         </member>
         <member name="M:NvdaTestingDriver.NvdaDriver.CheckWindowsOS">
             <summary>
@@ -2326,7 +2405,67 @@
             <param name="keys">The keys.</param>
             <returns>The text spoken by NVDA after sending keys</returns>
         </member>
-        <member name="M:NvdaTestingDriver.NvdaDriver.ShutdownNvda">
+        <member name="M:NvdaTestingDriver.NvdaDriver.ConnectInternalAsync">
+            <summary>
+            Connects the driver asynchronously against a portable NVDA instance that will start automatically, configured with the options provided in the driver constructor.
+            </summary>
+            <returns>The task associated to this operation.</returns>
+            <exception cref="T:NvdaTestingDriver.Exceptions.AlreadyConnectedException">Throws if the method has been called before, and the driver is already connected</exception>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.DisconnectInternalAsync">
+            <summary>
+            Disconnects the driver asynchronously, shutting down the NVDA instance.
+            </summary>
+            <returns>The task associated to this operation.</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.GetNextSpokenMessageInternalAsync(System.Func{System.Threading.Tasks.Task})">
+            <summary>
+            Gets the next spoken message by NVDA asynchronously.
+            </summary>
+            <param name="actionToExecute">The action to execute, which should cause NVDA to return
+            some message, which will be returned by this method.</param>
+            <returns>The task that once completed, will contain The NVDA spoken text immediately following the execution of the action.</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.GetNextSpokenMessageInternalAsync(System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Func{System.Threading.Tasks.Task})">
+            <summary>
+            Gets the next spoken message by NVDA asynchronous.
+            </summary>
+            <param name="timeout">The maximum time the method will wait for an NVDA message before raising an exception. By default, timeout is 3 seconds.</param>
+            <param name="timeToWaitNewMessages">
+            There are occasions when NVDA transmits messages separately, in different packets.
+            This parameter sets the maximum time that NVDA will concatenate new messages received within the return of this method, starting from the arrival of the first message.</param>
+            <param name="actionToExecute">The action to execute, which should cause NVDA to return
+            some message, which will be returned by this method.</param>
+            <returns>The task that once completed, will contain The NVDA spoken text immediately following the execution of the action.</returns>
+            <exception cref="T:NvdaTestingDriver.Exceptions.TimeoutException">Timeout exceeded when trying to get the next message transmitted by NVDA.</exception>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeySequenceInternalAsync(NvdaTestingDriver.Key[])">
+            <summary>
+            Sends a key sequence to NVDA asynchronously.
+            </summary>
+            <param name="keys">The keys.</param>
+            <returns>The task associated to this operation</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeySequenceAndGetSpokenTextInternalAsync(NvdaTestingDriver.Key[])">
+            <summary>
+            Sends a key sequence to NVDA and get spoken text asynchronous.
+            </summary>
+            <param name="keys">The keys.</param>
+            <returns>
+            Te text spoken by NVDA after sending the key sequence
+            </returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.StopReadingInternalAsync(System.Nullable{System.TimeSpan})">
+            <summary>
+            Cancels the current speak asynchronously.
+            </summary>
+            <param name="timeout">The timeout for this operation. By default, timeout is 3 seconds.</param>
+            <returns>
+            The task associated to this operation
+            </returns>
+            <exception cref="T:System.TimeoutException">Timeout while waiting for stopping speech.</exception>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.ShutdownNvdaAsync">
             <summary>
             Shutdowns the nvda instance, by sending a Nvda+Q keystroke.
             </summary>
@@ -2884,6 +3023,22 @@
             </summary>
             <value>
             The browse mode settings.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaDriverOptions.LoggerFactory">
+            <summary>
+            Gets or sets the logger factory.
+            </summary>
+            <value>
+            The logger factory.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaDriverOptions.DisableLogging">
+            <summary>
+            Gets a value indicating whether logging should be disabled.
+            </summary>
+            <value>
+              <c>true</c> if logging system should be disabled; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="T:NvdaTestingDriver.Settings.NvdaDriverOptionsWriter">
@@ -3607,17 +3762,17 @@
             The laptop scheme
             </summary>
         </member>
-        <member name="T:NvdaTestingDriver.Settings.ProgressBarOutputMode">
+        <member name="T:NvdaTestingDriver.Settings.ProgressBarOutputModes">
             <summary>
-            The NVDA progress bar output mode
+            The NVDA progress bar output modes
             </summary>
         </member>
-        <member name="F:NvdaTestingDriver.Settings.ProgressBarOutputMode.Beep">
+        <member name="F:NvdaTestingDriver.Settings.ProgressBarOutputModes.Beep">
             <summary>
             Only anounce progress with beeps
             </summary>
         </member>
-        <member name="F:NvdaTestingDriver.Settings.ProgressBarOutputMode.Speak">
+        <member name="F:NvdaTestingDriver.Settings.ProgressBarOutputModes.Speak">
             <summary>
             Speaks the progress percentaje
             </summary>
@@ -3716,6 +3871,98 @@
               <c>true</c> if you want to enable the automatic dialect switching; otherwise, <c>false</c>.
             </value>
             <remarks>Currently this settings will have no effect on returned text, but will be implemented in the future.</remarks>
+        </member>
+        <member name="T:NvdaTestingDriver.TrackingDisposable">
+            <summary>
+            Abstract class to be inherited by classes that want to be disposable asynchronous.
+            </summary>
+            <seealso cref="T:NvdaTestingDriver.Interfaces.ITrackingDisposable" />
+        </member>
+        <member name="M:NvdaTestingDriver.TrackingDisposable.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.TrackingDisposable"/> class.
+            </summary>
+        </member>
+        <member name="M:NvdaTestingDriver.TrackingDisposable.FinishDispose">
+            <summary>
+            Finishes the dispose.
+            </summary>
+        </member>
+        <member name="M:NvdaTestingDriver.TrackingDisposable.FinishDisposeAsync">
+            <summary>
+            Finishes the dispose asynchronous.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NvdaTestingDriver.TrackingDisposable.NvdaTestingDriver#Interfaces#ITrackingDisposable#FinishDisposeAsync">
+            <summary>
+            Finishes the dispose asynchronous.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NvdaTestingDriver.TrackingDisposable.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:NvdaTestingDriver.TrackingDisposable.Track(System.Func{System.Threading.Tasks.Task})">
+            <summary>
+            Tracks the specified function.
+            </summary>
+            <param name="func">The function.</param>
+            <returns></returns>
+            <exception cref="T:System.ObjectDisposedException">TrackingDisposable</exception>
+        </member>
+        <member name="M:NvdaTestingDriver.TrackingDisposable.Track``1(System.Func{System.Threading.Tasks.Task{``0}})">
+            <summary>
+            Tracks the specified function.
+            </summary>
+            <typeparam name="TResult">The type of the result.</typeparam>
+            <param name="func">The function.</param>
+            <returns></returns>
+            <exception cref="T:System.ObjectDisposedException">TrackingDisposable</exception>
+        </member>
+        <member name="M:NvdaTestingDriver.TrackingDisposer.#ctor(NvdaTestingDriver.Interfaces.ITrackingDisposable)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NvdaTestingDriver.TrackingDisposer" /> class.
+            </summary>
+            <param name="target">The target.</param>
+            <exception cref="T:System.ArgumentNullException">target</exception>
+            <remarks>
+            The supported class must implement ITrackingDisposable
+            </remarks>
+        </member>
+        <member name="P:NvdaTestingDriver.TrackingDisposer.IsDisposed">
+            <summary>
+            Gets a value indicating whether this instance is disposed.
+            </summary>
+            <value>
+              <c>true</c> if this instance is disposed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:NvdaTestingDriver.TrackingDisposer.Track(System.Func{System.Threading.Tasks.Task},System.Threading.Tasks.Task@)">
+            <summary>
+            Add a task to the tracking list, returns false if disposed
+            without a return value
+            </summary>
+            <param name="func">The function.</param>
+            <param name="result">The result.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NvdaTestingDriver.TrackingDisposer.Track``1(System.Func{System.Threading.Tasks.Task{``0}},System.Threading.Tasks.Task{``0}@)">
+            <summary>
+            Add a task to the tracking list, returns false if disposed
+            with  a return value
+            </summary>
+            <typeparam name="TResult">The type of the result.</typeparam>
+            <param name="func">The function.</param>
+            <param name="result">The result.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NvdaTestingDriver.TrackingDisposer.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
         </member>
     </members>
 </doc>

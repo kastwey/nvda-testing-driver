@@ -10,6 +10,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -23,13 +24,13 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
 using Newtonsoft.Json.Linq;
 using NvdaTestingDriver.Commands;
 using NvdaTestingDriver.Commands.NvdaCommands;
 using NvdaTestingDriver.Exceptions;
 using NvdaTestingDriver.Extensions;
-
 using NvdaTestingDriver.Settings;
 
 namespace NvdaTestingDriver
@@ -39,7 +40,7 @@ namespace NvdaTestingDriver
 	/// send commands and get the textual response of it.
 	/// </summary>
 	/// <seealso cref="System.IDisposable" />
-	public class NvdaDriver : IDisposable
+	public class NvdaDriver : TrackingDisposable
 	{
 		private const string SetConnectionMsg = "{\"connection_type\": \"master\", \"type\": \"join\", \"channel\": \"NvdaRemote\"}\n";
 
@@ -55,26 +56,39 @@ namespace NvdaTestingDriver
 
 		private readonly NvdaDriverOptions _nvdaDriverOptions;
 
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2213:Disposable fields should be disposed", Justification = "The field is being disposed in DisconnectAsync, called by Dispose.")]
 		private TcpClient _tcpClient;
 
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2213:Disposable fields should be disposed", Justification = "The field is being disposed in DisconnectAsync, called by Dispose.")]
 		private NetworkStream _networkStream;
 
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Code Quality", "IDE0069:Disposable fields should be disposed", Justification = "The field is being disposed in DisconnectAsync, called by Dispose.")]
 		private SslStream _sslStream;
 
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Code Quality", "IDE0069:Disposable fields should be disposed", Justification = "The field is being disposed in DisconnectAsync, called by Dispose.")]
 		private CancellationTokenSource _cancellationTokenSource;
 
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Code Quality", "IDE0069:Disposable fields should be disposed", Justification = "The field is being disposed in DisconnectAsync, called by Dispose.")]
 		private Process _nvdaProcess;
 
 		private Task _taskReceivingMessages;
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Code Quality", "IDE0069:Disposable fields should be disposed", Justification = "This object can be passed by reference from other class, so it shouldn't be disposed internally.")]
+		private ILoggerFactory _loggerFactory;
+
+		private ILogger _logger;
+
+		private bool _internalLoggerFactory;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="NvdaDriver"/> class.
 		/// </summary>
 		/// <param name="options">The options.</param>
 		public NvdaDriver(NvdaDriverOptions options)
+			: base()
 		{
 			CheckWindowsOS();
-			_nvdaDriverOptions = options;
+			_nvdaDriverOptions = options ?? throw new ArgumentNullException(nameof(options));
+			InitializeLogging(options);
 		}
 
 		/// <summary>
@@ -90,10 +104,12 @@ namespace NvdaTestingDriver
 		/// </summary>
 		/// <param name="nvdaDriverOptions">The nvda driver options object, which you can modify in your own method.</param>
 		public NvdaDriver(Action<NvdaDriverOptions> nvdaDriverOptions)
+			: base()
 		{
 			CheckWindowsOS();
 			_nvdaDriverOptions = new NvdaDriverOptions();
 			nvdaDriverOptions?.Invoke(_nvdaDriverOptions);
+			InitializeLogging(_nvdaDriverOptions);
 		}
 
 		/// <summary>
@@ -116,63 +132,18 @@ namespace NvdaTestingDriver
 		/// </summary>
 		/// <returns>The task associated to this operation.</returns>
 		/// <exception cref="NvdaTestingDriver.Exceptions.AlreadyConnectedException">Throws if the method has been called before, and the driver is already connected</exception>
-		public async Task ConnectAsync()
+		public Task ConnectAsync()
 		{
-			if (_tcpClient != null && _tcpClient.Connected)
-			{
-				throw new AlreadyConnectedException();
-			}
-
-			var nvdaExecutableFilePath = GetNvdaExecutableFilePath();
-			var nvdaDirectory = Path.GetDirectoryName(nvdaExecutableFilePath);
-			var nvdaDriverOptionsWriter = new NvdaDriverOptionsWriter(_nvdaDriverOptions);
-			nvdaDriverOptionsWriter.WriteOptionsToIniFile(Path.Combine(nvdaDirectory, "userConfig", "nvda.ini"));
-			KillPreviousNVDA();
-
-			ProcessStartInfo processParam = new ProcessStartInfo { FileName = nvdaExecutableFilePath };
-			_nvdaProcess = Process.Start(processParam);
-			_nvdaProcess.WaitForInputIdle();
-			_tcpClient = new TcpClient();
-			await ConnectSocketAsync(LocalHost, NvdaRemotePort);
-			_networkStream = _tcpClient.GetStream();
-			_sslStream = new SslStream(_networkStream, false, (sender, certificate, chain, sslPolicyErrors) => true, null);
-			await _sslStream.AuthenticateAsClientAsync("nvdaremote.com");
-			_cancellationTokenSource = new CancellationTokenSource();
-			BeginReadMessages();
-			await WriteMessageAsync(SetCommunicationProtocolMsg);
-			await WriteMessageAsync(SetConnectionMsg);
+			return Track(() => ConnectInternalAsync());
 		}
 
 		/// <summary>
 		/// Disconnects the driver asynchronously, shutting down the NVDA instance.
 		/// </summary>
 		/// <returns>The task associated to this operation.</returns>
-		public async Task DisconnectAsync()
+		public Task DisconnectAsync()
 		{
-			if (_sslStream != null && _sslStream.CanWrite)
-			{
-				await ShutdownNvda();
-			}
-
-			_cancellationTokenSource?.Cancel();
-			if (_taskReceivingMessages != null)
-			{
-				await Task.WhenAll(_taskReceivingMessages);
-			}
-
-			_tcpClient?.Close();
-			_tcpClient?.Dispose();
-			_sslStream?.Dispose();
-			_networkStream?.Dispose();
-			_nvdaProcess?.WaitForExit(10000);
-			try
-			{
-				_nvdaProcess?.Kill();
-			}
-			catch
-			{
-				// eror when killing nvda process.
-			}
+			return Track(() => DisconnectInternalAsync());
 		}
 
 		/// <summary>
@@ -181,7 +152,15 @@ namespace NvdaTestingDriver
 		/// <param name="actionToExecute">The action to execute, which should cause NVDA to return
 		/// some message, which will be returned by this method.</param>
 		/// <returns>The task that once completed, will contain The NVDA spoken text immediately following the execution of the action.</returns>
-		public Task<string> GetNextSpokenMessageAsync(Func<Task> actionToExecute) => GetNextSpokenMessageAsync(null, null, actionToExecute);
+		public Task<string> GetNextSpokenMessageAsync(Func<Task> actionToExecute)
+		{
+			if (actionToExecute is null)
+			{
+				throw new ArgumentNullException(nameof(actionToExecute));
+			}
+
+			return Track<string>(() => GetNextSpokenMessageInternalAsync(actionToExecute));
+		}
 
 		/// <summary>
 		/// Gets the next spoken message by NVDA asynchronous.
@@ -194,56 +173,9 @@ namespace NvdaTestingDriver
 		/// some message, which will be returned by this method.</param>
 		/// <returns>The task that once completed, will contain The NVDA spoken text immediately following the execution of the action.</returns>
 		/// <exception cref="NvdaTestingDriver.Exceptions.TimeoutException">Timeout exceeded when trying to get the next message transmitted by NVDA.</exception>
-		public async Task<string> GetNextSpokenMessageAsync(TimeSpan? timeout = null, TimeSpan? timeToWaitNewMessages = null, Func<Task> actionToExecute = null)
+		public Task<string> GetNextSpokenMessageAsync(TimeSpan? timeout = null, TimeSpan? timeToWaitNewMessages = null, Func<Task> actionToExecute = null)
 		{
-			if (timeout == null)
-			{
-				timeout = TimeSpan.FromSeconds(3);
-			}
-
-			if (timeToWaitNewMessages == null)
-			{
-				timeToWaitNewMessages = TimeSpan.FromMilliseconds(300);
-			}
-
-			CheckConnectivity();
-
-			StringBuilder spokenMessage = new StringBuilder();
-			DateTime? firstMessageTime = null;
-
-			void LocalSpeakReceived(object sender, string message)
-			{
-				if (!string.IsNullOrWhiteSpace(message))
-				{
-					if (spokenMessage.Length == 0)
-					{
-						firstMessageTime = DateTime.Now;
-					}
-
-					spokenMessage.Append((spokenMessage.Length > 0 ? Environment.NewLine : string.Empty) + message);
-				}
-			}
-
-			this.OnSpeakReceived += LocalSpeakReceived;
-			if (actionToExecute != null)
-			{
-				await actionToExecute.Invoke();
-			}
-
-			var operationStart = DateTime.Now;
-			while ((spokenMessage.Length == 0 || (firstMessageTime.HasValue && DateTime.Now - firstMessageTime.Value < timeToWaitNewMessages))
-				&& DateTime.Now - operationStart < timeout)
-			{
-				await Task.Delay(100);
-			}
-
-			this.OnSpeakReceived -= LocalSpeakReceived;
-			if (spokenMessage.Length == 0 && DateTime.Now - operationStart > timeout)
-			{
-				throw new Exceptions.TimeoutException("Timeout exceeded when trying to get the next message transmitted by NVDA.");
-			}
-
-			return spokenMessage.ToString();
+			return Track<string>(() => GetNextSpokenMessageInternalAsync(timeout, timeToWaitNewMessages, actionToExecute));
 		}
 
 		/// <summary>
@@ -251,26 +183,31 @@ namespace NvdaTestingDriver
 		/// </summary>
 		/// <param name="keys">The keys.</param>
 		/// <returns>The task associated to this operation</returns>
-		public async Task SendKeySequenceAsync(params Key[] keys)
+		public Task SendKeySequenceAsync(params Key[] keys)
 		{
-			foreach (var key in keys)
+			if (keys is null)
 			{
-				await SendKeysAsync(key);
+				throw new ArgumentNullException(nameof(keys));
 			}
+
+			return Track(() => SendKeySequenceInternalAsync(keys));
 		}
 
 		/// <summary>
-		/// Sends a key sequence to NVDA and get spoken text.
+		/// Sends a key sequence to NVDA and get spoken text asynchronous.
 		/// </summary>
 		/// <param name="keys">The keys.</param>
-		/// <returns>Te text spoken by NVDA after sending the key sequence</returns>
-		public async Task<string> SendKeySequenceAndGetSpokenText(params Key[] keys)
+		/// <returns>
+		/// Te text spoken by NVDA after sending the key sequence
+		/// </returns>
+		public Task<string> SendKeySequenceAndGetSpokenTextAsync(params Key[] keys)
 		{
-			await StopReadingAsync();
-			return await GetNextSpokenMessageAsync(async () =>
+			if (keys is null)
 			{
-				await SendKeySequenceAsync(keys);
-			});
+				throw new ArgumentNullException(nameof(keys));
+			}
+
+			return Track<string>(() => SendKeySequenceAndGetSpokenTextInternalAsync(keys));
 		}
 
 		/// <summary>
@@ -286,7 +223,11 @@ namespace NvdaTestingDriver
 				throw new ArgumentNullException(nameof(combinations));
 			}
 
-			return SendCombinationsInternalAsync(combinations);
+			_logger.LogInformation("Executing SendKeyCombinationsAsync. Combinations: " +
+				string.Join(", ", combinations.Select(c => "(" + c.GetDescription() + ")")) +
+				".");
+
+			return Track(() => SendCombinationsInternalAsync(combinations));
 		}
 
 		/// <summary>
@@ -301,7 +242,11 @@ namespace NvdaTestingDriver
 				throw new ArgumentNullException(nameof(combinations));
 			}
 
-			return SendKeyCombinationsAndGetSpokenTextInternalAsync(combinations);
+			_logger.LogInformation("Executing SendKeyCombinationsAndGetSpokenTextAsync. Combinations: " +
+						 string.Join(", ", combinations.Select(c => "(" + c.GetDescription() + ")")) +
+						 ".");
+
+			return Track(() => SendKeyCombinationsAndGetSpokenTextInternalAsync(combinations));
 		}
 
 		/// <summary>
@@ -316,7 +261,8 @@ namespace NvdaTestingDriver
 				throw new ArgumentNullException(nameof(keys));
 			}
 
-			return SendKeysInternalAsync(keys);
+			_logger.LogInformation("Executing SendKeysAsync. Keys: " + string.Join("+", keys.Select(k => k.Name)) + ".");
+			return Track(() => SendKeysInternalAsync(keys));
 		}
 
 		/// <summary>
@@ -331,7 +277,9 @@ namespace NvdaTestingDriver
 				throw new ArgumentNullException(nameof(keys));
 			}
 
-			return SendKeysAndGetSpokenTextInternalAsync(keys);
+			_logger.LogInformation("Executing SendKeysAsync. Keys: " + string.Join("+", keys.Select(k => k.Name)) + ".");
+
+			return Track(() => SendKeysAndGetSpokenTextInternalAsync(keys));
 		}
 
 		/// <summary>
@@ -346,8 +294,10 @@ namespace NvdaTestingDriver
 				throw new ArgumentNullException(nameof(command));
 			}
 
+			_logger.LogInformation($"Executing SendCommandAsync. Command: {command.GetDescription()}.");
+
 			var combinationSet = GetKeyCombinationSet(command);
-			return SendKeyCombinationSet(combinationSet);
+			return Track(() => SendKeyCombinationSet(combinationSet));
 		}
 
 		/// <summary>
@@ -365,8 +315,10 @@ namespace NvdaTestingDriver
 				throw new ArgumentNullException(nameof(command));
 			}
 
+			_logger.LogInformation($"Executing SendCommandAndGetSpokenTextAsync. Command: {command.GetDescription()}.");
+
 			var combinationSet = GetKeyCombinationSet(command);
-			return SendKeyCombinationSetAndGetSpokenTextInternal(combinationSet);
+			return Track(() => SendKeyCombinationSetAndGetSpokenTextInternal(combinationSet));
 		}
 
 		/// <summary>
@@ -377,57 +329,31 @@ namespace NvdaTestingDriver
 		/// The task associated to this operation
 		/// </returns>
 		/// <exception cref="System.TimeoutException">Timeout while waiting for stopping speech.</exception>
-		public async Task StopReadingAsync(TimeSpan? timeout = null)
+		public Task StopReadingAsync(TimeSpan? timeout = null)
 		{
-			if (timeout == null)
-			{
-				timeout = TimeSpan.FromMilliseconds(500);
-			}
-
-			bool cancelReceived = false;
-			void ONLocalSpeakCancelled(object sender, EventArgs e)
-			{
-				cancelReceived = true;
-			}
-
-			this.OnSpeakCancelled += ONLocalSpeakCancelled;
-			var operationStart = DateTime.Now;
-			while (!cancelReceived && (DateTime.Now - operationStart) < timeout)
-			{
-				await SendKeysAsync(Key.Control);
-				await Task.Delay(100);
-			}
-
-			if ((DateTime.Now - operationStart) > timeout)
-			{
-				throw new Exceptions.TimeoutException("Timeout while waiting for stopping speech.");
-			}
-
-			this.OnSpeakCancelled -= ONLocalSpeakCancelled;
-		}
-
-		/// <summary>
-		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-		/// </summary>
-		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
+			return Track(() => StopReadingInternalAsync(timeout));
 		}
 
 		/// <summary>
 		/// Releases unmanaged and - optionally - managed resources.
 		/// </summary>
-		/// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-		protected virtual void Dispose(bool disposing)
+		public override void Dispose()
 		{
-			DisconnectAsync().Wait();
+			base.Dispose();
+		}
+		protected override async Task FinishDisposeAsync()
+		{
+			await DisconnectAsync();
+			if (_internalLoggerFactory)
+			{
+				_loggerFactory.Dispose();
+			}
 		}
 
 		/// <summary>
 		/// Kills all previous nvda processes.
 		/// </summary>
-		private static void KillPreviousNVDA()
+		private void KillPreviousNVDA()
 		{
 			var nvdaProcesses = Process.GetProcessesByName("nvda");
 			if (nvdaProcesses.Any())
@@ -438,12 +364,35 @@ namespace NvdaTestingDriver
 					{
 						nvdaProcess.Kill();
 					}
-					catch (Exception ex)
+					catch (Exception ex) when (ex is InvalidOperationException || ex is Win32Exception)
 					{
 						Console.WriteLine($"error while killing nvda process: {ex.Message} We continue.");
 					}
 				}
 			}
+		}
+
+		/// <summary>
+		/// Initializes the logging system.
+		/// If options.LoggerFactory is already present, we create the ILogger object directly.
+		/// If the options.LoggerFactory object has not been adjusted, we create an ILoggerFactory object, adding the Debug and Console providers.
+		/// </summary>
+		/// <param name="options">The NVDA options.</param>
+		private void InitializeLogging(NvdaDriverOptions options)
+		{
+			if (options?.LoggerFactory != null)
+			{
+				_loggerFactory = options.LoggerFactory;
+			}
+			else if (!options.DisableLogging)
+			{
+				_loggerFactory = new LoggerFactory();
+				_loggerFactory.AddConsole()
+					.AddDebug();
+				_internalLoggerFactory = true;
+			}
+
+			_logger = _loggerFactory.CreateLogger("NvdaTestingDriver");
 		}
 
 		/// <summary>
@@ -469,12 +418,14 @@ namespace NvdaTestingDriver
 			{
 				if (registryKey == null)
 				{
+					_logger.LogDebug("This is the first time this NVDA version is started on this machine.");
 					return ExtractNvdaZipFileInTmpDir();
 				}
 
 				string nvdaExecutableFilePath = (string)registryKey.GetValue(GetNvdaVersion());
 				if (string.IsNullOrWhiteSpace(nvdaExecutableFilePath))
 				{
+					_logger.LogDebug("This is the first time this NVDA version is started on this machine.");
 					return ExtractNvdaZipFileInTmpDir();
 				}
 
@@ -489,6 +440,7 @@ namespace NvdaTestingDriver
 		/// <param name="nvdaExecutableFilePath">The nvda executable file path.</param>
 		private void CheckNvdaIntegrity(string nvdaExecutableFilePath)
 		{
+			_logger.LogDebug("Starting integrity checks...");
 			string nvdaDirectory = Path.GetDirectoryName(nvdaExecutableFilePath);
 			using (var nvdaZipStream = this.GetType().Assembly.GetManifestResourceStream("NvdaTestingDriver.nvda.zip"))
 			{
@@ -503,6 +455,7 @@ namespace NvdaTestingDriver
 						var nonExistingEntries = entries.Where(e => !currentFiles.Contains(e.FullName));
 						if (nonExistingEntries.Any())
 						{
+							_logger.LogDebug($"Looks like there's some deleted files. Restoring {nonExistingEntries.Count()} files...");
 							foreach (var entry in nonExistingEntries)
 							{
 								var fileName = Path.Combine(nvdaDirectory, entry.FullName);
@@ -535,10 +488,13 @@ namespace NvdaTestingDriver
 				{
 					var tmpDir = Path.Combine(Path.GetTempPath(), nvdaVersion);
 					nvdaExecutableFilePath = Path.Combine(tmpDir, "nvda.exe");
+					_logger.LogDebug("Extracting NVDA zip file. This may take a few seconds...");
 					zipArchive.ExtractToDirectory(tmpDir);
+					_logger.LogDebug("Zip extracted.");
 					using (var registryKey = Registry.CurrentUser.CreateSubKey(NvdaRegistryKey, true))
 					{
 						registryKey.SetValue(nvdaVersion, nvdaExecutableFilePath, RegistryValueKind.String);
+						_logger.LogDebug($"REgistry key adjusted to Nvda Version {nvdaVersion}, to executable path {nvdaExecutableFilePath}.");
 					}
 				}
 			}
@@ -588,15 +544,18 @@ namespace NvdaTestingDriver
 				try
 				{
 					await _tcpClient.ConnectAsync(host, port);
+					_logger.LogDebug("TCP client connected.");
 					socketAvailable = true;
 				}
-				catch (SocketException)
+				catch (SocketException ex)
 				{
 					if ((DateTime.Now - operationStart) > timeout)
 					{
+						_logger.LogError($"Timeout exception while connecting to NVDA remote server. {ex.GetType()}: {ex.Message}.");
 						throw;
 					}
 
+					_logger.LogWarning($"Retrying TCP connection to Nvda remote server. Previous attempt raised the exception: {ex.GetType()}: {ex.Message}.");
 					Thread.Sleep(500);
 				}
 			}
@@ -615,6 +574,7 @@ namespace NvdaTestingDriver
 				message += "\n";
 			}
 
+			_logger.LogDebug($"Sending message: \"{message}\"");
 			byte[] buffer = Encoding.UTF8.GetBytes(message.ToCharArray(), 0, message.Length);
 			await _sslStream.WriteAsync(buffer, 0, buffer.Length, _cancellationTokenSource.Token);
 		}
@@ -844,11 +804,13 @@ namespace NvdaTestingDriver
 
 			foreach (var k in keys)
 			{
+				_logger.LogDebug($"Sending key Down: {k.Name}.");
 				await WriteMessageAsync(ToJsonKey(k, true));
 			}
 
 			foreach (var k in keys.Reverse())
 			{
+				_logger.LogDebug($"Sending key up: {k.Name}.");
 				await WriteMessageAsync(ToJsonKey(k, false));
 			}
 		}
@@ -868,10 +830,240 @@ namespace NvdaTestingDriver
 		}
 
 		/// <summary>
+		/// Connects the driver asynchronously against a portable NVDA instance that will start automatically, configured with the options provided in the driver constructor.
+		/// </summary>
+		/// <returns>The task associated to this operation.</returns>
+		/// <exception cref="NvdaTestingDriver.Exceptions.AlreadyConnectedException">Throws if the method has been called before, and the driver is already connected</exception>
+		private async Task ConnectInternalAsync()
+		{
+			_logger.LogInformation("Starting NVDA connection.");
+			if (_tcpClient != null && _tcpClient.Connected)
+			{
+				_logger.LogError("The driver is already connected.");
+				throw new AlreadyConnectedException();
+			}
+
+			var nvdaExecutableFilePath = GetNvdaExecutableFilePath();
+			var nvdaDirectory = Path.GetDirectoryName(nvdaExecutableFilePath);
+			var nvdaDriverOptionsWriter = new NvdaDriverOptionsWriter(_nvdaDriverOptions);
+			_logger.LogDebug("Writing options into NVDA ini file...");
+			nvdaDriverOptionsWriter.WriteOptionsToIniFile(Path.Combine(nvdaDirectory, "userConfig", "nvda.ini"));
+			_logger.LogDebug("Killing previous NVDA process to avoid multi-instance problems.");
+			KillPreviousNVDA();
+			_logger.LogDebug("Starting NVDA process...");
+			ProcessStartInfo processParam = new ProcessStartInfo { FileName = nvdaExecutableFilePath };
+			_nvdaProcess = Process.Start(processParam);
+			_nvdaProcess.WaitForInputIdle();
+			_logger.LogDebug("Nvda estarted.");
+			_logger.LogDebug("Starting TCP connection to Nvda Remote Server...");
+			_tcpClient = new TcpClient();
+			await ConnectSocketAsync(LocalHost, NvdaRemotePort);
+			_networkStream = _tcpClient.GetStream();
+			_sslStream = new SslStream(_networkStream, false, (sender, certificate, chain, sslPolicyErrors) => true, null);
+			_logger.LogDebug("Authenticating SSL connection...");
+			await _sslStream.AuthenticateAsClientAsync("nvdaremote.com");
+			_cancellationTokenSource = new CancellationTokenSource();
+			_logger.LogDebug("Start reading messages from remote server.");
+			BeginReadMessages();
+			await WriteMessageAsync(SetCommunicationProtocolMsg);
+			await WriteMessageAsync(SetConnectionMsg);
+		}
+
+		/// <summary>
+		/// Disconnects the driver asynchronously, shutting down the NVDA instance.
+		/// </summary>
+		/// <returns>The task associated to this operation.</returns>
+		private async Task DisconnectInternalAsync()
+		{
+			_logger.LogInformation("Disconnecting NvdaTetingDriver...");
+			if (_sslStream != null && _sslStream.CanWrite)
+			{
+				await ShutdownNvdaAsync();
+			}
+
+			_cancellationTokenSource?.Cancel();
+			_cancellationTokenSource.Dispose();
+
+			if (_taskReceivingMessages != null)
+			{
+				await Task.WhenAll(_taskReceivingMessages);
+			}
+
+			_tcpClient?.Close();
+			_tcpClient?.Dispose();
+			_sslStream?.Dispose();
+			_networkStream?.Dispose();
+			_nvdaProcess?.WaitForExit(10000);
+			try
+			{
+				_nvdaProcess?.Kill();
+			}
+			catch (Exception ex) when (ex is InvalidOperationException || ex is Win32Exception)
+			{
+			}
+
+			_nvdaProcess.Dispose();
+		}
+
+		/// <summary>
+		/// Gets the next spoken message by NVDA asynchronously.
+		/// </summary>
+		/// <param name="actionToExecute">The action to execute, which should cause NVDA to return
+		/// some message, which will be returned by this method.</param>
+		/// <returns>The task that once completed, will contain The NVDA spoken text immediately following the execution of the action.</returns>
+		private Task<string> GetNextSpokenMessageInternalAsync(Func<Task> actionToExecute) =>
+				  GetNextSpokenMessageAsync(null, null, actionToExecute);
+
+		/// <summary>
+		/// Gets the next spoken message by NVDA asynchronous.
+		/// </summary>
+		/// <param name="timeout">The maximum time the method will wait for an NVDA message before raising an exception. By default, timeout is 3 seconds.</param>
+		/// <param name="timeToWaitNewMessages">
+		/// There are occasions when NVDA transmits messages separately, in different packets.
+		/// This parameter sets the maximum time that NVDA will concatenate new messages received within the return of this method, starting from the arrival of the first message.</param>
+		/// <param name="actionToExecute">The action to execute, which should cause NVDA to return
+		/// some message, which will be returned by this method.</param>
+		/// <returns>The task that once completed, will contain The NVDA spoken text immediately following the execution of the action.</returns>
+		/// <exception cref="NvdaTestingDriver.Exceptions.TimeoutException">Timeout exceeded when trying to get the next message transmitted by NVDA.</exception>
+		private async Task<string> GetNextSpokenMessageInternalAsync(TimeSpan? timeout = null, TimeSpan? timeToWaitNewMessages = null, Func<Task> actionToExecute = null)
+		{
+			_logger.LogInformation("Executting: GetNextSpokenMessageAsync.");
+
+			if (timeout == null)
+			{
+				timeout = TimeSpan.FromSeconds(3);
+			}
+
+			if (timeToWaitNewMessages == null)
+			{
+				timeToWaitNewMessages = TimeSpan.FromMilliseconds(300);
+			}
+
+			CheckConnectivity();
+
+			StringBuilder spokenMessage = new StringBuilder();
+			DateTime? firstMessageTime = null;
+
+			void LocalSpeakReceived(object sender, string message)
+			{
+				_logger.LogDebug($"Event received: OnSpeakReceived. Message: \"{message}\"");
+				if (!string.IsNullOrWhiteSpace(message))
+				{
+					if (spokenMessage.Length == 0)
+					{
+						firstMessageTime = DateTime.Now;
+					}
+
+					spokenMessage.Append((spokenMessage.Length > 0 ? Environment.NewLine : string.Empty) + message);
+				}
+			}
+
+			this.OnSpeakReceived += LocalSpeakReceived;
+			if (actionToExecute != null)
+			{
+				_logger.LogDebug("Executing action before receiving speak messages...");
+				await actionToExecute.Invoke();
+				_logger.LogDebug("Action executed.");
+			}
+
+			var operationStart = DateTime.Now;
+			while ((spokenMessage.Length == 0 || (firstMessageTime.HasValue && DateTime.Now - firstMessageTime.Value < timeToWaitNewMessages))
+				&& DateTime.Now - operationStart < timeout)
+			{
+				await Task.Delay(100);
+			}
+
+			this.OnSpeakReceived -= LocalSpeakReceived;
+			if (spokenMessage.Length == 0 && DateTime.Now - operationStart > timeout)
+			{
+				_logger.LogError($"Error receiving spoken message. The defined timeout was exceeded: {timeout.Value.TotalMilliseconds} milliseconds.");
+				throw new Exceptions.TimeoutException("Timeout exceeded when trying to get the next message transmitted by NVDA.");
+			}
+
+			_logger.LogInformation($"Final spoken message: \"{spokenMessage}\"");
+			return spokenMessage.ToString();
+		}
+
+		/// <summary>
+		/// Sends a key sequence to NVDA asynchronously.
+		/// </summary>
+		/// <param name="keys">The keys.</param>
+		/// <returns>The task associated to this operation</returns>
+		private async Task SendKeySequenceInternalAsync(params Key[] keys)
+		{
+			_logger.LogInformation("Executing SendKeySequenceAsync. Keys: " +
+				string.Join(", ", keys.Select(k => k.Name)) + ".");
+			foreach (var key in keys)
+			{
+				await SendKeysAsync(key);
+			}
+		}
+
+		/// <summary>
+		/// Sends a key sequence to NVDA and get spoken text asynchronous.
+		/// </summary>
+		/// <param name="keys">The keys.</param>
+		/// <returns>
+		/// Te text spoken by NVDA after sending the key sequence
+		/// </returns>
+		private async Task<string> SendKeySequenceAndGetSpokenTextInternalAsync(params Key[] keys)
+		{
+			_logger.LogInformation("Executing SendKeySequenceAndGetSpokenText. Keys: " +
+				string.Join(", ", keys.Select(k => k.Name)) + ".");
+
+			await StopReadingAsync();
+			return await GetNextSpokenMessageAsync(async () =>
+			{
+				await SendKeySequenceAsync(keys);
+			});
+		}
+
+		/// <summary>
+		/// Cancels the current speak asynchronously.
+		/// </summary>
+		/// <param name="timeout">The timeout for this operation. By default, timeout is 3 seconds.</param>
+		/// <returns>
+		/// The task associated to this operation
+		/// </returns>
+		/// <exception cref="System.TimeoutException">Timeout while waiting for stopping speech.</exception>
+		private async Task StopReadingInternalAsync(TimeSpan? timeout = null)
+		{
+			_logger.LogInformation("Executing StopReadingAsync.");
+
+			if (timeout == null)
+			{
+				timeout = TimeSpan.FromMilliseconds(500);
+			}
+
+			bool cancelReceived = false;
+			void ONLocalSpeakCancelled(object sender, EventArgs e)
+			{
+				_logger.LogDebug("Event received: OnSpeakCancelled.");
+				cancelReceived = true;
+			}
+
+			this.OnSpeakCancelled += ONLocalSpeakCancelled;
+			var operationStart = DateTime.Now;
+			await SendKeysAsync(Key.Control);
+			while (!cancelReceived && (DateTime.Now - operationStart) < timeout)
+			{
+				_logger.LogDebug("Sending control (we don't received cancelled signal yet...");
+				await Task.Delay(100);
+			}
+
+			if ((DateTime.Now - operationStart) > timeout)
+			{
+				throw new Exceptions.TimeoutException("Timeout while waiting for stopping speech.");
+			}
+
+			this.OnSpeakCancelled -= ONLocalSpeakCancelled;
+		}
+
+		/// <summary>
 		/// Shutdowns the nvda instance, by sending a Nvda+Q keystroke.
 		/// </summary>
 		/// <returns>The task associated to this operation</returns>
-		private Task ShutdownNvda()
+		private Task ShutdownNvdaAsync()
 		{
 			return SendCommandAsync(BasicCommands.QuitNvda);
 		}

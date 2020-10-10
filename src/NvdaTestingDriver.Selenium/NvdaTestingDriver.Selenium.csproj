@@ -3,13 +3,13 @@
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Version>0.5.0-beta</Version>
+		<Version>0.6.0-beta</Version>
 		<Authors>Juan José Montiel Pérez</Authors>
 		<Company>Juan José Montiel Pérez</Company>
 		<Description>This package contains extensions to use NvdaTestingDriver with Selenium WebDriver. NVDA needs the browser window to be in the foreground, and it also needs any element to take the focus in order to analyze it. This package includes functions to do both.</Description>
 		<Copyright>2018-2019</Copyright>
 		<PackageLicenseFile>License.md</PackageLicenseFile>
-		<AssemblyVersion>0.5.0.0</AssemblyVersion>
+		<AssemblyVersion>0.6.0.0</AssemblyVersion>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageProjectUrl>https://github.com/kastwey/nvda-testing-driver</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/kastwey/nvda-testing-driver</RepositoryUrl>
@@ -30,7 +30,7 @@
 		<None Remove="stylecop.json" />
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="License.md" Pack="true" PackagePath=""/>
+		<None Include="License.md" Pack="true" PackagePath="" />
 	</ItemGroup>
 	<ItemGroup>
 		<AdditionalFiles Include="stylecop.json">
@@ -43,16 +43,16 @@
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<PackageReference Include="NvdaTestingDriver" Version="0.5.0-beta" />
+		<PackageReference Include="NvdaTestingDriver" Version="0.6.0-beta" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.3">
+		<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
-		<PackageReference Include="StyleCop.Analyzers" Version="1.1.1-rc.94">
+		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>

@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2019 Juan José Montiel
+// Copyright (C) 2020 Juan José Montiel
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -41,9 +41,14 @@ namespace NvdaTestingDriver.Selenium
 		/// <returns>IWebDriver instance</returns>
 		public IWebDriver UpWebDriver(Func<IWebDriver> webDriverFunc)
 		{
-			DateTime processStartTime = DateTime.Now;
+			if (webDriverFunc is null)
+			{
+				throw new ArgumentNullException(nameof(webDriverFunc));
+			}
+
+			var processStartTime = DateTime.Now;
 			WebDriver = webDriverFunc();
-			string processName = GetProcesName(WebDriver);
+			var processName = GetProcesName(WebDriver);
 			var browserProcesses = Process.GetProcessesByName(processName).Where(p => p.StartTime > processStartTime && !string.IsNullOrWhiteSpace(p.MainWindowTitle)).OrderBy(p => p.StartTime).ToList();
 			var process = browserProcesses.First();
 			if (process != null)
@@ -62,7 +67,7 @@ namespace NvdaTestingDriver.Selenium
 		{
 			if (_browserWindowHandle != IntPtr.Zero)
 			{
-				NativeMethods.SetForegroundWindow(_browserWindowHandle);
+				NativeMethods.ForceForegroundWindow(_browserWindowHandle);
 			}
 
 			WebDriver.Manage().Window.Maximize();
@@ -77,7 +82,7 @@ namespace NvdaTestingDriver.Selenium
 		/// <exception cref="NotSupportedException">This webdrivver is not supported in this wrapper: {webDriver.GetType().Name}</exception>
 		private string GetProcesName(IWebDriver webDriver)
 		{
-			string processName = null;
+			string processName;
 			if (webDriver is ChromeDriver)
 			{
 				processName = "chrome";

@@ -26,7 +26,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccessibleDemo.Core.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NvdaTestingDriver.MSTest.Compatiblity.NetFramework461", "tests\NvdaTestingDriver.MSTest.Compatiblity.NetFramework461\NvdaTestingDriver.MSTest.Compatiblity.NetFramework461.csproj", "{EF22CD3D-83C8-4FF4-8338-CB70B0079AA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NvdaTestingDriver.ConsoleTests", "NvdaTestingDriver.ConsoleTests\NvdaTestingDriver.ConsoleTests.csproj", "{A11D2D33-D3EC-44AD-A6D9-F2237D00C442}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NvdaTestingDriver.ConsoleTests", "NvdaTestingDriver.ConsoleTests\NvdaTestingDriver.ConsoleTests.csproj", "{A11D2D33-D3EC-44AD-A6D9-F2237D00C442}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F430EEEA-49A5-422D-BA9E-556D1EF12E30}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

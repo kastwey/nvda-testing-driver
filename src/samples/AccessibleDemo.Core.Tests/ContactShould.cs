@@ -3,6 +3,7 @@ using NvdaTestingDriver;
 using NvdaTestingDriver.Commands.NvdaCommands;
 using NvdaTestingDriver.MSTest;
 using NvdaTestingDriver.Selenium.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -17,10 +18,10 @@ namespace AccessibleDemo.Core.Tests
 		{
 			// Arrange:
 			TestHelper.WebDriverWrapper.SetBrowserWindowForeground();
-			TestHelper.WebDriver.Navigate().GoToUrl("https://localhost:5001/home/contact");
+			var url = TestHelper.SeleniumServerFactory.RootUri + "/home/contact";
+			TestHelper.WebDriver.Navigate().GoToUrl(url);
 			TestHelper.WebDriver.FocusOnWindow();
 			var res = await TestHelper.NvdaDriver.SendKeyCombinationsAndGetSpokenTextAsync(new KeyCombination(new List<Key> { Key.Control, Key.Home }));
-			System.Diagnostics.Debug.WriteLine("Nvda result: " + res);
 			// Act & asserts
 			string text = await TestHelper.NvdaDriver.SendCommandAndGetSpokenTextAsync(BrowseModeCommands.NextHeading3);
 			NvdaAssert.TextContains(text, "Contact by phone Collapsed link heading  level 3");
@@ -40,7 +41,7 @@ namespace AccessibleDemo.Core.Tests
 		{
 			// Arrange
 			TestHelper.WebDriverWrapper.SetBrowserWindowForeground();
-			TestHelper.WebDriver.Navigate().GoToUrl("https://localhost:5001/home/contact");
+			TestHelper.WebDriver.Navigate().GoToUrl("http://localhost:5000/home/contact");
 			TestHelper.WebDriver.FocusOnWindow();
 
 			// Act / Assers
@@ -54,4 +55,4 @@ namespace AccessibleDemo.Core.Tests
 			NvdaAssert.TextContains(text, "Submit button");
 		}
 	}
-	}
+}

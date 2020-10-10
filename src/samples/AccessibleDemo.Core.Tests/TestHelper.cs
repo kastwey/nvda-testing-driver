@@ -1,13 +1,17 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+using AccessibleDemo.Core.Tests.Logging;
+
+using Microsoft.Extensions.Logging;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using NvdaTestingDriver;
 using NvdaTestingDriver.Selenium;
+
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
-using System;
-using System.Diagnostics;
-using System.IO;
-using System.Threading.Tasks;
 
 namespace AccessibleDemo.Core.Tests
 {
@@ -19,52 +23,20 @@ namespace AccessibleDemo.Core.Tests
 
 		internal static IWebDriver WebDriver { get; private set; }
 
-
 		internal static NvdaDriver NvdaDriver;
 
-		private static Process _webProcess;
+		internal static SeleniumServerFactory<Startup> SeleniumServerFactory;
+
+		internal static HttpClient HttpClient;
 
 		[AssemblyInitialize]
-		public static async Task Initialize(TestContext context)
+		public static async Task InitializeAsync(TestContext context)
 		{
-			UpWebApp();
-			UpWebDriver();
+			SeleniumServerFactory = new SeleniumServerFactory<Startup>();
+			HttpClient = SeleniumServerFactory.CreateDefaultClient();
+
 			await ConnectNvdaDriverAsync();
-		}
-
-
-		private static void UpWebApp()
-		{
-			try
-			{
-				var workingDir = Path.Combine(Path.GetDirectoryName(typeof(TestHelper).Assembly.Location), $@"..\..\..\..\AccessibleDemo\");
-				if (!Directory.Exists(workingDir))
-				{
-					throw new DirectoryNotFoundException(workingDir);
-				}
-
-				var processParameters = new ProcessStartInfo
-				{
-					FileName = "dotnet.exe",
-					WorkingDirectory = workingDir,
-					Arguments = "run",
-					RedirectStandardError = true,
-					RedirectStandardOutput = true
-				};
-				_webProcess = new Process();
-				_webProcess.OutputDataReceived += (sender, data) => { Console.WriteLine(data.Data); Debug.WriteLine(data.Data); };
-				_webProcess.ErrorDataReceived += (sender, data) => { Console.WriteLine(data.Data); Debug.WriteLine(data.Data); };
-				_webProcess.StartInfo = processParameters;
-				_webProcess.EnableRaisingEvents = true;
-				_webProcess.Start();
-				_webProcess.BeginErrorReadLine();
-				_webProcess.BeginOutputReadLine();
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine($"Error while starting webapp: {ex.Message}");
-				throw ex;
-			}
+			UpWebDriver();
 		}
 
 		private static void UpWebDriver()
@@ -85,7 +57,7 @@ namespace AccessibleDemo.Core.Tests
 			}
 			catch (Exception ex)
 			{
-				Console.WriteLine($"Error while starting Chrome WebDriver: {ex.Message}");
+				Console.WriteLine($"Error while starting Firefox WebDriver: {ex.Message}");
 				throw ex;
 			}
 		}
@@ -98,6 +70,14 @@ namespace AccessibleDemo.Core.Tests
 				NvdaDriver = new NvdaDriver(opt =>
 				{
 					opt.GeneralSettings.Language = NvdaTestingDriver.Settings.NvdaLanguage.English;
+					opt.EnableLogging = true;
+					opt.LoggerFactory = LoggerFactory.Create(builder =>
+					{
+						builder.AddFilter("NvdaTestingDriver", Microsoft.Extensions.Logging.LogLevel.Trace);
+						builder.AddConsole()
+						.AddDebug()
+						.AddProvider(new MSTestLoggerProvider());
+					});
 				});
 				await NvdaDriver.ConnectAsync();
 			}
@@ -106,23 +86,11 @@ namespace AccessibleDemo.Core.Tests
 				Console.WriteLine($"Error while starting NVDA driver: {ex.Message}");
 				throw ex;
 			}
+
 		}
-
-		private static void EndProcessTree(int pid)
-		{
-			Process.Start(new ProcessStartInfo
-			{
-				FileName = "taskkill",
-				Arguments = $"/pid {pid} /f /t",
-				CreateNoWindow = true,
-				UseShellExecute = false
-			}).WaitForExit();
-		}
-
-
 
 		[AssemblyCleanup]
-		public static async Task Cleanup()
+		public static async Task CleanupAsync()
 		{
 			try
 			{
@@ -143,8 +111,7 @@ namespace AccessibleDemo.Core.Tests
 			}
 			try
 			{
-				EndProcessTree(_webProcess.Id);
-				_webProcess.WaitForExit();
+				SeleniumServerFactory.Dispose();
 			}
 			catch
 			{

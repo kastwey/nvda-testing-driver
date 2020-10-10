@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2019 Juan José Montiel
+﻿// Copyright (C) 2020 Juan José Montiel
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -26,6 +26,11 @@ namespace NvdaTestingDriver.Selenium.Extensions
 		/// <exception cref="ArgumentNullException">element</exception>
 		public static void Focus(this IWebDriver webDriver, IWebElement element)
 		{
+			if (webDriver is null)
+			{
+				throw new ArgumentNullException(nameof(webDriver));
+			}
+
 			var javascriptExecutor = (IJavaScriptExecutor)webDriver;
 			if (element == null)
 			{

@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2019 Juan José Montiel
+// Copyright (C) 2020 Juan José Montiel
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -7,6 +7,8 @@
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
+
+using System;
 
 using Microsoft.Extensions.Logging;
 
@@ -36,6 +38,13 @@ namespace NvdaTestingDriver.Settings
 				PunctuationLevel = PunctuationLevel.Some,
 				SayCapForCapitals = false,
 				UseSpellingFunctionality = true,
+			};
+
+			VisionSettings = new VisionSettings
+			{
+				HighlightBrowseMode = true,
+				HighlightNavigator = true,
+				HighlightFocus = true,
 			};
 
 			DocumentFormattingSettings = new DocumentFormattingSettings
@@ -122,6 +131,9 @@ namespace NvdaTestingDriver.Settings
 				AutoPassThroughOnFocusChange = true,
 				TrapNonCommandGestures = true,
 			};
+			EnableLogging = false;
+			DefaultTimeoutt = TimeSpan.FromSeconds(3);
+			DefaultTimeoutWaitingForNewMessages = TimeSpan.FromMilliseconds(500);
 		}
 
 		/// <summary>
@@ -139,6 +151,14 @@ namespace NvdaTestingDriver.Settings
 		/// The speech settings.
 		/// </value>
 		public SpeechSettings SpeechSettings { get; set; }
+
+		/// <summary>
+		/// Gets or sets the vision settings.
+		/// </summary>
+		/// <value>
+		/// The vision settings.
+		/// </value>
+		public VisionSettings VisionSettings { get; set; }
 
 		/// <summary>
 		/// Gets or sets the document formatting settings.
@@ -197,11 +217,29 @@ namespace NvdaTestingDriver.Settings
 		public ILoggerFactory LoggerFactory { get; set; }
 
 		/// <summary>
-		/// Gets a value indicating whether logging should be disabled.
+		/// Gets or sets a value indicating whether logging should be enabled.
 		/// </summary>
 		/// <value>
-		///   <c>true</c> if logging system should be disabled; otherwise, <c>false</c>.
+		///   <c>true</c> if logging system should be enabled; otherwise, <c>false</c>.
 		/// </value>
-		public bool DisableLogging { get; internal set; }
-	}
+		public bool EnableLogging { get; set; }
+
+		/// <summary>
+		/// Gets or sets the default timeout for command execution.
+		/// </summary>
+		/// <value>
+		/// The default command timeoutt.
+		/// </value>
+		public TimeSpan DefaultTimeoutt { get; set; }
+
+		/// <summary>
+		/// Gets or sets the default timeout to wait for new messages.
+		/// There are occasions when NVDA transmits messages separately, in different packets.
+		/// This field sets the default maximum time that NVDA will concatenate new messages received within the desired methods, starting from the arrival of the first message.
+		/// </summary>
+		/// <value>
+		/// The default timeout to wait for new messages.
+		/// </value>
+		public TimeSpan DefaultTimeoutWaitingForNewMessages { get; set; }
+ }
 }

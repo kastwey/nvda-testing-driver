@@ -2154,25 +2154,18 @@
             </summary>
             <returns>The task associated to this operation.</returns>
         </member>
-        <member name="M:NvdaTestingDriver.NvdaDriver.GetNextSpokenMessageAsync(System.Func{System.Threading.Tasks.Task})">
-            <summary>
-            Gets the next spoken message by NVDA asynchronously.
-            </summary>
-            <param name="actionToExecute">The action to execute, which should cause NVDA to return
-            some message, which will be returned by this method.</param>
-            <returns>The task that once completed, will contain The NVDA spoken text immediately following the execution of the action.</returns>
-        </member>
-        <member name="M:NvdaTestingDriver.NvdaDriver.GetNextSpokenMessageAsync(System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Func{System.Threading.Tasks.Task})">
+        <member name="M:NvdaTestingDriver.NvdaDriver.GetNextSpokenMessageAsync(System.Func{System.Threading.Tasks.Task},System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
             <summary>
             Gets the next spoken message by NVDA asynchronous.
             </summary>
-            <param name="timeout">The maximum time the method will wait for an NVDA message before raising an exception. By default, timeout is 3 seconds.</param>
-            <param name="timeToWaitNewMessages">
-            There are occasions when NVDA transmits messages separately, in different packets.
-            This parameter sets the maximum time that NVDA will concatenate new messages received within the return of this method, starting from the arrival of the first message.</param>
             <param name="actionToExecute">The action to execute, which should cause NVDA to return
             some message, which will be returned by this method.</param>
-            <returns>The task that once completed, will contain The NVDA spoken text immediately following the execution of the action.</returns>
+            <param name="timeout">The maximum time the method will wait for an NVDA message before raising an exception. By default, timeout is 3 seconds.</param>
+            <param name="timeToWaitNewMessages">There are occasions when NVDA transmits messages separately, in different packets.
+            This parameter sets the maximum time that NVDA will concatenate new messages received within the return of this method, starting from the arrival of the first message. The default time is 500 milliseconds.</param>
+            <returns>
+            The task that once completed, will contain The NVDA spoken text immediately following the execution of the action.
+            </returns>
             <exception cref="T:NvdaTestingDriver.Exceptions.TimeoutException">Timeout exceeded when trying to get the next message transmitted by NVDA.</exception>
         </member>
         <member name="M:NvdaTestingDriver.NvdaDriver.SendKeySequenceAsync(NvdaTestingDriver.Key[])">
@@ -2187,6 +2180,19 @@
             Sends a key sequence to NVDA and get spoken text asynchronous.
             </summary>
             <param name="keys">The keys.</param>
+            <returns>
+            Te text spoken by NVDA after sending the key sequence
+            </returns>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeySequenceAndGetSpokenTextAsync(NvdaTestingDriver.Key[],System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+            <summary>
+            Sends a key sequence to NVDA and get spoken text asynchronous.
+            </summary>
+            <param name="keys">The keys.</param>
+            <param name="timeout">The maximum time the method will wait for an NVDA message before raising an exception. By default, timeout is 3 seconds.</param>
+            <param name="timeToWaitNewMessages">
+            There are occasions when NVDA transmits messages separately, in different packets.
+            This parameter sets the maximum time that NVDA will concatenate new messages received within the return of this method, starting from the arrival of the first message. The default time is 500 milliseconds.</param>
             <returns>
             Te text spoken by NVDA after sending the key sequence
             </returns>
@@ -2206,6 +2212,16 @@
             <param name="combinations">The combinations.</param>
             <returns>The text spoken by NVDA after sending the key combinations</returns>
         </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeyCombinationsAndGetSpokenTextAsync(NvdaTestingDriver.KeyCombination[],System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+            <summary>
+            Sends key combinations to NVDA and get spoken text asynchronously.
+            </summary>
+            <param name="combinations">The combinations.</param>
+            <param name="timeout">The maximum time the method will wait for an NVDA message before raising an exception. By default, timeout is 3 seconds.</param>
+            <param name="timeToWaitNewMessages">There are occasions when NVDA transmits messages separately, in different packets.
+            This parameter sets the maximum time that NVDA will concatenate new messages received within the return of this method, starting from the arrival of the first message. The default time is 500 milliseconds.</param>
+            <returns>The text spoken by NVDA after sending the key combinations</returns>
+        </member>
         <member name="M:NvdaTestingDriver.NvdaDriver.SendKeysAsync(NvdaTestingDriver.Key[])">
             <summary>
             Sends a keystroke sequence  to NVDA asynchronously.
@@ -2220,6 +2236,16 @@
             <param name="keys">The keys.</param>
             <returns>The text spoken by NVDA after sending the key combination</returns>
         </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeysAndGetSpokenTextAsync(NvdaTestingDriver.Key[],System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+            <summary>
+            Sends the keys to NVDA (as combination) and get spoken text asynchronously.
+            </summary>
+            <param name="keys">The keys.</param>
+            <param name="timeout">The maximum time the method will wait for an NVDA message before raising an exception. By default, timeout is 3 seconds.</param>
+            <param name="timeToWaitNewMessages">There are occasions when NVDA transmits messages separately, in different packets.
+            This parameter sets the maximum time that NVDA will concatenate new messages received within the return of this method, starting from the arrival of the first message. The default time is 500 milliseconds.</param>
+            <returns>The text spoken by NVDA after sending the key combination</returns>
+        </member>
         <member name="M:NvdaTestingDriver.NvdaDriver.SendCommandAsync(NvdaTestingDriver.Commands.INvdaCommand)">
             <summary>
             Send a command to NVDA without waiting for a response asynchronously.
@@ -2227,11 +2253,14 @@
             <param name="command">The command.</param>
             <returns>The task associated to this operation</returns>
         </member>
-        <member name="M:NvdaTestingDriver.NvdaDriver.SendCommandAndGetSpokenTextAsync(NvdaTestingDriver.Commands.INvdaCommand)">
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendCommandAndGetSpokenTextAsync(NvdaTestingDriver.Commands.INvdaCommand,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
             <summary>
             Sends a command to NVDA and waits for a response that will be returned by the method asynchronously.
             </summary>
             <param name="command">The command.</param>
+            <param name="timeout">The maximum time the method will wait for an NVDA message before raising an exception. By default, timeout is 3 seconds.</param>
+            <param name="timeToWaitNewMessages">There are occasions when NVDA transmits messages separately, in different packets.
+            This parameter sets the maximum time that NVDA will concatenate new messages received within the return of this method, starting from the arrival of the first message. The default time is 500 milliseconds.</param>
             <returns>
             The text sopen by NVDA after sending the command
             </returns>
@@ -2251,6 +2280,12 @@
             <summary>
             Releases unmanaged and - optionally - managed resources.
             </summary>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.FinishDisposeAsync">
+            <summary>
+            Finishes the dispose asynchronous.
+            </summary>
+            <returns>The task associated to this operation</returns>
         </member>
         <member name="M:NvdaTestingDriver.NvdaDriver.KillPreviousNVDA">
             <summary>
@@ -2318,7 +2353,7 @@
             <param name="message">The message.</param>
             <returns>The task associated to this operation.</returns>
         </member>
-        <member name="M:NvdaTestingDriver.NvdaDriver.BeginReadMessages">
+        <member name="M:NvdaTestingDriver.NvdaDriver.BeginReadMessages(System.Threading.CancellationToken)">
             <summary>
             Starts the thread that will read incoming messages from the socket connected to NVDA Remote, allowing it to execute events dependent on the arrival of new messages.
             </summary>
@@ -2363,26 +2398,43 @@
             There are no keys defined in the  key combination set
             </exception>
         </member>
-        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeyCombinationSetAndGetSpokenTextInternal(System.Collections.Generic.List{NvdaTestingDriver.KeyCombination})">
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeyCombinationSetAndGetSpokenTextInternalAsync(System.Collections.Generic.List{NvdaTestingDriver.KeyCombination},System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
             <summary>
             Sends a set of key combinations and get spoken text  by NVDA.
             </summary>
             <param name="combinationSet">The combination set.</param>
+            <param name="timeout">The maximum time the method will wait for an NVDA message before raising an exception. By default, timeout is 3 seconds.</param>
+            <param name="timeToWaitNewMessages">There are occasions when NVDA transmits messages separately, in different packets.
+            This parameter sets the maximum time that NVDA will concatenate new messages received within the return of this method, starting from the arrival of the first message. The default time is 500 milliseconds.</param>
             <returns>The task that will contain the spoken message</returns>
         </member>
-        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeyCombinationsAndGetSpokenTextInternalAsync(NvdaTestingDriver.KeyCombination[])">
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeyCombinationsAndGetSpokenTextInternalAsync(NvdaTestingDriver.KeyCombination[],System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
             <summary>
             Sends the key combinations and get spoken text asynchronously (internal use).
             </summary>
             <param name="combinations">The combinations.</param>
+            <param name="timeout">The maximum time the method will wait for an NVDA message before raising an exception. By default, timeout is 3 seconds.</param>
+            <param name="timeToWaitNewMessages">There are occasions when NVDA transmits messages separately, in different packets.
+            This parameter sets the maximum time that NVDA will concatenate new messages received within the return of this method, starting from the arrival of the first message. The default time is 500 milliseconds.</param>
             <returns>The text spoken by NVDA after sending the key combinations</returns>
         </member>
-        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeyCombinationSet(System.Collections.Generic.List{NvdaTestingDriver.KeyCombination})">
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeyCombinationSetAsync(System.Collections.Generic.List{NvdaTestingDriver.KeyCombination},System.Boolean)">
             <summary>
             Sends a set of key combinations to NVDA.
             </summary>
             <param name="combinationSet">The combination set.</param>
-            <returns>The task associated to this operation</returns>
+            <param name="disposing">if set to <c>true</c> [disposing].</param>
+        </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendCommandAsync(NvdaTestingDriver.Commands.INvdaCommand,System.Boolean)">
+            <summary>
+            Send a command to NVDA without waiting for a response asynchronously.
+            </summary>
+            <param name="command">The command.</param>
+            <param name="disposing">if set to <c>true</c>, it means that the object is being disposed, and therefore active task tracking will no longer be used, as the function is being executed as part of the NVDA dispose..</param>
+            <returns>
+            The task associated to this operation
+            </returns>
+            <exception cref="T:System.ArgumentNullException">command</exception>
         </member>
         <member name="M:NvdaTestingDriver.NvdaDriver.SendCombinationsInternalAsync(NvdaTestingDriver.KeyCombination[])">
             <summary>
@@ -2391,6 +2443,17 @@
             <param name="combinations">The combinations.</param>
             <returns>The task associated to this operation</returns>
         </member>
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeysAsync(System.Boolean,NvdaTestingDriver.Key[])">
+            <summary>
+            Sends a keystroke sequence  to NVDA asynchronously.
+            </summary>
+            <param name="disposing">if set to <c>true</c>, it means that the object is being disposed, and therefore active task tracking will no longer be used, as the function is being executed as part of the NVDA dispose..</param>
+            <param name="keys">The keys.</param>
+            <returns>
+            The task associated to this operation
+            </returns>
+            <exception cref="T:System.ArgumentNullException">keys</exception>
+        </member>
         <member name="M:NvdaTestingDriver.NvdaDriver.SendKeysInternalAsync(NvdaTestingDriver.Key[])">
             <summary>
             Sends the keys to NVDA asynchronously (internal use).
@@ -2398,11 +2461,14 @@
             <param name="keys">The keys.</param>
             <returns>The task associated to this operation</returns>
         </member>
-        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeysAndGetSpokenTextInternalAsync(NvdaTestingDriver.Key[])">
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeysAndGetSpokenTextInternalAsync(NvdaTestingDriver.Key[],System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
             <summary>
             Sends the keys to NVDA and gets the spoken text asynchronously.
             </summary>
             <param name="keys">The keys.</param>
+            <param name="timeout">The maximum time the method will wait for an NVDA message before raising an exception. By default, timeout is 3 seconds.</param>
+            <param name="timeToWaitNewMessages">There are occasions when NVDA transmits messages separately, in different packets.
+            This parameter sets the maximum time that NVDA will concatenate new messages received within the return of this method, starting from the arrival of the first message. The default time is 500 milliseconds.</param>
             <returns>The text spoken by NVDA after sending keys</returns>
         </member>
         <member name="M:NvdaTestingDriver.NvdaDriver.ConnectInternalAsync">
@@ -2412,29 +2478,21 @@
             <returns>The task associated to this operation.</returns>
             <exception cref="T:NvdaTestingDriver.Exceptions.AlreadyConnectedException">Throws if the method has been called before, and the driver is already connected</exception>
         </member>
-        <member name="M:NvdaTestingDriver.NvdaDriver.DisconnectInternalAsync">
+        <member name="M:NvdaTestingDriver.NvdaDriver.DisconnectInternalAsync(System.Boolean)">
             <summary>
             Disconnects the driver asynchronously, shutting down the NVDA instance.
             </summary>
             <returns>The task associated to this operation.</returns>
         </member>
-        <member name="M:NvdaTestingDriver.NvdaDriver.GetNextSpokenMessageInternalAsync(System.Func{System.Threading.Tasks.Task})">
-            <summary>
-            Gets the next spoken message by NVDA asynchronously.
-            </summary>
-            <param name="actionToExecute">The action to execute, which should cause NVDA to return
-            some message, which will be returned by this method.</param>
-            <returns>The task that once completed, will contain The NVDA spoken text immediately following the execution of the action.</returns>
-        </member>
-        <member name="M:NvdaTestingDriver.NvdaDriver.GetNextSpokenMessageInternalAsync(System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Func{System.Threading.Tasks.Task})">
+        <member name="M:NvdaTestingDriver.NvdaDriver.GetNextSpokenMessageInternalAsync(System.Func{System.Threading.Tasks.Task},System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
             <summary>
             Gets the next spoken message by NVDA asynchronous.
             </summary>
+            <param name="actionToExecute">The action to execute, which should cause NVDA to return
             <param name="timeout">The maximum time the method will wait for an NVDA message before raising an exception. By default, timeout is 3 seconds.</param>
             <param name="timeToWaitNewMessages">
             There are occasions when NVDA transmits messages separately, in different packets.
-            This parameter sets the maximum time that NVDA will concatenate new messages received within the return of this method, starting from the arrival of the first message.</param>
-            <param name="actionToExecute">The action to execute, which should cause NVDA to return
+            This parameter sets the maximum time that NVDA will concatenate new messages received within the return of this method, starting from the arrival of the first message. The default time is 500 milliseconds.</param>
             some message, which will be returned by this method.</param>
             <returns>The task that once completed, will contain The NVDA spoken text immediately following the execution of the action.</returns>
             <exception cref="T:NvdaTestingDriver.Exceptions.TimeoutException">Timeout exceeded when trying to get the next message transmitted by NVDA.</exception>
@@ -2446,11 +2504,15 @@
             <param name="keys">The keys.</param>
             <returns>The task associated to this operation</returns>
         </member>
-        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeySequenceAndGetSpokenTextInternalAsync(NvdaTestingDriver.Key[])">
+        <member name="M:NvdaTestingDriver.NvdaDriver.SendKeySequenceAndGetSpokenTextInternalAsync(NvdaTestingDriver.Key[],System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
             <summary>
             Sends a key sequence to NVDA and get spoken text asynchronous.
             </summary>
             <param name="keys">The keys.</param>
+            <param name="timeout">The maximum time the method will wait for an NVDA message before raising an exception. By default, timeout is 3 seconds.</param>
+            <param name="timeToWaitNewMessages">
+            There are occasions when NVDA transmits messages separately, in different packets.
+            This parameter sets the maximum time that NVDA will concatenate new messages received within the return of this method, starting from the arrival of the first message. The default time is 500 milliseconds.</param>
             <returns>
             Te text spoken by NVDA after sending the key sequence
             </returns>
@@ -2465,7 +2527,7 @@
             </returns>
             <exception cref="T:System.TimeoutException">Timeout while waiting for stopping speech.</exception>
         </member>
-        <member name="M:NvdaTestingDriver.NvdaDriver.ShutdownNvdaAsync">
+        <member name="M:NvdaTestingDriver.NvdaDriver.ShutdownNvdaAsync(System.Boolean)">
             <summary>
             Shutdowns the nvda instance, by sending a Nvda+Q keystroke.
             </summary>
@@ -2977,6 +3039,14 @@
             The speech settings.
             </value>
         </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaDriverOptions.VisionSettings">
+            <summary>
+            Gets or sets the vision settings.
+            </summary>
+            <value>
+            The vision settings.
+            </value>
+        </member>
         <member name="P:NvdaTestingDriver.Settings.NvdaDriverOptions.DocumentFormattingSettings">
             <summary>
             Gets or sets the document formatting settings.
@@ -3033,12 +3103,30 @@
             The logger factory.
             </value>
         </member>
-        <member name="P:NvdaTestingDriver.Settings.NvdaDriverOptions.DisableLogging">
+        <member name="P:NvdaTestingDriver.Settings.NvdaDriverOptions.EnableLogging">
             <summary>
-            Gets a value indicating whether logging should be disabled.
+            Gets or sets a value indicating whether logging should be enabled.
             </summary>
             <value>
-              <c>true</c> if logging system should be disabled; otherwise, <c>false</c>.
+              <c>true</c> if logging system should be enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaDriverOptions.DefaultTimeoutt">
+            <summary>
+            Gets or sets the default timeout for command execution.
+            </summary>
+            <value>
+            The default command timeoutt.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.NvdaDriverOptions.DefaultTimeoutWaitingForNewMessages">
+            <summary>
+            Gets or sets the default timeout to wait for new messages.
+            There are occasions when NVDA transmits messages separately, in different packets.
+            This field sets the default maximum time that NVDA will concatenate new messages received within the desired methods, starting from the arrival of the first message.
+            </summary>
+            <value>
+            The default timeout to wait for new messages.
             </value>
         </member>
         <member name="T:NvdaTestingDriver.Settings.NvdaDriverOptionsWriter">
@@ -3872,6 +3960,47 @@
             </value>
             <remarks>Currently this settings will have no effect on returned text, but will be implemented in the future.</remarks>
         </member>
+        <member name="T:NvdaTestingDriver.Settings.VisionSettings">
+            <summary>
+            Stores all settings related to vision category
+            </summary>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.VisionSettings.HighlightFocus">
+            <summary>
+            Gets or sets a value indicating whether NVDA should highlight the system focus.
+            Focus Highlight can help to identify the system focus position. This positions are highlighted with a colored rectangle outline.
+            <list type="bullet">
+            <item>Solid blue highlights a combined navigator object and system focus location (e.g. because the navigator object follows the system focus).</item>
+            <item>Dashed blue highlights just the system focus object. Solid pink highlights just the navigator object.</item>
+            </list>
+            </summary>
+            <value>
+              <c>true</c> if NVDA should highlight the focus; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.VisionSettings.HighlightNavigator">
+            <summary>
+            Gets or sets a value indicating whether NVDA should highlight the navegator object position.
+            Navegator object Highlight can help to identify the navigator object position.
+            <list type="bullet">
+            <item>Solid blue highlights a combined navigator object and system focus location (e.g. because the navigator object follows the system focus).</item>
+            <item>Solid pink highlights the navigator object.</item>
+            </list>
+            </summary>
+            <value>
+              <c>true</c> if NVDA should highlight the navigator object; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NvdaTestingDriver.Settings.VisionSettings.HighlightBrowseMode">
+            <summary>
+            Gets or sets a value indicating whether NVDA should highlight the browse mode possition.
+            browse mode Highlight can help to identify the browse mode position. This position are highlighted with a colored rectangle outline
+            (solid yellow highlights the virtual caret used in browse mode, where there is no physical caret such as in web browsers.
+            </summary>
+            <value>
+              <c>true</c> if NVDA should highlight browse mode; otherwise, <c>false</c>.
+            </value>
+        </member>
         <member name="T:NvdaTestingDriver.TrackingDisposable">
             <summary>
             Abstract class to be inherited by classes that want to be disposable asynchronous.
@@ -3883,6 +4012,25 @@
             Initializes a new instance of the <see cref="T:NvdaTestingDriver.TrackingDisposable"/> class.
             </summary>
         </member>
+        <member name="P:NvdaTestingDriver.TrackingDisposable.Logger">
+            <summary>
+            Gets or sets the logger service.
+            </summary>
+            <value>
+            The logger.
+            </value>
+        </member>
+        <member name="M:NvdaTestingDriver.TrackingDisposable.NvdaTestingDriver#Interfaces#ITrackingDisposable#FinishDisposeAsync">
+            <summary>
+            Finishes the dispose asynchronous.
+            </summary>
+            <returns>The task associated to this operation</returns>
+        </member>
+        <member name="M:NvdaTestingDriver.TrackingDisposable.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
         <member name="M:NvdaTestingDriver.TrackingDisposable.FinishDispose">
             <summary>
             Finishes the dispose.
@@ -3892,25 +4040,14 @@
             <summary>
             Finishes the dispose asynchronous.
             </summary>
-            <returns></returns>
-        </member>
-        <member name="M:NvdaTestingDriver.TrackingDisposable.NvdaTestingDriver#Interfaces#ITrackingDisposable#FinishDisposeAsync">
-            <summary>
-            Finishes the dispose asynchronous.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:NvdaTestingDriver.TrackingDisposable.Dispose">
-            <summary>
-            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-            </summary>
+            <returns>The task associated to this operation</returns>
         </member>
         <member name="M:NvdaTestingDriver.TrackingDisposable.Track(System.Func{System.Threading.Tasks.Task})">
             <summary>
             Tracks the specified function.
             </summary>
             <param name="func">The function.</param>
-            <returns></returns>
+            <returns>The task associated to this operation</returns>
             <exception cref="T:System.ObjectDisposedException">TrackingDisposable</exception>
         </member>
         <member name="M:NvdaTestingDriver.TrackingDisposable.Track``1(System.Func{System.Threading.Tasks.Task{``0}})">
@@ -3919,8 +4056,14 @@
             </summary>
             <typeparam name="TResult">The type of the result.</typeparam>
             <param name="func">The function.</param>
-            <returns></returns>
+            <returns>The task associated to this operation</returns>
             <exception cref="T:System.ObjectDisposedException">TrackingDisposable</exception>
+        </member>
+        <member name="T:NvdaTestingDriver.TrackingDisposer">
+            <summary>
+            Keeps track of all tasks in progress, to ensure that they have all been completed before releasing the resources associated with them.
+            </summary>
+            <seealso cref="T:System.IDisposable" />
         </member>
         <member name="M:NvdaTestingDriver.TrackingDisposer.#ctor(NvdaTestingDriver.Interfaces.ITrackingDisposable)">
             <summary>
@@ -3947,7 +4090,7 @@
             </summary>
             <param name="func">The function.</param>
             <param name="result">The result.</param>
-            <returns></returns>
+            <returns><c>true</c> if the task is being tracked; <c>false, otherwise</c></returns>
         </member>
         <member name="M:NvdaTestingDriver.TrackingDisposer.Track``1(System.Func{System.Threading.Tasks.Task{``0}},System.Threading.Tasks.Task{``0}@)">
             <summary>
@@ -3957,7 +4100,7 @@
             <typeparam name="TResult">The type of the result.</typeparam>
             <param name="func">The function.</param>
             <param name="result">The result.</param>
-            <returns></returns>
+            <returns>The task associated to this operation.</returns>
         </member>
         <member name="M:NvdaTestingDriver.TrackingDisposer.Dispose">
             <summary>

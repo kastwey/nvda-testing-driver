@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>netcoreapp3.0</TargetFramework>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
 	</PropertyGroup>
 
 	<ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -10,11 +10,13 @@
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<PackageReference Include="NvdaTestingDriver" Version="0.5.0-beta" />
+		<PackageReference Include="NvdaTestingDriver" Version="0.6.0-beta" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="LoggingAdvanced.Console" Version="0.4.1" />
+	  <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.3" />
+	  <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.3" />
 	</ItemGroup>
 
 </Project>

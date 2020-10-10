@@ -1,12 +1,16 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-
+using Microsoft.Extensions.Logging;
 using NvdaTestingDriver.Interfaces;
 
 namespace NvdaTestingDriver
 {
-	public class TrackingDisposer : IDisposable
+	/// <summary>
+	/// Keeps track of all tasks in progress, to ensure that they have all been completed before releasing the resources associated with them.
+	/// </summary>
+	/// <seealso cref="System.IDisposable" />
+	public sealed class TrackingDisposer : IDisposable
 	{
 		private readonly LinkedList<Task> _tasks = new LinkedList<Task>();
 
@@ -31,13 +35,15 @@ namespace NvdaTestingDriver
 		/// </value>
 		public bool IsDisposed { get; private set; } = false;
 
+		internal ILogger Logger { get; set; }
+
 		/// <summary>
 		/// Add a task to the tracking list, returns false if disposed
 		/// without a return value
 		/// </summary>
 		/// <param name="func">The function.</param>
 		/// <param name="result">The result.</param>
-		/// <returns></returns>
+		/// <returns><c>true</c> if the task is being tracked; <c>false, otherwise</c></returns>
 		public bool Track(Func<Task> func, out Task result)
 		{
 			if (func is null)
@@ -49,26 +55,36 @@ namespace NvdaTestingDriver
 			{
 				if (IsDisposed)
 				{
+					Logger.LogTrace("The object is being disposed. The task won't be executed. Exiting.");
 					result = null;
 					return false;
 				}
 
 				var task = func();
+#pragma warning disable S1854 // Unused assignments should be removed. The node is used in local function.
 				var node = _tasks.AddFirst(task);
+#pragma warning restore S1854 // Unused assignments should be removed
 
 				async Task Ending()
 				{
-					await task;
-					var dispose = false;
-					lock (_tasks)
+					try
 					{
-						_tasks.Remove(node);
-						dispose = IsDisposed && _tasks.Count == 0;
+						await task;
 					}
-
-					if (dispose)
+					finally
 					{
-						await _target.FinishDisposeAsync();
+						var dispose = false;
+						lock (_tasks)
+						{
+							_tasks.Remove(node);
+							dispose = IsDisposed && _tasks.Count == 0;
+						}
+
+						if (dispose)
+						{
+							Logger.LogTrace("The object has been disposed (0 tasks pending to finish). Disposing driver...");
+							await _target.FinishDisposeAsync();
+						}
 					}
 				}
 
@@ -85,36 +101,50 @@ namespace NvdaTestingDriver
 		/// <typeparam name="TResult">The type of the result.</typeparam>
 		/// <param name="func">The function.</param>
 		/// <param name="result">The result.</param>
-		/// <returns></returns>
+		/// <returns>The task associated to this operation.</returns>
 		public bool Track<TResult>(Func<Task<TResult>> func, out Task<TResult> result)
 		{
+			if (func is null)
+			{
+				throw new ArgumentNullException(nameof(func));
+			}
+
+
 			lock (_tasks)
 			{
 				if (IsDisposed)
 				{
+					Logger.LogTrace("The object is being disposed. The task won't be executed. Exiting.");
 					result = null;
 					return false;
 				}
 
 				var task = func();
+#pragma warning disable S1854 // Unused assignments should be removed. The node is used in local function.
 				var node = _tasks.AddFirst(task);
+#pragma warning restore S1854 // Unused assignments should be removed
 
 				async Task<TResult> Ending()
 				{
-					var res = await task;
-					var dispose = false;
-					lock (_tasks)
+					try
 					{
-						_tasks.Remove(node);
-						dispose = IsDisposed && _tasks.Count == 0;
+						return await task;
 					}
-
-					if (dispose)
+					finally
 					{
-						await _target.FinishDisposeAsync();
-					}
+						var dispose = false;
+						lock (_tasks)
+						{
+							_tasks.Remove(node);
+							dispose = IsDisposed && _tasks.Count == 0;
+						}
 
-					return res;
+						if (dispose)
+						{
+							Logger.LogTrace("The object has been disposed (0 tasks pending to finish). Disposing driver...");
+							await _target.FinishDisposeAsync();
+						}
+					}
 				}
 
 				result = Ending();
@@ -129,20 +159,24 @@ namespace NvdaTestingDriver
 		public void Dispose()
 		{
 			var dispose = false;
+			Logger.LogTrace("TrackingDisposer: Starting to dispose...");
 
 			lock (_tasks)
 			{
 				if (IsDisposed)
 				{
+					Logger.LogTrace("TrackingDisposer: The object has alreade been disposed.");
 					return;
 				}
 
 				IsDisposed = true;
+				Logger.LogTrace($"There are {_tasks.Count} tasks pending to finish.");
 				dispose = _tasks.Count == 0;
 			}
 
 			if (dispose)
 			{
+				Logger.LogTrace("All tasks finished. Disposing driver.");
 				_target.FinishDisposeAsync();
 			}
 		}

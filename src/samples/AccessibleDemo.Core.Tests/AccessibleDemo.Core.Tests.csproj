@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
-		<TargetFramework>netcoreapp2.1</TargetFramework>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
 
 		<IsPackable>false</IsPackable>
 
@@ -17,25 +17,30 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.3.0" />
-		<PackageReference Include="MSTest.TestAdapter" Version="2.0.0" />
-		<PackageReference Include="MSTest.TestFramework" Version="2.0.0" />
-		<PackageReference Include="Selenium.Chrome.WebDriver" Version="77.0.0" />
-		<PackageReference Include="Selenium.Firefox.WebDriver" Version="0.24.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="3.1.8" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
+		<PackageReference Include="MSTest.TestAdapter" Version="2.1.2" />
+		<PackageReference Include="MSTest.TestFramework" Version="2.1.2" />
+		<PackageReference Include="Selenium.Chrome.WebDriver" Version="85.0.0" />
+		<PackageReference Include="Selenium.Firefox.WebDriver" Version="0.27.0" />
 		<PackageReference Include="Selenium.Support" Version="3.141.0" />
 		<PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<PackageReference Include="NvdaTestingDriver" Version="0.5.0-beta" />
-		<PackageReference Include="NvdaTestingDriver.MSTest" Version="0.5.0-beta" />
-		<PackageReference Include="NvdaTestingDriver.Selenium" Version="0.5.0-beta" />
+		<PackageReference Include="NvdaTestingDriver" Version="0.6.0-beta" />
+		<PackageReference Include="NvdaTestingDriver.MSTest" Version="0.6.0-beta" />
+		<PackageReference Include="NvdaTestingDriver.Selenium" Version="0.6.0-beta" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<ProjectReference Include="..\..\NvdaTestingDriver.MSTest\NvdaTestingDriver.MSTest.csproj" />
 		<ProjectReference Include="..\..\NvdaTestingDriver.Selenium\NvdaTestingDriver.Selenium.csproj" />
 		<ProjectReference Include="..\..\NvdaTestingDriver\NvdaTestingDriver.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\AccessibleDemo\AccessibleDemo.csproj" />
 	</ItemGroup>
 
 </Project>

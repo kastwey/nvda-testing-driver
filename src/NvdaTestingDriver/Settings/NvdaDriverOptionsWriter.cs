@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2019 Juan José Montiel
+// Copyright (C) 2020 Juan José Montiel
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -8,9 +8,10 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 
-using System.Globalization;
 using System.IO;
+
 using System.Text;
+
 using NvdaTestingDriver.Extensions;
 
 namespace NvdaTestingDriver.Settings
@@ -41,7 +42,7 @@ namespace NvdaTestingDriver.Settings
 			var progressBarOutputModeStr = (progressBarOutputModeOpt & ProgressBarOutputModes.Beep) == ProgressBarOutputModes.Beep
 				&& (progressBarOutputModeOpt & ProgressBarOutputModes.Speak) == ProgressBarOutputModes.Speak ?
 				"both" : progressBarOutputModeOpt.ToString().ToLowerInvariant();
-			string iniFileContent = $@"schemaVersion = 2
+			var iniFileContent = $@"schemaVersion = 3
 [development]
 [upgrade]
 [update]
@@ -63,22 +64,17 @@ namespace NvdaTestingDriver.Settings
 	trustVoiceLanguage = False
 	includeCLDR = {_nvdaDriverOptions.SpeechSettings.IncludeUnicodeDescriptions.ToFirstCapitalizedString()}
 	symbolLevel = {GetSymbolLevel()}
-	[[oneCore]]
-		voice = HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech_OneCore\Voices\Tokens\MSTTS_V110_esES_PabloM
-		volume = 100
-		rate = 80
 	[[silence]]
 		sayCapForCapitals = {_nvdaDriverOptions.SpeechSettings.SayCapForCapitals.ToFirstCapitalizedString()}
-	[[espeak]]
-		voice = es
-		variant = max
-		rate = 100
-		pitch = 40
-		inflection = 75
-		volume = 100
 [braille]
 	[[noBraille]]
 		port = """"
+[vision]
+	[[NVDAHighlighter]]
+		highlightFocus = {_nvdaDriverOptions.VisionSettings.HighlightFocus.ToFirstCapitalizedString()}
+		highlightNavigator = {_nvdaDriverOptions.VisionSettings.HighlightNavigator.ToFirstCapitalizedString()}
+		highlightBrowseMode = {_nvdaDriverOptions.VisionSettings.HighlightBrowseMode.ToFirstCapitalizedString()}
+	[[screenCurtain]]
 [keyboard]
 	keyboardLayout = {(_nvdaDriverOptions.KeyboardSettings.KeyboardLayout == KeyboardLayout.Desktop ? "desktop" : "laptop")}
 	useCapsLockAsNVDAModifierKey = {_nvdaDriverOptions.KeyboardSettings.UseCapsLockAsNVDAModifierKey.ToFirstCapitalizedString()}

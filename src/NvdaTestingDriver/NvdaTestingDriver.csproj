@@ -5,33 +5,40 @@
 		<RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>NvdaTestingDriver</PackageId>
-		<Version>0.5.0-beta</Version>		 
+		<Version>0.6.0-beta</Version>		 
 		<Authors>Juan José Montiel</Authors>
 		<Company>Juan José Montiel</Company>
-		<Description>Create functional accessibility tests using the NVDA screen reader. Control NVDA from .Net, intercept their voice responses and check that your controls are working properly, as if you were using the screen reader directly. You can use this package not only for web accessibility testing, but also for testing desktop applications.</Description>
-		<Copyright>2018-2019</Copyright>
+		<Description>Create functional accessibility tests using the NVDA screen reader. Control NVDA from .Net, intercept its voice responses and check that your controls are working properly, as if you were using the screen reader directly. You can use this package not only for web accessibility testing, but also for testing desktop applications.</Description>
+		<Copyright>2018-2020</Copyright>
 		<PackageLicenseFile>License.md</PackageLicenseFile>
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<AssemblyVersion>0.5.0.0</AssemblyVersion>
+		<AssemblyVersion>0.6.0.0</AssemblyVersion>
 	</PropertyGroup>
 	<PropertyGroup>
 		<DocumentationFile>NvdaTestingDriver.xml</DocumentationFile>
 	</PropertyGroup>
 	<PropertyGroup>
 		<CodeAnalysisRuleSet>..\ca.ruleset</CodeAnalysisRuleSet>
-		<FileVersion>0.5.0.0</FileVersion>
+		<FileVersion>0.6.0.0</FileVersion>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageProjectUrl>https://github.com/kastwey/nvda-testing-driver</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/kastwey/nvda-testing-driver</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>accessibility,accessibilityTesting,NVDA,ScreenReader,FunctionalAccessibilityTest,AutomationTest,UIA,MSAA</PackageTags>
 		<PackageReleaseNotes>
+			V 0.6.0:
+			- 			Updated NVDA to version 2019.3.1.
+			- 			Updated NvdaRemote to version 2.3.
+			- 			Updated Net Core test project to .Net Core 3.1.
+			- 			Added new NVDA options about focus highlighting.
+			- 			Fixed errors when disposing the driver.
+
 			V 0.5.0:
 			- 			Updated NVDA to version 2019.2.1.
 			- 			Added loggin with ILoggerFactory. It will be obtained from the NvdaOptions object, or if it doesn't exist, the package will create it automatically.
-			
+
 			V 0.4.0:
 			- UPdated NVDA version to 2019.2.
 
@@ -70,19 +77,19 @@
 		</EmbeddedResource>
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.6">
+		<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="2.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.0" />
-		<PackageReference Include="Microsoft.Win32.Registry" Version="4.5.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.3" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.0.0" />
+		<PackageReference Include="Microsoft.Win32.Registry" Version="4.7.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
 		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
+		<PackageReference Include="System.Runtime.Extensions" Version="4.3.1" />
 	</ItemGroup>
 </Project>

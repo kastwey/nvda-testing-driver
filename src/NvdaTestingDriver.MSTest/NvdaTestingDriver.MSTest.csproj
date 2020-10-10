@@ -3,12 +3,12 @@
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Version>0.5.0-beta</Version>
+		<Version>0.6.0-beta</Version>
 		<Authors>Juan José Montiel Pérez</Authors>
 		<Description>This package contain classes to use MSTest with NvdaTestingDriver package.</Description>
 		<Copyright>2018-2019</Copyright>
 		<PackageLicenseFile>License.md</PackageLicenseFile>
-		<AssemblyVersion>0.5.0.0</AssemblyVersion>
+		<AssemblyVersion>0.6.0.0</AssemblyVersion>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageProjectUrl>https://github.com/kastwey/nvda-testing-driver/</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/kastwey/nvda-testing-driver/</RepositoryUrl>
@@ -38,16 +38,16 @@
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<PackageReference Include="NvdaTestingDriver" Version="0.5.0-beta" />
+		<PackageReference Include="NvdaTestingDriver" Version="0.6.0-beta" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.3">
+		<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="MSTest.TestFramework" Version="1.1.11" />
-		<PackageReference Include="StyleCop.Analyzers" Version="1.1.1-rc.94">
+		<PackageReference Include="MSTest.TestFramework" Version="2.1.0" />
+		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>

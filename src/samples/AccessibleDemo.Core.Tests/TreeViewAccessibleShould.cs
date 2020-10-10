@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NvdaTestingDriver;
 using NvdaTestingDriver.MSTest;
 using NvdaTestingDriver.Selenium.Extensions;
@@ -17,7 +17,7 @@ namespace AccessibleDemo.Core.Tests
 		{
 			// arrange
 			TestHelper.WebDriverWrapper.SetBrowserWindowForeground();
-			TestHelper.WebDriver.Navigate().GoToUrl("https://localhost:5001/home/TreeViewExample");
+			TestHelper.WebDriver.Navigate().GoToUrl("http://localhost:5000/home/TreeViewExample");
 			TestHelper.WebDriver.FocusOnWindow();
 			TestHelper.WebDriver.Focus(TestHelper.WebDriver.FindElement(By.Id("lnkWcag")));
 

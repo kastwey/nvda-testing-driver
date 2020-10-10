@@ -1,25 +1,29 @@
-﻿using LoggingAdvanced.Console;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
+using Microsoft.Extensions.Logging;
+
 namespace NvdaTestingDriver.ConsoleTests
 {
-	class Program
+	static class Program
 	{
-		static async Task Main(string[] args)
+		static async Task Main()
 		{
 			using (var nvdaDriver = new NvdaDriver(opt =>
 			{
-				opt.LoggerFactory = new LoggerFactory()
-								.AddConsoleAdvanced(LogLevel.Debug)
-								.AddDebug(LogLevel.Debug);
+				opt.LoggerFactory = LoggerFactory.Create(builder =>
+				{
+					builder.AddFilter("NvdaTestingDriver", LogLevel.Trace);
+					builder.AddConsole()
+					.AddDebug();
+				});
+				opt.EnableLogging = true;
 			}))
 			{
 				try
 				{
 					await nvdaDriver.ConnectAsync();
-					Console.WriteLine(await nvdaDriver.SendCommandAndGetSpokenTextAsync(NvdaTestingDriver.Commands.NvdaCommands.NavigatingSystemFocusCommands.ReportTitle));
+					Console.WriteLine(await nvdaDriver.SendCommandAndGetSpokenTextAsync(NvdaTestingDriver.Commands.NvdaCommands.NavigatingSystemFocusCommands.ReportTitle, TimeSpan.FromSeconds(10)));
 				}
 				catch (Exception ex)
 				{

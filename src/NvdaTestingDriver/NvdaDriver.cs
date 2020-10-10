@@ -646,7 +646,7 @@ namespace NvdaTestingDriver
 				}
 				catch (Exception ex)
 				{
-					Logger.LogError("Error when receiving messages from ssl stream.", ex);
+					Logger.LogError(ex, "Error when receiving messages from ssl stream.");
 				}
 			});
 		}

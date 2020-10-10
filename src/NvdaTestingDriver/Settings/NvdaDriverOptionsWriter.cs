@@ -58,7 +58,7 @@ namespace NvdaTestingDriver.Settings
 	playStartAndExitSounds = {_nvdaDriverOptions.GeneralSettings.PlayStartAndExitSounds.ToFirstCapitalizedString()}
 	loggingLevel = DEBUG
 [speech]
-	synth = oneCore
+	synth = silence
 	autoLanguageSwitching = {_nvdaDriverOptions.SpeechSettings.AutoLanguageSwitching.ToFirstCapitalizedString()}
 	autoDialectSwitching = {_nvdaDriverOptions.SpeechSettings.AutoDialectSwitching.ToFirstCapitalizedString()}
 	trustVoiceLanguage = False

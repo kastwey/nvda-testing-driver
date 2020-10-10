@@ -3,13 +3,13 @@
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Version>0.6.0-beta</Version>
+		<Version>0.7.0-beta</Version>
 		<Authors>Juan José Montiel Pérez</Authors>
 		<Company>Juan José Montiel Pérez</Company>
 		<Description>This package contains extensions to use NvdaTestingDriver with Selenium WebDriver. NVDA needs the browser window to be in the foreground, and it also needs any element to take the focus in order to analyze it. This package includes functions to do both.</Description>
 		<Copyright>2018-2019</Copyright>
 		<PackageLicenseFile>License.md</PackageLicenseFile>
-		<AssemblyVersion>0.6.0.0</AssemblyVersion>
+		<AssemblyVersion>0.7.0.0</AssemblyVersion>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageProjectUrl>https://github.com/kastwey/nvda-testing-driver</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/kastwey/nvda-testing-driver</RepositoryUrl>

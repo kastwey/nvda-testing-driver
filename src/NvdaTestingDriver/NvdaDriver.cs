@@ -608,11 +608,7 @@ namespace NvdaTestingDriver
 						var bytes = -1;
 						do
 						{
-							if (token.IsCancellationRequested)
-							{
-								return;
-							}
-
+							token.ThrowIfCancellationRequested();
 							if (!_sslStream.CanRead)
 							{
 								return;
@@ -633,16 +629,16 @@ namespace NvdaTestingDriver
 							messageData.Append(chars);
 						}
 						while (bytes == buffer.Length && token.IsCancellationRequested);
-						if (token.IsCancellationRequested)
-						{
-							Logger.LogTrace("Task ReceivingMessages. Exiting. The cancellation token is canceled.");
-							return;
-						}
-
+						token.ThrowIfCancellationRequested();
 						var message = messageData.ToString();
 						ParseMessage(message);
 						OnDataReceibed?.Invoke(this, message);
 					}
+				}
+				catch (OperationCanceledException)
+				{
+					Logger.LogInformation("The receiving task is canceled.");
+					return;
 				}
 				catch (Exception ex)
 				{

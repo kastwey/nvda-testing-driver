@@ -39,11 +39,11 @@ using NvdaTestingDriver.Settings;
 
 namespace NvdaTestingDriver
 {
- /// <summary>
- /// The main class of the package, which includes all the functionality needed to handle NVDA,
- /// send commands and get the textual response of it.
- /// </summary>
- /// <seealso cref="System.IDisposable" />
+	/// <summary>
+	/// The main class of the package, which includes all the functionality needed to handle NVDA,
+	/// send commands and get the textual response of it.
+	/// </summary>
+	/// <seealso cref="System.IDisposable" />
 	public sealed class NvdaDriver : TrackingDisposable
 	{
 		private const string SetConnectionMsg = "{\"connection_type\": \"master\", \"type\": \"join\", \"channel\": \"NvdaRemote\"}\n";
@@ -586,18 +586,21 @@ namespace NvdaTestingDriver
 		{
 			token.Register(() =>
 			{
+				Logger.LogTrace("The token has been cancelled. Closing and disposing remote connection objects...");
 				_sslStream.Close();
 				_sslStream.Dispose();
 				_networkStream.Close();
 				_networkStream.Dispose();
 				_tcpClient.Close();
 				_tcpClient.Dispose();
+				Logger.LogTrace("network objects closed and disposed.");
 			});
 			Logger.LogTrace("Starting background task to read NVDA messages from TCP...");
 			_taskReceivingMessages = Task.Run(async () =>
 			{
 				while (!token.IsCancellationRequested)
 				{
+					Logger.LogTrace("Reading information from SSL stream...");
 					var buffer = new byte[1024];
 					var messageData = new StringBuilder();
 					var bytes = -1;
@@ -1019,6 +1022,7 @@ namespace NvdaTestingDriver
 			_cancellationTokenSource.Cancel();
 			if (_taskReceivingMessages != null)
 			{
+				Logger.LogTrace("Waiting for canceling all task of receiving messages.");
 				await Task.WhenAll(_taskReceivingMessages);
 			}
 

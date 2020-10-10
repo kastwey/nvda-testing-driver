@@ -11,6 +11,8 @@
 using System;
 using System.Runtime.InteropServices;
 
+using NvdaTestingDriver.Selenium.Exceptions;
+
 namespace NvdaTestingDriver.Selenium
 {
 	internal static class NativeMethods
@@ -43,22 +45,44 @@ namespace NvdaTestingDriver.Selenium
 		[DllImport("user32.dll")]
 		public static extern bool ShowWindow(IntPtr hWnd, uint nCmdShow);
 
-		public static bool ForceForegroundWindow(IntPtr hWnd)
+  /// <summary>
+  /// Forces a windows to be bringt to foreground.
+  /// </summary>
+  /// <param name="hWnd">The h WND.</param>
+  /// <returns></returns>
+  public static bool ForceForegroundWindow(IntPtr hWnd)
 		{
-			uint foreThread = GetWindowThreadProcessId(GetForegroundWindow(), IntPtr.Zero);
-			uint appThread = GetCurrentThreadId();
-			const uint SW_SHOW = 5;
-			if (foreThread != appThread)
+			try
 			{
-				AttachThreadInput(foreThread, appThread, true);
-				BringWindowToTop(hWnd);
-				ShowWindow(hWnd, SW_SHOW);
-				AttachThreadInput(foreThread, appThread, false);
+				uint foreThread = GetWindowThreadProcessId(GetForegroundWindow(), IntPtr.Zero);
+				uint appThread = GetCurrentThreadId();
+				const uint SW_SHOW = 5;
+				if (foreThread != appThread)
+				{
+					EnsureFuncReturnsTrue(() => AttachThreadInput(foreThread, appThread, true));
+					EnsureFuncReturnsTrue(() => BringWindowToTop(hWnd));
+					EnsureFuncReturnsTrue(() => ShowWindow(hWnd, SW_SHOW));
+					EnsureFuncReturnsTrue(() => AttachThreadInput(foreThread, appThread, false));
+				}
+				else
+				{
+					EnsureFuncReturnsTrue(() => BringWindowToTop(hWnd));
+					EnsureFuncReturnsTrue(() => ShowWindow(hWnd, SW_SHOW));
+				}
+				return true;
 			}
-			else
+			catch (UnexpectedResultException)
 			{
-				BringWindowToTop(hWnd);
-				ShowWindow(hWnd, SW_SHOW);
+				return false;
+			}
+		}
+
+		private static void EnsureFuncReturnsTrue(Func<bool> action)
+		{
+			var result = action();
+			if (!result)
+			{
+				throw new UnexpectedResultException("The function returned false. Expected: true.");
 			}
 		}
 	}

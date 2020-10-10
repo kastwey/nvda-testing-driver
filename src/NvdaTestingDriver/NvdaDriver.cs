@@ -598,47 +598,55 @@ namespace NvdaTestingDriver
 			Logger.LogTrace("Starting background task to read NVDA messages from TCP...");
 			_taskReceivingMessages = Task.Run(async () =>
 			{
-				while (!token.IsCancellationRequested)
+				try
 				{
-					Logger.LogTrace("Reading information from SSL stream...");
-					var buffer = new byte[1024];
-					var messageData = new StringBuilder();
-					var bytes = -1;
-					do
+					while (!token.IsCancellationRequested)
 					{
+						Logger.LogTrace("Reading information from SSL stream...");
+						var buffer = new byte[1024];
+						var messageData = new StringBuilder();
+						var bytes = -1;
+						do
+						{
+							if (token.IsCancellationRequested)
+							{
+								return;
+							}
+
+							if (!_sslStream.CanRead)
+							{
+								return;
+							}
+
+							// Read the client's test message.
+							Logger.LogTrace("Requesting more bytes from ssl stream...");
+							bytes = await _sslStream.ReadAsync(buffer, 0, buffer.Length, token);
+							Logger.LogTrace($"Read {bytes} bytes from ssl stream.");
+
+							// Use Decoder class to convert from bytes to UTF8
+							// in case a character spans two buffers.
+							var decoder = Encoding.UTF8.GetDecoder();
+							var chars = new char[decoder.GetCharCount(buffer, 0, bytes)];
+							decoder.GetChars(buffer, 0, bytes, chars, 0);
+							Logger.LogTrace($"String received: \"{new string(chars)}\".");
+
+							messageData.Append(chars);
+						}
+						while (bytes == buffer.Length && token.IsCancellationRequested);
 						if (token.IsCancellationRequested)
 						{
+							Logger.LogTrace("Task ReceivingMessages. Exiting. The cancellation token is canceled.");
 							return;
 						}
 
-						if (!_sslStream.CanRead)
-						{
-							return;
-						}
-
-						// Read the client's test message.
-						Logger.LogTrace("Requesting more bytes from ssl stream...");
-						bytes = await _sslStream.ReadAsync(buffer, 0, buffer.Length, token);
-						Logger.LogTrace($"Read {bytes} bytes from ssl stream.");
-
-						// Use Decoder class to convert from bytes to UTF8
-						// in case a character spans two buffers.
-						var decoder = Encoding.UTF8.GetDecoder();
-						var chars = new char[decoder.GetCharCount(buffer, 0, bytes)];
-						decoder.GetChars(buffer, 0, bytes, chars, 0);
-						Logger.LogTrace($"String received: \"{new string(chars)}\".");
-
-						messageData.Append(chars);
+						var message = messageData.ToString();
+						ParseMessage(message);
+						OnDataReceibed?.Invoke(this, message);
 					}
-					while (bytes == buffer.Length && token.IsCancellationRequested);
-					if (token.IsCancellationRequested)
-					{
-						return;
-					}
-
-					var message = messageData.ToString();
-					ParseMessage(message);
-					OnDataReceibed?.Invoke(this, message);
+				}
+				catch (Exception ex)
+				{
+					Logger.LogError("Error when receiving messages from ssl stream.", ex);
 				}
 			});
 		}

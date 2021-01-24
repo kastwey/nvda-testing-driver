@@ -103,7 +103,7 @@ namespace AccessibleDemo.Core.Tests
 
 			try
 			{
-				WebDriver.Dispose();
+				WebDriver?.Dispose();
 			}
 			catch
 			{

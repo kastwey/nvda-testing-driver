@@ -21,7 +21,7 @@ namespace AccessibleDemo.Core.Tests
 			var url = TestHelper.SeleniumServerFactory.RootUri + "/home/contact";
 			TestHelper.WebDriver.Navigate().GoToUrl(url);
 			TestHelper.WebDriver.FocusOnWindow();
-			var res = await TestHelper.NvdaDriver.SendKeyCombinationsAndGetSpokenTextAsync(new KeyCombination(new List<Key> { Key.Control, Key.Home }));
+			_ = await TestHelper.NvdaDriver.SendKeyCombinationsAndGetSpokenTextAsync(new KeyCombination(new List<Key> { Key.Control, Key.Home }));
 			// Act & asserts
 			string text = await TestHelper.NvdaDriver.SendCommandAndGetSpokenTextAsync(BrowseModeCommands.NextHeading3);
 			NvdaAssert.TextContains(text, "Contact by phone Collapsed link heading  level 3");

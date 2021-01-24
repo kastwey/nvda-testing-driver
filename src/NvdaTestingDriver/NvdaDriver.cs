@@ -39,11 +39,11 @@ using NvdaTestingDriver.Settings;
 
 namespace NvdaTestingDriver
 {
- /// <summary>
- /// The main class of the package, which includes all the functionality needed to handle NVDA,
- /// send commands and get the textual response of it.
- /// </summary>
- /// <seealso cref="System.IDisposable" />
+	/// <summary>
+	/// The main class of the package, which includes all the functionality needed to handle NVDA,
+	/// send commands and get the textual response of it.
+	/// </summary>
+	/// <seealso cref="System.IDisposable" />
 	public sealed class NvdaDriver : TrackingDisposable
 	{
 		private const string SetConnectionMsg = "{\"connection_type\": \"master\", \"type\": \"join\", \"channel\": \"NvdaRemote\"}\n";
@@ -821,7 +821,7 @@ namespace NvdaTestingDriver
 		/// Sends a set of key combinations to NVDA.
 		/// </summary>
 		/// <param name="combinationSet">The combination set.</param>
-		/// <param name="disposing">if set to <c>true</c> [disposing].</param>
+		/// <param name="disposing">if set to <c>true</c>, it means that the object is being disposed, and therefore active task tracking will no longer be used, as the function is being executed as part of the NVDA dispose operation.</param>
 		private async Task SendKeyCombinationSetAsync(List<KeyCombination> combinationSet, bool disposing = false)
 		{
 			foreach (var combination in combinationSet.Where(c => c.Any()))
@@ -834,7 +834,7 @@ namespace NvdaTestingDriver
 		/// Send a command to NVDA without waiting for a response asynchronously.
 		/// </summary>
 		/// <param name="command">The command.</param>
-		/// <param name="disposing">if set to <c>true</c>, it means that the object is being disposed, and therefore active task tracking will no longer be used, as the function is being executed as part of the NVDA dispose..</param>
+		/// <param name="disposing">if set to <c>true</c>, it means that the object is being disposed, and therefore active task tracking will no longer be used, as the function is being executed as part of the NVDA dispose operation..</param>
 		/// <returns>
 		/// The task associated to this operation
 		/// </returns>
@@ -886,7 +886,7 @@ namespace NvdaTestingDriver
 		/// <summary>
 		/// Sends a keystroke sequence  to NVDA asynchronously.
 		/// </summary>
-		/// <param name="disposing">if set to <c>true</c>, it means that the object is being disposed, and therefore active task tracking will no longer be used, as the function is being executed as part of the NVDA dispose..</param>
+		/// <param name="disposing">if set to <c>true</c>, it means that the object is being disposed, and therefore active task tracking will no longer be used, as the function is being executed as part of the NVDA dispose operation.</param>
 		/// <param name="keys">The keys.</param>
 		/// <returns>
 		/// The task associated to this operation
@@ -1002,9 +1002,8 @@ namespace NvdaTestingDriver
 			await WriteMessageAsync(SetConnectionMsg);
 		}
 
-		/// <summary>
-		/// Disconnects the driver asynchronously, shutting down the NVDA instance.
-		/// </summary>
+		/// <summary>Disconnects the driver asynchronously, shutting down the NVDA instance.</summary>
+		/// <param name="disposing">if set to <c>true</c>, it means that the object is being disposed, and therefore active task tracking will no longer be used, as the function is being executed as part of the NVDA dispose operation.</param>
 		/// <returns>The task associated to this operation.</returns>
 		private async Task DisconnectInternalAsync(bool disposing = false)
 		{
@@ -1019,21 +1018,48 @@ namespace NvdaTestingDriver
 			_cancellationTokenSource.Cancel();
 			if (_taskReceivingMessages != null)
 			{
-				await Task.WhenAll(_taskReceivingMessages);
+				Logger.LogTrace("Waiting for the task of receiving messages to be completed...");
+				try
+				{
+					await Task.WhenAny(Task.WhenAll(_taskReceivingMessages), Task.Delay(3000));
+					if (!new TaskStatus[] { TaskStatus.RanToCompletion, TaskStatus.Canceled }.Contains(_taskReceivingMessages.Status))
+					{
+						Logger.LogWarning($"The task of receiving messages could not be completed. Status: {_taskReceivingMessages.Status}.");
+						try
+						{
+							_taskReceivingMessages.Dispose();
+						}
+						catch (Exception exDisposingTask)
+						{
+							Logger.LogError(exDisposingTask, "Error when disposing the task of receiving messages.");
+						}
+					}
+				}
+				catch (Exception taskException)
+				{
+					Logger.LogError(taskException, "Error when receive messages from NVDA when disconnecting.");
+				}
 			}
 
 			_cancellationTokenSource?.Dispose();
 			Logger.LogTrace("Waiting to NVDA for exiting...");
 			_nvdaProcess?.WaitForExit(10000);
-			try
+			if (!_nvdaProcess.HasExited)
 			{
-				Logger.LogTrace("Killing NVDA process (only if the quick command failed)...");
-				_nvdaProcess?.Kill();
-			}
-			catch (Exception ex) when (ex is InvalidOperationException || ex is Win32Exception)
-			{
-				// The process has been closed when exiting due the prior statement (WaitForExit).
-				Logger.LogTrace("The process was already closed by itself.");
+				try
+				{
+					Logger.LogTrace("Killing NVDA process (quick command failed)...");
+					_nvdaProcess?.Kill();
+				}
+				catch (Exception ex) when (ex is InvalidOperationException || ex is Win32Exception)
+				{
+					// The process has been closed when exiting due the prior statement (WaitForExit).
+					Logger.LogTrace("The process was already closed by itself.");
+				}
+				catch (Exception ex)
+				{
+					Logger.LogError(ex, "Error when killing NVDA process.");
+				}
 			}
 
 			_nvdaProcess?.Dispose();

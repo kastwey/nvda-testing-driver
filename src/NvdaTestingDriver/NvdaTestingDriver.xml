@@ -2423,14 +2423,14 @@
             Sends a set of key combinations to NVDA.
             </summary>
             <param name="combinationSet">The combination set.</param>
-            <param name="disposing">if set to <c>true</c> [disposing].</param>
+            <param name="disposing">if set to <c>true</c>, it means that the object is being disposed, and therefore active task tracking will no longer be used, as the function is being executed as part of the NVDA dispose operation.</param>
         </member>
         <member name="M:NvdaTestingDriver.NvdaDriver.SendCommandAsync(NvdaTestingDriver.Commands.INvdaCommand,System.Boolean)">
             <summary>
             Send a command to NVDA without waiting for a response asynchronously.
             </summary>
             <param name="command">The command.</param>
-            <param name="disposing">if set to <c>true</c>, it means that the object is being disposed, and therefore active task tracking will no longer be used, as the function is being executed as part of the NVDA dispose..</param>
+            <param name="disposing">if set to <c>true</c>, it means that the object is being disposed, and therefore active task tracking will no longer be used, as the function is being executed as part of the NVDA dispose operation..</param>
             <returns>
             The task associated to this operation
             </returns>
@@ -2447,7 +2447,7 @@
             <summary>
             Sends a keystroke sequence  to NVDA asynchronously.
             </summary>
-            <param name="disposing">if set to <c>true</c>, it means that the object is being disposed, and therefore active task tracking will no longer be used, as the function is being executed as part of the NVDA dispose..</param>
+            <param name="disposing">if set to <c>true</c>, it means that the object is being disposed, and therefore active task tracking will no longer be used, as the function is being executed as part of the NVDA dispose operation.</param>
             <param name="keys">The keys.</param>
             <returns>
             The task associated to this operation
@@ -2479,9 +2479,8 @@
             <exception cref="T:NvdaTestingDriver.Exceptions.AlreadyConnectedException">Throws if the method has been called before, and the driver is already connected</exception>
         </member>
         <member name="M:NvdaTestingDriver.NvdaDriver.DisconnectInternalAsync(System.Boolean)">
-            <summary>
-            Disconnects the driver asynchronously, shutting down the NVDA instance.
-            </summary>
+            <summary>Disconnects the driver asynchronously, shutting down the NVDA instance.</summary>
+            <param name="disposing">if set to <c>true</c>, it means that the object is being disposed, and therefore active task tracking will no longer be used, as the function is being executed as part of the NVDA dispose operation.</param>
             <returns>The task associated to this operation.</returns>
         </member>
         <member name="M:NvdaTestingDriver.NvdaDriver.GetNextSpokenMessageInternalAsync(System.Func{System.Threading.Tasks.Task},System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">

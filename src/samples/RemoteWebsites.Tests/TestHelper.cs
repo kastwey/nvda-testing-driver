@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NvdaTestingDriver;
@@ -42,7 +42,7 @@ namespace RemoteWebsites.Tests
 			{
 
 				// We started the WebDriver using the UpWebDriver method of the WebDriverWrapper class,
-				// to manage the chrome window, and get to put it in the foreground when necessary.
+				// to manage the firefox window, and get to put it in the foreground when necessary.
 				WebDriver = WebDriverWrapper.UpWebDriver(() =>
 				{
 					var op = new FirefoxOptions
@@ -57,7 +57,7 @@ namespace RemoteWebsites.Tests
 			}
 			catch (Exception ex)
 			{
-				Console.WriteLine($"Error while starting Chrome WebDriver: {ex.Message}");
+				Console.WriteLine($"Error while starting Firefox WebDriver: {ex.Message}");
 				throw;
 			}
 		}

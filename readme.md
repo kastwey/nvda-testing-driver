@@ -98,8 +98,8 @@ This instruction will send the `DownArrow` key to NVDA, wait for NVDA to send a 
 The last step is to close the NVDA connection and quit the screen reader:
 
 ```csharp
-			await NvdaDriver.DisconnectAsync();
-			```
+await NvdaDriver.DisconnectAsync();
+```
 
 This command will disconnect the remote control to NVDA, and then exit the screen reader.
 

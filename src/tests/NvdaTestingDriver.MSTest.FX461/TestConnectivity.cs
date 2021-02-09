@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NvdaTestingDriver.Settings;
 
-namespace NvdaTestingDriver.MSTest.Compatiblity.NetFramework461
+namespace NvdaTestingDriver.MSTest.FX461
 {
 	[TestClass]
 	public class TestConnectivity

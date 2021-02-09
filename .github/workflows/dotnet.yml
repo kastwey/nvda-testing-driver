@@ -2,10 +2,7 @@ name: .NET
 
 on:
   push:
-    branches: [ develop ]
-  pull_request:
-    branches: [ master, develop ]
-
+    branches: [ feature/testing-github-actions ]
 jobs:
   build:
 
@@ -14,8 +11,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore src/NvdaTestingDriver.sln
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore src/NvdaTestingDriver.sln
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal src/NvdaTestingDriver.sln

@@ -12,9 +12,11 @@ jobs:
     - uses: actions/checkout@v2
     - name: Restore dependencies
       run: dotnet restore src/NvdaTestingDriver.sln
-    - name: Build
+    - name: Build sample core
       run: dotnet build --no-restore src/samples/AccessibleDemo.Core.Tests/AccessibleDemo.Core.Tests.csproj
+    name: build console test
       run: dotnet build --no-restore src/NvdaTestingDriver.ConsoleTests/NvdaTestingDriver.ConsoleTests.csproj
-    - name: Test
+    - name: Test sample core
       run: dotnet test --no-build --verbosity normal  src/samples/AccessibleDemo.Core.Tests/AccessibleDemo.Core.Tests.csproj
+    name: test console test
       run: dotnet test --no-build --verbosity normal  src/NvdaTestingDriver.ConsoleTests/NvdaTestingDriver.ConsoleTests.csproj

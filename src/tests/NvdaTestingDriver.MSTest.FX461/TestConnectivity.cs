@@ -3,7 +3,7 @@ using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NvdaTestingDriver.Settings;
 
-namespace NvdaTestingDriver.MSTest.FX461
+namespace NvdaTestingDriver.MSTest.FX472
 {
 	[TestClass]
 	public class TestConnectivity

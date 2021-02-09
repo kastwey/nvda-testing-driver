@@ -13,6 +13,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore src/NvdaTestingDriver.sln
     - name: Build
-      run: dotnet build --no-restore src/NvdaTestingDriver.sln
+      run: dotnet build --no-restore src/samples/AccessibleDemo.Core.Tests/AccessibleDemo.Core.Tests.csproj
     - name: Test
-      run: dotnet test --no-build --verbosity normal src/NvdaTestingDriver.sln
+      run: dotnet test --no-build --verbosity normal  src/samples/AccessibleDemo.Core.Tests/AccessibleDemo.Core.Tests.csproj

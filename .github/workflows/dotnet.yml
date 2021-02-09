@@ -14,5 +14,7 @@ jobs:
       run: dotnet restore src/NvdaTestingDriver.sln
     - name: Build
       run: dotnet build --no-restore src/samples/AccessibleDemo.Core.Tests/AccessibleDemo.Core.Tests.csproj
+      run: dotnet build --no-restore src/NvdaTestingDriver.ConsoleTests/NvdaTestingDriver.ConsoleTests.csproj
     - name: Test
       run: dotnet test --no-build --verbosity normal  src/samples/AccessibleDemo.Core.Tests/AccessibleDemo.Core.Tests.csproj
+      run: dotnet test --no-build --verbosity normal  src/NvdaTestingDriver.ConsoleTests/NvdaTestingDriver.ConsoleTests.csproj

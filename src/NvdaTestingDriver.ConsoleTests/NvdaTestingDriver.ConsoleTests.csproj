@@ -3,14 +3,25 @@
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<Platforms>AnyCPU;x64</Platforms>
 	</PropertyGroup>
 
 	<ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<ProjectReference Include="..\NvdaTestingDriver\NvdaTestingDriver.csproj" />
 	</ItemGroup>
 
+	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+	  <ProjectReference Include="..\NvdaTestingDriver\NvdaTestingDriver.csproj" />
+	</ItemGroup>
+
 	<ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
 		<PackageReference Include="NvdaTestingDriver" Version="0.6.0-beta" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+	  <PackageReference Include="NvdaTestingDriver">
+	    <Version>0.6.0-beta</Version>
+	  </PackageReference>
 	</ItemGroup>
 
 	<ItemGroup>

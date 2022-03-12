@@ -33,7 +33,7 @@ namespace RemoteWebsites.Tests
 			UpWebDriver();
 
 			// Starts the NVDATestingDriver
-			await ConnectNvdaDriverAsync();
+			// await ConnectNvdaDriverAsync();
 		}
 
 		private static void UpWebDriver()

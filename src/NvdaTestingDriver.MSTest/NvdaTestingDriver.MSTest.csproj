@@ -15,10 +15,15 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>nvda,accessibility,ScreenReader,FunctionalTest,testing,MSTest</PackageTags>
 		<NeutralLanguage>en</NeutralLanguage>
+		<Platforms>AnyCPU;x64</Platforms>
 	</PropertyGroup>
 	
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<CodeAnalysisRuleSet>..\ca.ruleset</CodeAnalysisRuleSet>
+	</PropertyGroup>
+	
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+	  <CodeAnalysisRuleSet>..\ca.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -37,8 +42,18 @@
 		<ProjectReference Include="..\NvdaTestingDriver\NvdaTestingDriver.csproj" />
 	</ItemGroup>
 
+	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+	  <ProjectReference Include="..\NvdaTestingDriver\NvdaTestingDriver.csproj" />
+	</ItemGroup>
+
 	<ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
 		<PackageReference Include="NvdaTestingDriver" Version="0.6.0-beta" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+	  <PackageReference Include="NvdaTestingDriver">
+	    <Version>0.6.0-beta</Version>
+	  </PackageReference>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -46,7 +61,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="MSTest.TestFramework" Version="2.1.0" />
+		<PackageReference Include="MSTest.TestFramework" Version="2.2.8" />
 		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>

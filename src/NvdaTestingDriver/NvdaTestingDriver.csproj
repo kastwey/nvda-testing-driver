@@ -11,6 +11,7 @@
 		<Description>Create functional accessibility tests using the NVDA screen reader. Control NVDA from .Net, intercept its voice responses and check that your controls are working properly, as if you were using the screen reader directly. You can use this package not only for web accessibility testing, but also for testing desktop applications.</Description>
 		<Copyright>2018-2020</Copyright>
 		<PackageLicenseFile>License.md</PackageLicenseFile>
+		<Platforms>AnyCPU;x64</Platforms>
 	</PropertyGroup>
 
 	<PropertyGroup>

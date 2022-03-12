@@ -14,10 +14,10 @@ namespace AccessibleDemo.Core.Tests
 	{
 
 		[TestMethod]
-		public async Task CheckContactHeadersReadCollapsiblePannels()
+		public async Task CheckContactHeadersReadCollapsiblePannelsAsync()
 		{
 			// Arrange:
-			TestHelper.WebDriverWrapper.SetBrowserWindowForeground();
+				TestHelper.WebDriverWrapper.SetBrowserWindowForeground();
 			var url = TestHelper.SeleniumServerFactory.RootUri + "/home/contact";
 			TestHelper.WebDriver.Navigate().GoToUrl(url);
 			TestHelper.WebDriver.FocusOnWindow();
@@ -37,7 +37,7 @@ namespace AccessibleDemo.Core.Tests
 		}
 
 		[TestMethod]
-		public async Task CheckContactFormLabelsReadFieldAsEspected()
+		public async Task CheckContactFormLabelsReadFieldAsEspectedAsync()
 		{
 			// Arrange
 			TestHelper.WebDriverWrapper.SetBrowserWindowForeground();

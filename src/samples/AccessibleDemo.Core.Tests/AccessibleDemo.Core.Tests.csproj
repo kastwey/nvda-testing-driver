@@ -6,25 +6,34 @@
 		<IsPackable>false</IsPackable>
 
 		<AssemblyVersion>2.0.0.0</AssemblyVersion>
+
+		<Platforms>AnyCPU;x64</Platforms>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<CodeAnalysisRuleSet></CodeAnalysisRuleSet>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+	  <CodeAnalysisRuleSet />
+	</PropertyGroup>
+
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<CodeAnalysisRuleSet></CodeAnalysisRuleSet>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+	  <CodeAnalysisRuleSet />
+	</PropertyGroup>
+
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="3.1.8" />
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
-		<PackageReference Include="MSTest.TestAdapter" Version="2.1.2" />
-		<PackageReference Include="MSTest.TestFramework" Version="2.1.2" />
-		<PackageReference Include="Selenium.Chrome.WebDriver" Version="85.0.0" />
-		<PackageReference Include="Selenium.Firefox.WebDriver" Version="0.27.0" />
-		<PackageReference Include="Selenium.Support" Version="3.141.0" />
-		<PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+		<PackageReference Include="MSTest.TestAdapter" Version="2.2.8" />
+		<PackageReference Include="MSTest.TestFramework" Version="2.2.8" />
+		<PackageReference Include="Selenium.Support" Version="4.1.0" />
+		<PackageReference Include="Selenium.WebDriver" Version="4.1.0" />
+		<PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="99.0.4844.5100" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -33,10 +42,28 @@
 		<PackageReference Include="NvdaTestingDriver.Selenium" Version="0.6.0-beta" />
 	</ItemGroup>
 
+	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+	  <PackageReference Include="NvdaTestingDriver">
+	    <Version>0.6.0-beta</Version>
+	  </PackageReference>
+	  <PackageReference Include="NvdaTestingDriver.MSTest">
+	    <Version>0.6.0-beta</Version>
+	  </PackageReference>
+	  <PackageReference Include="NvdaTestingDriver.Selenium">
+	    <Version>0.6.0-beta</Version>
+	  </PackageReference>
+	</ItemGroup>
+
 	<ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<ProjectReference Include="..\..\NvdaTestingDriver.MSTest\NvdaTestingDriver.MSTest.csproj" />
 		<ProjectReference Include="..\..\NvdaTestingDriver.Selenium\NvdaTestingDriver.Selenium.csproj" />
 		<ProjectReference Include="..\..\NvdaTestingDriver\NvdaTestingDriver.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+	  <ProjectReference Include="..\..\NvdaTestingDriver.MSTest\NvdaTestingDriver.MSTest.csproj" />
+	  <ProjectReference Include="..\..\NvdaTestingDriver.Selenium\NvdaTestingDriver.Selenium.csproj" />
+	  <ProjectReference Include="..\..\NvdaTestingDriver\NvdaTestingDriver.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

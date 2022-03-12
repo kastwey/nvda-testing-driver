@@ -16,14 +16,23 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>nvda,accessibility,test,testing,functional accessibility tests,selenium,web testing,screen reader,screen reader testing</PackageTags>
 		<NeutralLanguage>en</NeutralLanguage>
+		<Platforms>AnyCPU;x64</Platforms>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<CodeAnalysisRuleSet></CodeAnalysisRuleSet>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+	  <CodeAnalysisRuleSet />
+	</PropertyGroup>
+
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<CodeAnalysisRuleSet>..\ca.ruleset</CodeAnalysisRuleSet>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+	  <CodeAnalysisRuleSet>..\ca.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -42,8 +51,18 @@
 		<ProjectReference Include="..\NvdaTestingDriver\NvdaTestingDriver.csproj" />
 	</ItemGroup>
 
+	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+	  <ProjectReference Include="..\NvdaTestingDriver\NvdaTestingDriver.csproj" />
+	</ItemGroup>
+
 	<ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
 		<PackageReference Include="NvdaTestingDriver" Version="0.6.0-beta" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+	  <PackageReference Include="NvdaTestingDriver">
+	    <Version>0.6.0-beta</Version>
+	  </PackageReference>
 	</ItemGroup>
 
 	<ItemGroup>

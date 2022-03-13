@@ -5,6 +5,7 @@ using NvdaTestingDriver.MSTest;
 using NvdaTestingDriver.Selenium.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AccessibleDemo.Core.Tests
@@ -16,8 +17,9 @@ namespace AccessibleDemo.Core.Tests
 		[TestMethod]
 		public async Task CheckContactHeadersReadCollapsiblePannelsAsync()
 		{
+			Thread.Sleep(10000);
 			// Arrange:
-				TestHelper.WebDriverWrapper.SetBrowserWindowForeground();
+			TestHelper.WebDriverWrapper.SetBrowserWindowForeground();
 			var url = TestHelper.SeleniumServerFactory.RootUri + "/home/contact";
 			TestHelper.WebDriver.Navigate().GoToUrl(url);
 			TestHelper.WebDriver.FocusOnWindow();
@@ -39,6 +41,7 @@ namespace AccessibleDemo.Core.Tests
 		[TestMethod]
 		public async Task CheckContactFormLabelsReadFieldAsEspectedAsync()
 		{
+			Thread.Sleep(10000);
 			// Arrange
 			TestHelper.WebDriverWrapper.SetBrowserWindowForeground();
 			TestHelper.WebDriver.Navigate().GoToUrl("http://localhost:5000/home/contact");

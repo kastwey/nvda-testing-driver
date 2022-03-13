@@ -3,6 +3,8 @@ using NvdaTestingDriver;
 using NvdaTestingDriver.MSTest;
 using NvdaTestingDriver.Selenium.Extensions;
 using OpenQA.Selenium;
+
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AccessibleDemo.Core.Tests
@@ -15,6 +17,8 @@ namespace AccessibleDemo.Core.Tests
 		[TestMethod]
 		public async Task CheckTreeViewInteraction()
 		{
+			Thread.Sleep(10000);
+
 			// arrange
 			TestHelper.WebDriverWrapper.SetBrowserWindowForeground();
 			TestHelper.WebDriver.Navigate().GoToUrl("http://localhost:5000/home/TreeViewExample");

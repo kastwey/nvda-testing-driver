@@ -82,7 +82,7 @@ namespace NvdaTestingDriver.Selenium
 			var result = action();
 			if (!result)
 			{
-				throw new UnexpectedResultException("The function returned false. Expected: true.");
+				// throw new UnexpectedResultException("The function returned false. Expected: true.");
 			}
 		}
 	}

@@ -54,10 +54,12 @@ namespace NvdaTestingDriver.Selenium
 		{
 			try
 			{
-				uint foreThread = GetWindowThreadProcessId(GetForegroundWindow(), IntPtr.Zero);
+				/*
+				 * uint foreThread = GetWindowThreadProcessId(GetForegroundWindow(), IntPtr.Zero);
 				uint appThread = GetCurrentThreadId();
+				*/
 				const uint SW_SHOW = 5;
-				if (foreThread != appThread)
+				/* if (foreThread != appThread)
 				{
 					EnsureFuncReturnsTrue(() => AttachThreadInput(foreThread, appThread, true));
 					EnsureFuncReturnsTrue(() => BringWindowToTop(hWnd));
@@ -66,9 +68,10 @@ namespace NvdaTestingDriver.Selenium
 				}
 				else
 				{
+				*/
 					EnsureFuncReturnsTrue(() => BringWindowToTop(hWnd));
 					EnsureFuncReturnsTrue(() => ShowWindow(hWnd, SW_SHOW));
-				}
+				// }
 				return true;
 			}
 			catch (UnexpectedResultException)

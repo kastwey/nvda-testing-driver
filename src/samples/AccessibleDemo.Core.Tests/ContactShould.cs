@@ -17,7 +17,6 @@ namespace AccessibleDemo.Core.Tests
 		[TestMethod]
 		public async Task CheckContactHeadersReadCollapsiblePannelsAsync()
 		{
-			Thread.Sleep(10000);
 			// Arrange:
 			TestHelper.WebDriverWrapper.SetBrowserWindowForeground();
 			var url = TestHelper.SeleniumServerFactory.RootUri + "/home/contact";

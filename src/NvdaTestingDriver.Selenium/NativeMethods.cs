@@ -10,7 +10,7 @@
 
 using System;
 using System.Runtime.InteropServices;
-
+using System.Windows.Automation;
 using NvdaTestingDriver.Selenium.Exceptions;
 
 namespace NvdaTestingDriver.Selenium
@@ -45,39 +45,47 @@ namespace NvdaTestingDriver.Selenium
 		[DllImport("user32.dll")]
 		public static extern bool ShowWindow(IntPtr hWnd, uint nCmdShow);
 
-  /// <summary>
-  /// Forces a windows to be bringt to foreground.
-  /// </summary>
-  /// <param name="hWnd">The h WND.</param>
-  /// <returns></returns>
-  public static bool ForceForegroundWindow(IntPtr hWnd)
+		/// <summary>
+		/// Forces a windows to be bringt to foreground.
+		/// </summary>
+		/// <param name="hWnd">The h WND.</param>
+		/// <returns></returns>
+		public static bool ForceForegroundWindow(IntPtr hWnd)
 		{
-			try
+			var element = AutomationElement.FromHandle(hWnd);
+			if (element != null)
 			{
-				/*
-				 * uint foreThread = GetWindowThreadProcessId(GetForegroundWindow(), IntPtr.Zero);
-				uint appThread = GetCurrentThreadId();
-				*/
-				const uint SW_SHOW = 5;
-				/* if (foreThread != appThread)
+				TreeWalker walker = new TreeWalker(new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Document));
+				var child = walker.GetFirstChild(element);
+
+				try
 				{
-					EnsureFuncReturnsTrue(() => AttachThreadInput(foreThread, appThread, true));
-					EnsureFuncReturnsTrue(() => BringWindowToTop(hWnd));
-					EnsureFuncReturnsTrue(() => ShowWindow(hWnd, SW_SHOW));
-					EnsureFuncReturnsTrue(() => AttachThreadInput(foreThread, appThread, false));
+					uint foreThread = GetWindowThreadProcessId(GetForegroundWindow(), IntPtr.Zero);
+					uint appThread = GetCurrentThreadId();
+					const uint SW_SHOW = 5;
+					if (foreThread != appThread)
+					{
+						EnsureFuncReturnsTrue(() => AttachThreadInput(foreThread, appThread, true));
+						EnsureFuncReturnsTrue(() => BringWindowToTop(hWnd));
+						EnsureFuncReturnsTrue(() => ShowWindow(hWnd, SW_SHOW));
+						EnsureFuncReturnsTrue(() => AttachThreadInput(foreThread, appThread, false));
+					}
+					else
+					{
+						EnsureFuncReturnsTrue(() => BringWindowToTop(hWnd));
+						EnsureFuncReturnsTrue(() => ShowWindow(hWnd, SW_SHOW));
+					}
+					child.SetFocus();
+
+					return true;
 				}
-				else
+				catch (UnexpectedResultException)
 				{
-				*/
-					EnsureFuncReturnsTrue(() => BringWindowToTop(hWnd));
-					EnsureFuncReturnsTrue(() => ShowWindow(hWnd, SW_SHOW));
-				// }
-				return true;
+					return false;
+				}
 			}
-			catch (UnexpectedResultException)
-			{
-				return false;
-			}
+
+			return false;
 		}
 
 		private static void EnsureFuncReturnsTrue(Func<bool> action)

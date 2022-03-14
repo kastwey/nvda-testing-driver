@@ -50,7 +50,7 @@ namespace NvdaTestingDriver.Selenium
 			WebDriver = webDriverFunc();
 			var processName = GetProcesName(WebDriver);
 			var browserProcesses = Process.GetProcessesByName(processName).Where(p => p.StartTime > processStartTime && !string.IsNullOrWhiteSpace(p.MainWindowTitle)).OrderBy(p => p.StartTime).ToList();
-			var process = browserProcesses.First();
+			var process = browserProcesses.FirstOrDefault();
 			if (process != null)
 			{
 				_browserWindowHandle = process.MainWindowHandle;
@@ -65,6 +65,13 @@ namespace NvdaTestingDriver.Selenium
 		/// </summary>
 		public void SetBrowserWindowForeground()
 		{
+			var window = this.WebDriver.Manage().Window;
+			var position = window.Position;
+			window.Minimize();
+			window.Position = position;
+			window.Maximize();
+			return;
+
 			if (_browserWindowHandle != IntPtr.Zero)
 			{
 				NativeMethods.ForceForegroundWindow(_browserWindowHandle);

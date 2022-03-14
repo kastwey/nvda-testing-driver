@@ -10,7 +10,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using System.Windows.Automation;
 using NvdaTestingDriver.Selenium.Exceptions;
 
 namespace NvdaTestingDriver.Selenium
@@ -52,40 +51,31 @@ namespace NvdaTestingDriver.Selenium
 		/// <returns></returns>
 		public static bool ForceForegroundWindow(IntPtr hWnd)
 		{
-			var element = AutomationElement.FromHandle(hWnd);
-			if (element != null)
+
+			try
 			{
-				TreeWalker walker = new TreeWalker(new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Document));
-				var child = walker.GetFirstChild(element);
-
-				try
+				uint foreThread = GetWindowThreadProcessId(GetForegroundWindow(), IntPtr.Zero);
+				uint appThread = GetCurrentThreadId();
+				const uint SW_SHOW = 5;
+				if (foreThread != appThread)
 				{
-					uint foreThread = GetWindowThreadProcessId(GetForegroundWindow(), IntPtr.Zero);
-					uint appThread = GetCurrentThreadId();
-					const uint SW_SHOW = 5;
-					if (foreThread != appThread)
-					{
-						EnsureFuncReturnsTrue(() => AttachThreadInput(foreThread, appThread, true));
-						EnsureFuncReturnsTrue(() => BringWindowToTop(hWnd));
-						EnsureFuncReturnsTrue(() => ShowWindow(hWnd, SW_SHOW));
-						EnsureFuncReturnsTrue(() => AttachThreadInput(foreThread, appThread, false));
-					}
-					else
-					{
-						EnsureFuncReturnsTrue(() => BringWindowToTop(hWnd));
-						EnsureFuncReturnsTrue(() => ShowWindow(hWnd, SW_SHOW));
-					}
-					child.SetFocus();
-
-					return true;
+					EnsureFuncReturnsTrue(() => AttachThreadInput(foreThread, appThread, true));
+					EnsureFuncReturnsTrue(() => BringWindowToTop(hWnd));
+					EnsureFuncReturnsTrue(() => ShowWindow(hWnd, SW_SHOW));
+					EnsureFuncReturnsTrue(() => AttachThreadInput(foreThread, appThread, false));
 				}
-				catch (UnexpectedResultException)
+				else
 				{
-					return false;
+					EnsureFuncReturnsTrue(() => BringWindowToTop(hWnd));
+					EnsureFuncReturnsTrue(() => ShowWindow(hWnd, SW_SHOW));
 				}
+
+				return true;
 			}
-
-			return false;
+			catch (UnexpectedResultException)
+			{
+				return false;
+			}
 		}
 
 		private static void EnsureFuncReturnsTrue(Func<bool> action)

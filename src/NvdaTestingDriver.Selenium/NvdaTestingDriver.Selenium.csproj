@@ -77,7 +77,4 @@
 		</PackageReference>
 	</ItemGroup>
 
-	<ItemGroup>
-		<FrameworkReference Include="Microsoft.WindowsDesktop.App.WPF"/>
-	</ItemGroup>
 </Project>

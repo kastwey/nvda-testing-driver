@@ -33,7 +33,7 @@ namespace RemoteWebsites.Tests
 			UpWebDriver();
 
 			// Starts the NVDATestingDriver
-			// await ConnectNvdaDriverAsync();
+			await ConnectNvdaDriverAsync();
 		}
 
 		private static void UpWebDriver()
@@ -94,7 +94,7 @@ namespace RemoteWebsites.Tests
 		{
 			try
 			{
-				WebDriver.Quit();
+				WebDriver?.Quit();
 			}
 			catch
 			{
@@ -103,7 +103,7 @@ namespace RemoteWebsites.Tests
 
 			try
 			{
-				WebDriver.Dispose();
+				WebDriver?.Dispose();
 			}
 			catch
 			{
@@ -112,7 +112,7 @@ namespace RemoteWebsites.Tests
 
 			try
 			{
-				await NvdaDriver.DisconnectAsync();
+				await NvdaDriver?.DisconnectAsync();
 			}
 			catch
 			{

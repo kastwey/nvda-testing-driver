@@ -30,7 +30,10 @@ namespace RemoteWebsites.Tests
 
 			// Act & asserts
 			// We send the ReportCurrentFocus command to NVDA and get the text:
-			string text = await TestHelper.NvdaDriver.SendCommandAndGetSpokenTextAsync(NvdaTestingDriver.Commands.NvdaCommands.NavigatingSystemFocusCommands.ReportCurrentFocus);
+			System.TimeSpan timeout = System.TimeSpan.FromSeconds(25);
+			NvdaTestingDriver.Commands.NvdaCommand command = NvdaTestingDriver.Commands.NvdaCommands.NavigatingSystemFocusCommands.ReportCurrentFocus;
+
+			string text = await TestHelper.NvdaDriver.SendCommandAndGetSpokenTextAsync(command, timeout);
 
 			// We use the NvdaAssert.TextContains method to check that the text pronounced by NVDA
 			// contains the text it should say.
@@ -40,7 +43,7 @@ namespace RemoteWebsites.Tests
 			// which will throw an AssertFailedException if the text specified is not present in the
 			// text pronounced by NVDA, or the method TextContains of the NvdaTestHelper class
 			// (NvdaTestingDriver package), which will return true or false.
-			NvdaAssert.TextContains(text, "master button focused collapsed sub Menu Switch branches or tags");
+			NvdaAssert.TextContains(text, "main button focused collapsed Switch branches or tags");
 		}
 
 	}
